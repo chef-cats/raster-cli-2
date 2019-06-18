@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PbmMonoBin.hpp"
+
 #include <filesystem>
 #include <fstream>
 
