@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\tests\Image.cpp" />
     <ClCompile Include="..\..\..\tests\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\raster-cli\raster-cli.vcxproj">
       <Project>{7a41b22f-8fd2-4e83-a5ee-cd7ffc297faa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\tests\P4.pbm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -104,6 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(SolutionDir)\raster-cli\Debug\Load.obj;$(SolutionDir)\raster-cli\Debug\PbmImage.obj;$(SolutionDir)\raster-cli\Debug\Save.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
