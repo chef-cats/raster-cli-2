@@ -23,8 +23,16 @@ public:
 
   void apply(const Operation& operation) override;
 
-  virtual std::ostream& output(std::ostream& out) const = 0;
-  virtual std::istream& input(std::istream& in) = 0;
+  /**
+   * Outputs image's data to a stream.
+   * 
+   * @throw std::logic_error if image is not loaded yet.
+   */
+  virtual std::ostream& write(std::ostream& out) const = 0;
+  /**
+   * Reads image's data from a stream.
+   */
+  virtual std::istream& read(std::istream& in) = 0;
 
 public:
   bool is_loaded() const;
@@ -40,6 +48,6 @@ protected:
 
 private:
   boost::optional<std::string> _format_id; ///< ID of the format.
-  boost::optional<size_t> _width; ///< Count of pixels in a row.
-  boost::optional<size_t> _height; ///< Count of pixels in a column.
+  boost::optional<size_t> _width;          ///< Count of pixels in a row.
+  boost::optional<size_t> _height;         ///< Count of pixels in a column.
 };

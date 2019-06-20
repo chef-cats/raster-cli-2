@@ -8,7 +8,7 @@ void NetpbmImage::apply(const Operation& operation) {
   operation.apply_to(*this);
 }
 
-std::ostream& NetpbmImage::output(std::ostream& out) const {
+std::ostream& NetpbmImage::write(std::ostream& out) const {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
@@ -16,7 +16,7 @@ std::ostream& NetpbmImage::output(std::ostream& out) const {
   return out << get_format_id() << get_width() << get_height();
 }
 
-std::istream& NetpbmImage::input(std::istream& in) {
+std::istream& NetpbmImage::read(std::istream& in) {
   std::string format_id;
   in >> format_id;
   set_format_id(format_id);
