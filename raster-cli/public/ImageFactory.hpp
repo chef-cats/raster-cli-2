@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PbmMonoBin.hpp"
+#include "P4PbmImage.hpp"
 
 #include <filesystem>
 #include <fstream>

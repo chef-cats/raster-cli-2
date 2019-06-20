@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PbmMono.hpp"
+#include "PbmImage.hpp"
 
 #include <fstream>
 
@@ -17,17 +17,17 @@ unsigned char find_highest_bit_position() {
   return position - 1;
 }
 
-class PbmMonoBin final : public PbmMono {
+class P4PbmImage final : public PbmImage {
 public:
-  PbmMonoBin(const std::string& file_path) : PbmMono(file_path) {}
+  P4PbmImage(const std::string& file_path) : PbmImage(file_path) {}
 
   ///  @todo rename
-  std::ostream& output(std::ostream& out) const override {
+  std::ostream& write(std::ostream& out) const override {
     if (!_pixels) {
       throw std::logic_error("file not loaded");
     }
 
-    PbmImage::output(out);
+    NetpbmImage::write(out);
 
     const auto& pixels = _pixels.get();
 
@@ -56,8 +56,8 @@ public:
 	return out;
   }
 
-  std::istream& input(std::istream& in) override {
-    PbmImage::input(in);
+  std::istream& read(std::istream& in) override {
+    NetpbmImage::read(in);
 
     const unsigned char default_mask = 1 << find_highest_bit_position<unsigned char>();
 

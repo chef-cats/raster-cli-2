@@ -1,12 +1,12 @@
 #pragma once
 
-#include "PbmImage.hpp"
+#include "NetpbmImage.hpp"
 
 #include <vector>
 
-class PbmMono : public PbmImage {
+class PbmImage : public NetpbmImage {
 public:
-  PbmMono(const std::string& file_path) : PbmImage(file_path) {}
+  PbmImage(const std::string& file_path) : NetpbmImage(file_path) {}
 
   enum class Color : bool { BLACK, WHITE };
 
