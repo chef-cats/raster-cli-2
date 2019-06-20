@@ -1,9 +1,9 @@
 #pragma once
 
 /**
- * Forward declaration of PbmImage.
+ * Forward declaration of NetpbmImage.
  */
-class PbmImage;
+class NetpbmImage;
 
 /**
  * Base of the operation hierarchy.
@@ -14,5 +14,5 @@ class PbmImage;
  */
 class Operation {
 public:
-  void apply_to(PbmImage& image) const {}
+  void apply_to(NetpbmImage& image) const {}
 };

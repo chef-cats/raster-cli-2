@@ -8,9 +8,9 @@
 
 class Operation;
 
-class PbmImage : public Image {
+class NetpbmImage : public Image {
 public:
-  PbmImage(const std::string& file_path);
+  NetpbmImage(const std::string& file_path);
 
   void apply(const Operation& operation) override;
 

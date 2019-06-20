@@ -1,18 +1,18 @@
-#include <PbmImage.hpp>
+#include <NetpbmImage.hpp>
 
 #include <Operation.hpp>
 
-PbmImage::PbmImage(const std::string& file_path) : Image(file_path) {}
+NetpbmImage::NetpbmImage(const std::string& file_path) : Image(file_path) {}
 
-void PbmImage::apply(const Operation& operation) {
+void NetpbmImage::apply(const Operation& operation) {
   operation.apply_to(*this);
 }
 
-std::ostream& PbmImage::output(std::ostream& out) const {
+std::ostream& NetpbmImage::output(std::ostream& out) const {
   return out << get_format_id() << get_width() << get_height();
 }
 
-std::istream& PbmImage::input(std::istream& in) {
+std::istream& NetpbmImage::input(std::istream& in) {
   std::string format_id;
   in >> format_id;
   set_format_id(format_id);
@@ -28,12 +28,12 @@ std::istream& PbmImage::input(std::istream& in) {
   return in;
 }
 
-bool PbmImage::is_loaded() const {
+bool NetpbmImage::is_loaded() const {
   /// @todo Optimize
   return _format_id && _width && _height;
 }
 
-const std::string& PbmImage::get_format_id() const {
+const std::string& NetpbmImage::get_format_id() const {
   if (!is_loaded()) {
     throw std::logic_error("file not loaded");
   }
@@ -41,7 +41,7 @@ const std::string& PbmImage::get_format_id() const {
   return _format_id.get();
 }
 
-const size_t PbmImage::get_width() const {
+const size_t NetpbmImage::get_width() const {
   if (!is_loaded()) {
     throw std::logic_error("file not loaded");
   }
@@ -49,7 +49,7 @@ const size_t PbmImage::get_width() const {
   return _width.get();
 }
 
-const size_t PbmImage::get_height() const {
+const size_t NetpbmImage::get_height() const {
   if (!is_loaded()) {
     throw std::logic_error("file not loaded");
   }
@@ -57,14 +57,14 @@ const size_t PbmImage::get_height() const {
   return _height.get();
 }
 
-void PbmImage::set_format_id(const std::string& format_id) {
+void NetpbmImage::set_format_id(const std::string& format_id) {
   _format_id = format_id;
 }
 
-void PbmImage::set_width(size_t width) {
+void NetpbmImage::set_width(size_t width) {
   _width = width;
 }
 
-void PbmImage::set_height(size_t height) {
+void NetpbmImage::set_height(size_t height) {
   _height = height;
 }
