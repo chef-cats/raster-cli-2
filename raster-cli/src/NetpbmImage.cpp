@@ -9,6 +9,10 @@ void NetpbmImage::apply(const Operation& operation) {
 }
 
 std::ostream& NetpbmImage::output(std::ostream& out) const {
+  if (!is_loaded()) {
+    throw std::logic_error("Image is not loaded!");
+  }
+
   return out << get_format_id() << get_width() << get_height();
 }
 
@@ -35,7 +39,7 @@ bool NetpbmImage::is_loaded() const {
 
 const std::string& NetpbmImage::get_format_id() const {
   if (!is_loaded()) {
-    throw std::logic_error("file not loaded");
+    throw std::logic_error("Image is not loaded!");
   }
 
   return _format_id.get();
@@ -43,7 +47,7 @@ const std::string& NetpbmImage::get_format_id() const {
 
 const size_t NetpbmImage::get_width() const {
   if (!is_loaded()) {
-    throw std::logic_error("file not loaded");
+    throw std::logic_error("Image is not loaded!");
   }
 
   return _width.get();
@@ -51,7 +55,7 @@ const size_t NetpbmImage::get_width() const {
 
 const size_t NetpbmImage::get_height() const {
   if (!is_loaded()) {
-    throw std::logic_error("file not loaded");
+    throw std::logic_error("Image is not loaded!");
   }
 
   return _height.get();
