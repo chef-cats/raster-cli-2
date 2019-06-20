@@ -1,0 +1,14 @@
+﻿---
+BasedOnStyle: LLVM
+AlignTrailingComments: 'true'
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: 'true'
+AllowShortLoopsOnASingleLine: 'false'
+AlwaysBreakTemplateDeclarations: 'true'
+BinPackParameters: 'true'
+BreakBeforeBinaryOperators: 'true'
+BreakBeforeBraces: Attach
+ColumnLimit: '90'
+PointerAlignment: Left
+
+...
