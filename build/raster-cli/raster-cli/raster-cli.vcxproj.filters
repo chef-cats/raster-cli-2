@@ -31,5 +31,8 @@
     <ClInclude Include="..\..\..\raster-cli\public\PbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

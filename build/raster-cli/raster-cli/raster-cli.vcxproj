@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\public\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\public\PbmImage.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
