@@ -33,7 +33,6 @@ std::istream& NetpbmImage::read(std::istream& in) {
 }
 
 bool NetpbmImage::is_loaded() const {
-  /// @todo Optimize
   return _format_id && _width && _height;
 }
 

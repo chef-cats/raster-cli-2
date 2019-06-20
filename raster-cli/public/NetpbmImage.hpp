@@ -7,6 +7,14 @@
 #include <fstream>
 
 /**
+ * Wrapper of type that needs to be loaded later.
+ *
+ * Provides method to check if the variable is loaded.
+ */
+template <typename Type>
+using DelayLoad = boost::optional<Type>;
+
+/**
  * Forward declaration of NetpbmImage.
  */
 class Operation;
@@ -25,7 +33,7 @@ public:
 
   /**
    * Outputs image's data to a stream.
-   * 
+   *
    * @throw std::logic_error if image is not loaded yet.
    */
   virtual std::ostream& write(std::ostream& out) const = 0;
@@ -47,7 +55,7 @@ protected:
   void set_height(size_t height);
 
 private:
-  boost::optional<std::string> _format_id; ///< ID of the format.
-  boost::optional<size_t> _width;          ///< Count of pixels in a row.
-  boost::optional<size_t> _height;         ///< Count of pixels in a column.
+  DelayLoad<std::string> _format_id; ///< ID of the format.
+  DelayLoad<size_t> _width;          ///< Count of pixels in a row.
+  DelayLoad<size_t> _height;         ///< Count of pixels in a column.
 };
