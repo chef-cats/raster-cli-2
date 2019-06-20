@@ -6,8 +6,17 @@
 
 #include <fstream>
 
+/**
+ * Forward declaration of NetpbmImage.
+ */
 class Operation;
 
+/**
+ * Image in Netpbm format.
+ *
+ * Holds common data for all sub-formats of Netpbm.
+ * More info: <https://en.wikipedia.org/wiki/Netpbm_format>
+ */
 class NetpbmImage : public Image {
 public:
   NetpbmImage(const std::string& file_path);
@@ -30,7 +39,7 @@ protected:
   void set_height(size_t height);
 
 private:
-  boost::optional<std::string> _format_id;
-  boost::optional<size_t> _width;
-  boost::optional<size_t> _height;
+  boost::optional<std::string> _format_id; ///< ID of the format.
+  boost::optional<size_t> _width; ///< Count of pixels in a row.
+  boost::optional<size_t> _height; ///< Count of pixels in a column.
 };
