@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Image.hpp"
+
 #include <filesystem>
 #include <fstream>
 
@@ -29,10 +31,6 @@ static std::string load_format_id(const std::string& file_path) {
  */
 static Image* create_image(const std::string& file_path) {
   std::string file_format = load_format_id(file_path);
-
-  if (file_format == "P4") {
-    return new PbmMonoBin(file_path);
-  }
 
   return nullptr;
 }
