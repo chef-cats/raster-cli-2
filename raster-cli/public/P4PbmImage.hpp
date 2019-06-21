@@ -23,7 +23,7 @@ public:
 
   std::ostream& write(std::ostream& out) const override {
     if (!is_loaded()) {
-      throw std::logic_error("file not loaded");
+      throw std::logic_error("Image is not loaded!");
     }
 
     NetpbmImage::write(out);
