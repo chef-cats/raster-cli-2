@@ -1,5 +1,9 @@
 #include <PbmImage.hpp>
 
+bool PbmImage::is_loaded() const {
+  return NetpbmImage::is_loaded() && _pixels;
+}
+
 PbmImage::Color PbmImage::get_pixel(size_t width, size_t height) const {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
