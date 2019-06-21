@@ -41,5 +41,6 @@ public:
     }
   }
 
+private:
   DelayLoad<std::vector<std::vector<unsigned char>>> _pixels;
 };

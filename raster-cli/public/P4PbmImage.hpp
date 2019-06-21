@@ -21,15 +21,12 @@ class P4PbmImage final : public PbmImage {
 public:
   P4PbmImage(const std::string& file_path) : PbmImage(file_path) {}
 
-  ///  @todo rename
   std::ostream& write(std::ostream& out) const override {
-    if (!_pixels) {
+    if (!is_loaded()) {
       throw std::logic_error("file not loaded");
     }
 
     NetpbmImage::write(out);
-
-    const auto& pixels = _pixels.get();
 
     const unsigned char default_mask = 1 << find_highest_bit_position<unsigned char>();
 
@@ -38,7 +35,7 @@ public:
 
     for (size_t row = 0; row < get_height(); ++row) {
       for (size_t col = 0; col < get_width(); ++col) {
-        if (pixels[row][col]) {
+        if (get_pixel(col, row) == Color::BLACK) {
           buffer |= mask;
         }
 
