@@ -30,9 +30,6 @@ std::ostream& P4PbmImage::write(std::ostream& out) const {
     }
   }
 
-  /// @todo Check if this is correct.
-  out.write((const char*)&buffer, sizeof(buffer));
-
   return out;
 }
 
