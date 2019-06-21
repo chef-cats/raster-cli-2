@@ -17,12 +17,21 @@
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\public\Image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
