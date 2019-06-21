@@ -5,16 +5,10 @@
 #include <fstream>
 
 template <typename UnsignedInteger>
-unsigned char find_highest_bit_position() {
-  UnsignedInteger i = 1;
-  unsigned char position = 0;
+unsigned char high_bit_index() {
+  UnsignedInterger bits_count = (CHAR_BIT * sizeof(UnsignedInteger));
 
-  while (i != 0) {
-    i <<= 1;
-    ++position;
-  }
-
-  return position - 1;
+  return bits_count - 1;
 }
 
 class P4PbmImage final : public PbmImage {
@@ -28,7 +22,7 @@ public:
 
     NetpbmImage::write(out);
 
-    const unsigned char default_mask = 1 << find_highest_bit_position<unsigned char>();
+    const unsigned char default_mask = 1 << high_bit_index<unsigned char>();
 
     unsigned char buffer = 0;
     unsigned char mask = default_mask;
@@ -56,7 +50,7 @@ public:
   std::istream& read(std::istream& in) override {
     NetpbmImage::read(in);
 
-    const unsigned char default_mask = 1 << find_highest_bit_position<unsigned char>();
+    const unsigned char default_mask = 1 << high_bit_index<unsigned char>();
 
     unsigned char buffer = 0;
 
