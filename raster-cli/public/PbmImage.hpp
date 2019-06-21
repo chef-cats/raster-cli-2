@@ -19,7 +19,7 @@ public:
     size_t indent = width % (CHAR_BIT * sizeof(unsigned char));
     unsigned char mask = (1 << indent);
 
-    unsigned char pixel = _pixels.at(height).at(index) & mask;
+    unsigned char pixel = _pixels.get().at(height).at(index) & mask;
     return pixel ? Color::BLACK : Color::WHITE;
   }
 
@@ -31,7 +31,7 @@ public:
     size_t index = width / (CHAR_BIT * sizeof(unsigned char));
     size_t indent = width % (CHAR_BIT * sizeof(unsigned char));
 
-    unsigned char& pixels_chunk = _pixels.at(height).at(index);
+    unsigned char& pixels_chunk = _pixels.get().at(height).at(index);
     unsigned char mask = (1 << indent);
 
     if (color == Color::BLACK) {
@@ -41,5 +41,5 @@ public:
     }
   }
 
-  std::vector<std::vector<unsigned char>> _pixels;
+  DelayLoad<std::vector<std::vector<unsigned char>>> _pixels;
 };
