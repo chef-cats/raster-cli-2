@@ -4,9 +4,9 @@
 
 #include <fstream>
 
-template <typename UnsignedInteger>
+template <typename UnsignedType>
 unsigned char high_bit_index() {
-  UnsignedInterger bits_count = (CHAR_BIT * sizeof(UnsignedInteger));
+  UnsignedType bits_count = (CHAR_BIT * sizeof(UnsignedType));
 
   return bits_count - 1;
 }
