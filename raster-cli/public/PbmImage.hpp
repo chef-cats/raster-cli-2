@@ -6,7 +6,7 @@
 
 class PbmImage : public NetpbmImage {
 public:
-  PbmImage(const std::string& file_path) : NetpbmImage(file_path) {}
+  PbmImage(const std::string& file_path);
 
 public:
   bool is_loaded() const override;

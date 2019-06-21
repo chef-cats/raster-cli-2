@@ -1,5 +1,7 @@
 #include <PbmImage.hpp>
 
+PbmImage::PbmImage(const std::string& file_path) : NetpbmImage(file_path) {}
+
 bool PbmImage::is_loaded() const {
   return NetpbmImage::is_loaded() && _pixels;
 }
