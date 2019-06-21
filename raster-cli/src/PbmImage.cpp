@@ -18,7 +18,7 @@ PbmImage::Color PbmImage::get_pixel(size_t width, size_t height) const {
 
   const unsigned char mask = (1 << indent);
 
-  unsigned char pixel = pixels.at(height).at(index) & mask;
+  unsigned char pixel = pixels.at(height * get_width() + index) & mask;
   return pixel ? Color::BLACK : Color::WHITE;
 }
 
@@ -32,7 +32,7 @@ void PbmImage::set_pixel(Color color, unsigned char width, unsigned char height)
   const size_t index = width / (CHAR_BIT * sizeof(unsigned char));
   const size_t indent = width % (CHAR_BIT * sizeof(unsigned char));
 
-  unsigned char& pixels_chunk = pixels.at(height).at(index);
+  unsigned char& pixels_chunk = pixels.at(height * get_width() + index);
   const unsigned char mask = (1 << indent);
 
   if (color == Color::BLACK) {

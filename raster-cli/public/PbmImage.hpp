@@ -17,5 +17,5 @@ public:
   void set_pixel(Color color, unsigned char width, unsigned char height);
 
 private:
-  DelayLoad<std::vector<std::vector<unsigned char>>> _pixels;
+  DelayLoad<std::vector<unsigned char>> _pixels;
 };
