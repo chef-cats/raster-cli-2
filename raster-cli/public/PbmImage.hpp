@@ -12,7 +12,7 @@ public:
 
   Color get_pixel(size_t width, size_t height) const {
     if (!is_loaded()) {
-      throw std::logic_error("file not loaded");
+      throw std::logic_error("Image is not loaded!");
     }
 
     size_t index = width / (CHAR_BIT * sizeof(unsigned char));
@@ -25,7 +25,7 @@ public:
 
   void set_pixel(Color color, unsigned char width, unsigned char height) {
     if (!is_loaded()) {
-      throw std::logic_error("file not loaded");
+      throw std::logic_error("Image is not loaded!");
     }
 
     size_t index = width / (CHAR_BIT * sizeof(unsigned char));
