@@ -22,16 +22,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\public\Image.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
