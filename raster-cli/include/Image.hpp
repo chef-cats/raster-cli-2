@@ -14,9 +14,18 @@ class Operation;
  */
 class Image {
 public:
+  /**
+   * The constructor doesn't load the pixels from the file. It only
+   * saves the file name. If you want to load the pixels, you have to 
+   * invoke the load function(@see load). This lazy construction
+   * will help to avoid unnecessary memory usage.
+   */
+  explicit Image(const std::string& file_path) : _file_path(file_path) {}
+  Image(const Image& rhs) = default;
+  Image(Image&& rhs) = default;
+  Image& operator=(const Image& rhs) = default;
+  Image& operator=(Image&& rhs) = default;
   virtual ~Image() = default;
-
-  Image(const std::string& file_path) : _file_path(file_path) {}
 
   /**
    * This function "accepts" an Operation that will affect the image.
@@ -25,5 +34,6 @@ public:
    */
   virtual void apply(const Operation& operation) = 0;
 
+private:
   std::string _file_path; ///< Path to the file that represents the image.
 };
