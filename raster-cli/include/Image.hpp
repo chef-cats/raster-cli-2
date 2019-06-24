@@ -33,6 +33,11 @@ public:
    * @param operation [in] What operation to take effect.
    */
   virtual void apply(const Operation& operation) = 0;
+  virtual void load() = 0;
+  virtual void save() const = 0;
+
+public:
+  std::string get_file_path() const { return _file_path; }
 
 private:
   std::string _file_path; ///< Path to the file that represents the image.
