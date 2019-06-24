@@ -10,8 +10,8 @@ void NetpbmImage::apply(const Operation& operation) {
 }
 
 std::ostream& NetpbmImage::write(std::ostream& out) const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
+  if (!is_metadata_loaded()) {
+    throw std::logic_error("Image metadata is not loaded!");
   }
 
   return out << get_format_id() << get_width() << get_height();
@@ -33,29 +33,29 @@ std::istream& NetpbmImage::read(std::istream& in) {
   return in;
 }
 
-bool NetpbmImage::is_loaded() const {
+bool NetpbmImage::is_metadata_loaded() const {
   return _format_id && _width && _height;
 }
 
 const std::string& NetpbmImage::get_format_id() const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
+  if (!_format_id) {
+    throw std::logic_error("Image format metadata is not loaded!");
   }
 
   return _format_id.get();
 }
 
 const size_t NetpbmImage::get_width() const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
+  if (!_width) {
+    throw std::logic_error("Image width metadata is not loaded!");
   }
 
   return _width.get();
 }
 
 const size_t NetpbmImage::get_height() const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
+  if (!_height) {
+    throw std::logic_error("Image height metadata is not loaded!");
   }
 
   return _height.get();

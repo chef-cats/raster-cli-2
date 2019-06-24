@@ -42,7 +42,7 @@ public:
   virtual std::istream& read(std::istream& in) = 0;
 
 public:
-  virtual bool is_loaded() const = 0;
+  virtual bool is_metadata_loaded() const;
 
   const std::string& get_format_id() const;
   const size_t get_width() const;
