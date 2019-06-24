@@ -12,6 +12,9 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{0e4b98f9-6ab0-4a0f-963c-dc8e0a4d1c3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{4954924b-0409-484d-bdaf-3c94ac53d8da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -33,6 +36,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
