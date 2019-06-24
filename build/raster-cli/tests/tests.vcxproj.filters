@@ -28,7 +28,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\tests\P4Sample.pbm">
+    <None Include="..\..\..\tests\testData\P4Sample.pbm">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
