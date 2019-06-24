@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(ReadWriteTest) {
 
   {
     std::ofstream out("../../../tests/testData/P4SampleTestOutput.pbm");
-    BOOST_REQUIRE(out);
+    BOOST_REQUIRE(out.is_open());
     image.write(out);
   }
 
