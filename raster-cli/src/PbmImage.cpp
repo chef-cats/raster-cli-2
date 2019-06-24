@@ -61,5 +61,5 @@ void PbmImage::set_pixels(const std::vector<unsigned char>& pixels) {
     throw std::invalid_argument("Size of image doesn't match");
   }
 
-  _pixels = _pixels;
+  _pixels = pixels;
 }
