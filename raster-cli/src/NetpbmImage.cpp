@@ -14,7 +14,7 @@ std::ostream& NetpbmImage::write(std::ostream& out) const {
     throw std::logic_error("Image metadata is not loaded!");
   }
 
-  return out << get_format_id() << get_width() << get_height();
+  return out << get_format_id() << std::endl << get_width() << ' ' << get_height();
 }
 
 std::istream& NetpbmImage::read(std::istream& in) {
