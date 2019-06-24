@@ -128,12 +128,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
