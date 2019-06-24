@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />

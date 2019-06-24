@@ -20,6 +20,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\Image.hpp">
