@@ -28,7 +28,6 @@ public:
   void set_pixel(PGM_pixel pixel, size_t row, size_t column);
 
 private:
-  static const size_t MAX_POSSIBLE_VALUE = 255;
   size_t _max_value;
   std::vector<std::vector<PGM_pixel>> _pixels;
 };

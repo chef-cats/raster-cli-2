@@ -32,7 +32,7 @@ void PGMImage::set_pixel(PGM_pixel pixel, size_t row, size_t column) {
     throw std::logic_error("Image is not loaded!");
   }
   size_t value = static_cast<size_t>(pixel);
-  if (value > MAX_POSSIBLE_VALUE) {
+  if (value > _max_value) {
     throw std::range_error("Try to set invalid value!");
   }
   _pixels[row][column] = pixel;
