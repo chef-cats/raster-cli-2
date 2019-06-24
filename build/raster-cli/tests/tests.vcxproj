@@ -28,9 +28,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\..\tests\testData\P4Sample.pbm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
