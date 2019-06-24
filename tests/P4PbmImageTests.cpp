@@ -8,7 +8,7 @@
 BOOST_AUTO_TEST_SUITE(P4PbmImageTests)
 
 BOOST_AUTO_TEST_CASE(ReadWriteTest) {
-  P4PbmImage image("../../../tests/P4Sample.pbm");
+  P4PbmImage image("../../../tests/testData/P4Sample.pbm");
 
   {
     std::ifstream in(image._file_path, std::ifstream::binary);
@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_CASE(ReadWriteTest) {
   }
 
   {
-    std::ofstream out("../../../tests/testData/P4SampleTestOutput.pbm");
+    std::ofstream out("../../../tests/testData/temp/P4SampleTestOutput.pbm");
     BOOST_REQUIRE(out.is_open());
     image.write(out);
   }
@@ -30,11 +30,11 @@ BOOST_AUTO_TEST_CASE(ReadWriteTest) {
                           std::ifstream::binary);
     BOOST_REQUIRE(in_copy.is_open());
 
-    const std::string content_original(std::istreambuf_iterator<char>(in_original),
-                                       std::istreambuf_iterator<char>());
+    const std::string content_original((std::istreambuf_iterator<char>(in_original)),
+                                       (std::istreambuf_iterator<char>()));
 
-    const std::string content_copy(std::istreambuf_iterator<char>(in_copy),
-                                   std::istreambuf_iterator<char>());
+    const std::string content_copy((std::istreambuf_iterator<char>(in_copy)),
+                                   (std::istreambuf_iterator<char>()));
 
     BOOST_CHECK_EQUAL(content_original, content_copy);
   }
