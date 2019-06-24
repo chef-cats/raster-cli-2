@@ -89,6 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../raster-cli/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,10 +130,10 @@
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\public\Image.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
