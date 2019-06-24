@@ -1,7 +1,7 @@
 #include "..\include\PGMImage.hpp"
 
 
-PGMImage::PGMImage(const std::string& file_name) : NetpbmImage(file_name) {}
+PGMImage::PGMImage(const std::string& file_name) : Netpbm(file_name) {}
 
 /**
  * Get pixel with coordinates row and column of the image

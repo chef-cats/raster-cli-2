@@ -1,5 +1,5 @@
 #pragma once
-#include "NetpbmImage.hpp"
+#include "Netpbm.hpp"
 #include <vector>
 
 using PGMPixel = char;
@@ -14,7 +14,7 @@ using PGMPixel = char;
  * [1, 255].
  */
 
-class PGMImage : public NetpbmImage {
+class PGMImage : public Netpbm {
 public:
   PGMImage(const std::string& file_name);
   PGMImage(const PGMImage& other) = default;

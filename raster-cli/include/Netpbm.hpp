@@ -14,10 +14,6 @@
 template <typename Type>
 using DelayLoad = boost::optional<Type>;
 
-/**
- * Forward declaration of NetpbmImage.
- */
-class Operation;
 
 /**
  * Image in Netpbm format.
@@ -25,11 +21,9 @@ class Operation;
  * Holds common data for all sub-formats of Netpbm.
  * More info: <https://en.wikipedia.org/wiki/Netpbm_format>
  */
-class NetpbmImage : public Image {
+class Netpbm : public Image {
 public:
-  NetpbmImage(const std::string& file_path);
-
-  void apply(const Operation& operation) override;
+  Netpbm(const std::string& file_path);
 
   /**
    * Outputs image's data to a stream.
