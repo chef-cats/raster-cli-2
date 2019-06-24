@@ -22,20 +22,21 @@ BOOST_AUTO_TEST_CASE(ReadWriteTest) {
     image.write(out);
   }
 
-  { 
-	std::ifstream in_original(image._file_path, std::ifstream::binary);
+  {
+    std::ifstream in_original(image._file_path, std::ifstream::binary);
     BOOST_REQUIRE(in_original.is_open());
 
-	std::ifstream in_copy("../../../tests/testData/temp/P4SampleTestOutput.pbm", std::ifstream::binary);
+    std::ifstream in_copy("../../../tests/testData/temp/P4SampleTestOutput.pbm",
+                          std::ifstream::binary);
     BOOST_REQUIRE(in_copy.is_open());
 
-	const std::string content_original((std::istreambuf_iterator<char>(in_original)),
-                        (std::istreambuf_iterator<char>()));
+    const std::string content_original(std::istreambuf_iterator<char>(in_original),
+                                       std::istreambuf_iterator<char>());
 
-	const std::string content_copy((std::istreambuf_iterator<char>(in_copy)),
-                                           (std::istreambuf_iterator<char>()));
+    const std::string content_copy(std::istreambuf_iterator<char>(in_copy),
+                                   std::istreambuf_iterator<char>());
 
-	BOOST_CHECK_EQUAL(content_original, content_copy);
+    BOOST_CHECK_EQUAL(content_original, content_copy);
   }
 }
 
