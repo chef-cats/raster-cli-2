@@ -1,6 +1,7 @@
 #include <P4PbmImage.hpp>
 
 #include <fstream>
+#include <iostream>
 
 P4PbmImage::P4PbmImage(const std::string& file_path) : PbmImage(file_path) {}
 
@@ -11,49 +12,27 @@ std::ostream& P4PbmImage::write(std::ostream& out) const {
 
   NetpbmImage::write(out);
 
-  const unsigned char default_mask = 1 << high_bit_index<unsigned char>();
+  out << std::endl;
 
-  unsigned char buffer = 0;
-  unsigned char mask = default_mask;
-
-  for (size_t row = 0; row < get_height(); ++row) {
-    for (size_t col = 0; col < get_width(); ++col) {
-      if (get_pixel(col, row) == Color::BLACK) {
-        buffer |= mask;
-      }
-
-      mask >> 1;
-      if (mask == 0) {
-        out.write((const char*)&buffer, sizeof(buffer));
-        mask = default_mask;
-      }
-    }
-  }
-
-  return out;
+  return out.write((const char*)get_pixels().data(),
+                   get_pixels().size() * sizeof(unsigned char));
 }
 
 std::istream& P4PbmImage::read(std::istream& in) {
   NetpbmImage::read(in);
 
-  const unsigned char default_mask = 1 << high_bit_index<unsigned char>();
+  const size_t uchar_bits = sizeof(unsigned char) * CHAR_BIT;
+  const size_t image_size = get_height() * get_width();
+  const size_t data_size = ceil(image_size / (double)(uchar_bits));
 
-  unsigned char buffer = 0;
+  in.seekg(0, std::istream::end);
+  const long long file_size = in.tellg();
+  in.seekg(file_size - data_size, std::ifstream::beg);
 
-  std::vector<std::vector<bool>> pixels;
-  pixels.resize(get_height());
-  for (auto& pixel_row : pixels) {
-    pixel_row.resize(get_width());
-  }
+  std::vector<unsigned char> pixels(data_size);
+  in.read((char*)pixels.data(), pixels.size());
 
-  /// @todo Fix this
-  while (in.read((char*)&buffer, sizeof(buffer))) {
-    unsigned char mask = default_mask;
-    while (mask != 0) {
-      if (buffer & mask) {
-      }
-      mask >> 1;
-    }
-  }
+  set_pixels(pixels);
+
   return in;
 }
