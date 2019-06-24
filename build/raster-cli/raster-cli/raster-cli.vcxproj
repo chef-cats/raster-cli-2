@@ -136,6 +136,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
