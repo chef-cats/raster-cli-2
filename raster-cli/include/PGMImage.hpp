@@ -2,7 +2,7 @@
 #include "NetpbmImage.hpp"
 #include <vector>
 
-typedef char PGM_pixel;
+using PGMPixel = char;
 
 /**
  * Images with PGM format.
@@ -24,10 +24,10 @@ public:
   virtual ~PGMImage() = default;
 
 public:
-  PGM_pixel get_pixel(size_t row, size_t column) const;
-  void set_pixel(PGM_pixel pixel, size_t row, size_t column);
+  PGMPixel get_pixel(size_t row, size_t column) const;
+  void set_pixel(PGMPixel pixel, size_t row, size_t column);
 
 private:
   size_t _max_value;
-  std::vector<std::vector<PGM_pixel>> _pixels;
+  std::vector<std::vector<PGMPixel>> _pixels;
 };
