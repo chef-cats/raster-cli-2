@@ -10,9 +10,7 @@ Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
  * @throw std::logic_error if image is not loaded yet.
  */
 std::ostream& Netpbm::write(std::ostream& out) const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
-  }
+  loadCheck();
 
   return out << get_format_id() << get_width() << get_height();
 }
