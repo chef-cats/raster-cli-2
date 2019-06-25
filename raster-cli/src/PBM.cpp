@@ -2,15 +2,15 @@
 
 #include <utils/Constants.hpp>
 
-struct PixelPosition {
-  explicit PixelPosition(size_t index, size_t offset) : _index(index), _offset(offset) {}
+struct PBMPixelPosition {
+  explicit PBMPixelPosition(size_t index, size_t offset) : _index(index), _offset(offset) {}
 
   size_t _index;
   size_t _offset;
 };
 
-static PixelPosition get_pixel_position(size_t width) {
-  return PixelPosition(width / UCHAR_BITS, width % UCHAR_BITS);
+static PBMPixelPosition get_pixel_position(size_t width) {
+  return PBMPixelPosition(width / UCHAR_BITS, width % UCHAR_BITS);
 }
 
 PBM::PBM(const std::string& file_path) : NetpbmImage(file_path) {}

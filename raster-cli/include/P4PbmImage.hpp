@@ -2,13 +2,7 @@
 
 #include "PBM.hpp"
 
-// @todo Separate to utils file.
-template <typename UnsignedType>
-unsigned char high_bit_index() {
-  UnsignedType bits_count = (CHAR_BIT * sizeof(UnsignedType));
-
-  return bits_count - 1;
-}
+#include "utils/HelperFunctions.hpp"
 
 class P4PbmImage final : public PBM {
 public:
