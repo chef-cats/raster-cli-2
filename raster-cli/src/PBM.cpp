@@ -1,6 +1,6 @@
 #include <PBM.hpp>
 
-#include <utils/Constants.hpp>
+#include "utils/Constants.hpp"
 
 struct PBMPixelPosition {
   explicit PBMPixelPosition(size_t index, size_t offset) : _index(index), _offset(offset) {}
