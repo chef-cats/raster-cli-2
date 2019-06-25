@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\..\..\raster-cli\public\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\..\raster-cli\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,6 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../raster-cli/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,14 +130,17 @@
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\P4PbmImage.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\PBM.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\public\Image.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\P4PbmImage.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\PBM.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\P4PbmImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\PBM.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

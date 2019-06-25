@@ -12,6 +12,9 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{0e4b98f9-6ab0-4a0f-963c-dc8e0a4d1c3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{4954924b-0409-484d-bdaf-3c94ac53d8da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -26,25 +29,34 @@
     <ClCompile Include="..\..\..\raster-cli\src\PBM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\public\Image.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\ImageFactory.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\NetpbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\P4PbmImage.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\P4PbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\PBM.hpp">
+    <ClInclude Include="..\..\..\raster-cli\include\PBM.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

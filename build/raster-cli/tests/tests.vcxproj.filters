@@ -18,6 +18,9 @@
     <ClCompile Include="..\..\..\tests\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\FormatterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\tests\P4PbmImageTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
