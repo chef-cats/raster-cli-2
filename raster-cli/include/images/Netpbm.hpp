@@ -31,15 +31,9 @@ public:
   virtual ~Netpbm() = default;
 
 public:
-  /**
-   * Load the image from the file which was used for the image construction
-   */
-  virtual void load() override = 0;
-  /**
-   * Save the image into the file with the same name as the file
-   * which was used for the image construction but with a timestamp suffix
-   */
-  virtual void save() const override = 0;
+  virtual void apply(const Operation& operation) = 0;
+  virtual void load() = 0;
+  virtual void save() const = 0;
 
 public:
   bool is_loaded() const;
