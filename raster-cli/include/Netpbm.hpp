@@ -24,17 +24,22 @@ using DelayLoad = boost::optional<Type>;
 class Netpbm : public Image {
 public:
   Netpbm(const std::string& file_path);
+  Netpbm(const Netpbm& rhs) = default;
+  Netpbm(Netpbm&& rhs) = default;
+  Netpbm& operator=(const Netpbm& rhs) = default;
+  Netpbm& operator=(Netpbm&& rhs) = default;
+  virtual ~Netpbm() = default;
 
+public:
   /**
-   * Outputs image's data to a stream.
-   *
-   * @throw std::logic_error if image is not loaded yet.
+   * Load the image from the file which was used for the image construction
    */
-  virtual std::ostream& write(std::ostream& out) const = 0;
+  virtual void load() override = 0;
   /**
-   * Reads image's data from a stream.
+   * Save the image into the file with the same name as the file
+   * which was used for the image construction but with a timestamp suffix
    */
-  virtual std::istream& read(std::istream& in) = 0;
+  virtual void save() const override = 0;
 
 public:
   bool is_loaded() const;
@@ -44,9 +49,15 @@ public:
   const size_t get_height() const;
 
 protected:
+  void loadCheck() const;
+
   void set_format_id(const std::string& format_id);
   void set_width(size_t width);
   void set_height(size_t height);
+
+ protected:
+  virtual std::ostream& write(std::ostream& out) const = 0;
+  virtual std::istream& read(std::istream& in) = 0;
 
 private:
   DelayLoad<std::string> _format_id; ///< ID of the format.
