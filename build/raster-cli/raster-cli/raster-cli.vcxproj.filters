@@ -20,10 +20,10 @@
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\PGMImage.cpp">
+    <ClCompile Include="..\..\..\raster-cli\src\Netpbm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\Netpbm.cpp">
+    <ClCompile Include="..\..\..\raster-cli\src\PGM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,13 +37,13 @@
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\Netpbm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\PGM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

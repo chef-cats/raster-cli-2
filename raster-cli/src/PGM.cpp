@@ -1,7 +1,7 @@
-#include "..\include\PGMImage.hpp"
+#include "..\include\PGM.hpp"
 
 
-PGMImage::PGMImage(const std::string& file_name) : Netpbm(file_name) {}
+PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
 
 /**
  * Get pixel with coordinates row and column of the image
@@ -10,7 +10,7 @@ PGMImage::PGMImage(const std::string& file_name) : Netpbm(file_name) {}
  *                            or column values is bigger than image's width
  * @throw std::logic_error - if the image is not loaded. 
  */
-PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
+PGMPixel PGM::get_pixel(size_t row, size_t column) const {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
@@ -27,7 +27,7 @@ PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
  *                           (numbers of grey between black and white).
  * @throw std::logic_error - if the image is not loaded.
  */
-void PGMImage::set_pixel(PGMPixel pixel, size_t row, size_t column) {
+void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
