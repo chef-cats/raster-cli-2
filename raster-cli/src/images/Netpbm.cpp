@@ -1,4 +1,4 @@
-#include <Netpbm.hpp>
+#include <images/Netpbm.hpp>
 
 #include <Operation.hpp>
 

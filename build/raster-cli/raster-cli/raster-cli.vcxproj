@@ -126,16 +126,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
-    <ClCompile Include="..\..\..\raster-cli\src\Netpbm.cpp" />
-    <ClCompile Include="..\..\..\raster-cli\src\PGM.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\include\Netpbm.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\Image.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\ImageFactory.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\include\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

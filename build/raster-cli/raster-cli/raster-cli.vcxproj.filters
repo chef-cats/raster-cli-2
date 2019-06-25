@@ -15,36 +15,42 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{4954924b-0409-484d-bdaf-3c94ac53d8da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\images">
+      <UniqueIdentifier>{7b2e64a3-ac97-4946-8a7c-0146cf2dd513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\images">
+      <UniqueIdentifier>{64ce4c8c-d34c-4085-9a1e-2ad88fcafc3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\Netpbm.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp">
+      <Filter>Source Files\images</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\PGM.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp">
+      <Filter>Source Files\images</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\include\Image.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\Netpbm.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\..\raster-cli\include\images\Image.hpp">
+      <Filter>Header Files\images</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\PGM.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\..\raster-cli\include\images\ImageFactory.hpp">
+      <Filter>Header Files\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp">
+      <Filter>Header Files\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp">
+      <Filter>Header Files\images</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

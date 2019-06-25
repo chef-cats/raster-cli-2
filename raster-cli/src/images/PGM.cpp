@@ -1,4 +1,4 @@
-#include "..\include\PGM.hpp"
+#include <images/PGM.hpp>
 
 
 PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
