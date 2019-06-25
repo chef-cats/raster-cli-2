@@ -2,16 +2,9 @@
 
 #include "Image.hpp"
 
-#include <boost/optional.hpp>
+#include "utils/Types.hpp"
 
-/**
- * Wrapper of type that needs to be loaded later.
- *
- * Provides method to check if the variable is loaded.
- * @todo Separate to utils file.
- */
-template <typename Type>
-using DelayLoad = boost::optional<Type>;
+#include <boost/optional.hpp>
 
 /**
  * Forward declaration of NetpbmImage.

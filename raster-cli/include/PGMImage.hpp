@@ -1,8 +1,7 @@
 #pragma once
 #include "NetpbmImage.hpp"
+#include "utils/Types.hpp"
 #include <vector>
-
-using PGMPixel = char;
 
 /**
  * Images with PGM format.
