@@ -8,10 +8,10 @@ Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
 /**
  * Outputs image's data to a stream.
  *
- * @see loadCheck
+ * @see load_check
  */
 std::ostream& Netpbm::write(std::ostream& out) const {
-  loadCheck();
+  load_check();
 
   return out << get_format_id() << get_width() << get_height();
 }
@@ -40,7 +40,7 @@ std::istream& Netpbm::read(std::istream& in) {
  *
  * @throws std::logic_error - if the image is not loaded.
  */
-void Netpbm::loadCheck() const {
+void Netpbm::load_check() const {
   if (!is_loaded()) {
     throw std::logic_error(Formatter()
                            << "Image " << get_file_path() << " is not loaded!");
@@ -57,21 +57,21 @@ bool Netpbm::is_loaded() const {
  * @throws std::logic_error - if the image is not loaded.
  */
 const std::string& Netpbm::get_format_id() const {
-  loadCheck();
+  load_check();
 
   return _format_id.get();
 }
 
-/// @see loadCheck
+/// @see load_check
 const size_t Netpbm::get_width() const {
-  loadCheck();
+  load_check();
 
   return _width.get();
 }
 
-/// @see loadCheck
+/// @see load_check
 const size_t Netpbm::get_height() const {
-  loadCheck();
+  load_check();
 
   return _height.get();
 }
