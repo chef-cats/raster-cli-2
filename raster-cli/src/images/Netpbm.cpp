@@ -7,7 +7,7 @@ Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
 /**
  * Outputs image's data to a stream.
  *
- * @throw std::logic_error if image is not loaded yet.
+ * @see loadCheck
  */
 std::ostream& Netpbm::write(std::ostream& out) const {
   loadCheck();
@@ -60,28 +60,23 @@ const std::string& Netpbm::get_format_id() const {
   return _format_id.get();
 }
 
-/**
- * Get width of the image
- *
- * @throws std::logic_error - if the image is not loaded.
- */
+/// @see loadCheck
 const size_t Netpbm::get_width() const {
   loadCheck();
 
   return _width.get();
 }
 
-/**
- * Get height of the image
- *
- * @throws std::logic_error - if the image is not loaded.
- */
+/// @see loadCheck
 const size_t Netpbm::get_height() const {
   loadCheck();
 
   return _height.get();
 }
 
+/**
+ * Set the magic number which represent the format of the image
+ */
 void Netpbm::set_format_id(const std::string& format_id) {
   _format_id = format_id;
 }
