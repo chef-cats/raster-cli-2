@@ -128,7 +128,7 @@
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\P4PbmImage.cpp" />
-    <ClCompile Include="..\..\..\raster-cli\src\PbmImage.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\PBM.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\public\Image.hpp" />
@@ -136,7 +136,7 @@
     <ClInclude Include="..\..\..\raster-cli\public\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\public\NetpbmImage.hpp" />
     <ClInclude Include="..\..\..\raster-cli\public\P4PbmImage.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\public\PbmImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\public\PBM.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-P4PbmImage::P4PbmImage(const std::string& file_path) : PbmImage(file_path) {}
+P4PbmImage::P4PbmImage(const std::string& file_path) : PBM(file_path) {}
 
 std::ostream& P4PbmImage::write(std::ostream& out) const {
   if (!is_loaded()) {

@@ -4,9 +4,9 @@
 
 #include <vector>
 
-class PbmImage : public NetpbmImage {
+class PBM : public NetpbmImage {
 public:
-  PbmImage(const std::string& file_path);
+  PBM(const std::string& file_path);
 
 public:
   virtual bool is_loaded() const;

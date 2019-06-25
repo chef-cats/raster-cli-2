@@ -1,12 +1,12 @@
-#include <PbmImage.hpp>
+#include <PBM.hpp>
 
-PbmImage::PbmImage(const std::string& file_path) : NetpbmImage(file_path) {}
+PBM::PBM(const std::string& file_path) : NetpbmImage(file_path) {}
 
-bool PbmImage::is_loaded() const {
+bool PBM::is_loaded() const {
   return is_metadata_loaded() && _pixels;
 }
 
-PbmImage::Color PbmImage::get_pixel(size_t width, size_t height) const {
+PBM::Color PBM::get_pixel(size_t width, size_t height) const {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
@@ -22,7 +22,7 @@ PbmImage::Color PbmImage::get_pixel(size_t width, size_t height) const {
   return pixel ? Color::BLACK : Color::WHITE;
 }
 
-void PbmImage::set_pixel(Color color, unsigned char width, unsigned char height) {
+void PBM::set_pixel(Color color, unsigned char width, unsigned char height) {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
@@ -42,7 +42,7 @@ void PbmImage::set_pixel(Color color, unsigned char width, unsigned char height)
   }
 }
 
-const std::vector<unsigned char>& PbmImage::get_pixels() const {
+const std::vector<unsigned char>& PBM::get_pixels() const {
   if (!is_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
@@ -50,7 +50,7 @@ const std::vector<unsigned char>& PbmImage::get_pixels() const {
   return _pixels.get();
 }
 
-void PbmImage::set_pixels(const std::vector<unsigned char>& pixels) {
+void PBM::set_pixels(const std::vector<unsigned char>& pixels) {
   if (!is_metadata_loaded()) {
     throw std::logic_error("Image metadata is not loaded!");
   }

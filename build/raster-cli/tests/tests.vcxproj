@@ -108,7 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)raster-cli\Debug\NetpbmImage.obj;$(SolutionDir)raster-cli\Debug\PbmImage.obj;$(SolutionDir)raster-cli\Debug\P4PbmImage.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)raster-cli\Debug\NetpbmImage.obj;$(SolutionDir)raster-cli\Debug\PBM.obj;$(SolutionDir)raster-cli\Debug\P4PbmImage.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

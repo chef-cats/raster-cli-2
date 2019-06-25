@@ -20,10 +20,10 @@
     <ClCompile Include="..\..\..\raster-cli\src\NetpbmImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\PbmImage.cpp">
+    <ClCompile Include="..\..\..\raster-cli\src\P4PbmImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\raster-cli\src\P4PbmImage.cpp">
+    <ClCompile Include="..\..\..\raster-cli\src\PBM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,7 +43,7 @@
     <ClInclude Include="..\..\..\raster-cli\public\P4PbmImage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\public\PbmImage.hpp">
+    <ClInclude Include="..\..\..\raster-cli\public\PBM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

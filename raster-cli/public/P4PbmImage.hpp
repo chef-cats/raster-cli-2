@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PbmImage.hpp"
+#include "PBM.hpp"
 
 // @todo Separate to utils file.
 template <typename UnsignedType>
@@ -10,7 +10,7 @@ unsigned char high_bit_index() {
   return bits_count - 1;
 }
 
-class P4PbmImage final : public PbmImage {
+class P4PbmImage final : public PBM {
 public:
   P4PbmImage(const std::string& file_path);
 
