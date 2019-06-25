@@ -1,6 +1,6 @@
 #include <PBM.hpp>
 
-static const size_t UCHAR_BITS = CHAR_BIT * sizeof(unsigned char);
+#include <utils/Constants.hpp>
 
 struct PixelPosition {
   explicit PixelPosition(size_t index, size_t offset) : _index(index), _offset(offset) {}

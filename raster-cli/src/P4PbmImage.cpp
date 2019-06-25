@@ -1,5 +1,7 @@
 #include <P4PbmImage.hpp>
 
+#include <utils/Constants.hpp>
+
 #include <fstream>
 #include <iostream>
 
@@ -21,9 +23,8 @@ std::ostream& P4PbmImage::write(std::ostream& out) const {
 std::istream& P4PbmImage::read(std::istream& in) {
   NetpbmImage::read(in);
 
-  const size_t uchar_bits = sizeof(unsigned char) * CHAR_BIT;
   const size_t image_size = get_height() * get_width();
-  const size_t data_size = ceil(image_size / (double)(uchar_bits));
+  const size_t data_size = ceil(image_size / (double)(UCHAR_BITS));
 
   in.seekg(0, std::istream::end);
   const long long file_size = in.tellg();

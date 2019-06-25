@@ -136,6 +136,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\P4PbmImage.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\PBM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\PGMImage.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\ImageFactory.hpp" />
