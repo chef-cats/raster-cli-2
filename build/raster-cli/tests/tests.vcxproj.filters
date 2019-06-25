@@ -18,5 +18,16 @@
     <ClCompile Include="..\..\..\tests\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\FormatterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\P4PbmImageTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\tests\testData\P4Sample.pbm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

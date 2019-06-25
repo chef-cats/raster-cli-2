@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Image.hpp"
-
-#include <filesystem>
+#include <string>
 #include <fstream>
 
 /**
@@ -23,14 +21,9 @@ static std::string load_format_id(const std::string& file_path) {
   return format_id;
 }
 
-/**
- * Creates the appropriate Image sub-type to represent the file.
- *
- * @param file_path [in] Path to file.
- * @returns Image* to the new object or nullptr.
- */
-static Image* create_image(const std::string& file_path) {
-  std::string file_format = load_format_id(file_path);
+template <typename UnsignedType>
+unsigned char high_bit_offset() {
+  UnsignedType bits_count = (CHAR_BIT * sizeof(UnsignedType));
 
-  return nullptr;
+  return bits_count - 1;
 }

@@ -2,17 +2,9 @@
 
 #include "Image.hpp"
 
+#include "utils/Types.hpp"
+
 #include <boost/optional.hpp>
-
-#include <fstream>
-
-/**
- * Wrapper of type that needs to be loaded later.
- *
- * Provides method to check if the variable is loaded.
- */
-template <typename Type>
-using DelayLoad = boost::optional<Type>;
 
 /**
  * Forward declaration of NetpbmImage.
@@ -43,7 +35,7 @@ public:
   virtual std::istream& read(std::istream& in) = 0;
 
 public:
-  bool is_loaded() const;
+  virtual bool is_metadata_loaded() const;
 
   const std::string& get_format_id() const;
   const size_t get_width() const;
