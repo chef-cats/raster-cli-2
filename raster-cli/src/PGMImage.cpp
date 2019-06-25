@@ -11,7 +11,7 @@ PGMImage::PGMImage(const std::string& file_name) : NetpbmImage(file_name) {}
  * @throw std::logic_error - if the image is not loaded. 
  */
 PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
-  if (!is_loaded()) {
+  if (!is_metadata_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
   return _pixels[row][column];
@@ -28,7 +28,7 @@ PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
  * @throw std::logic_error - if the image is not loaded.
  */
 void PGMImage::set_pixel(PGMPixel pixel, size_t row, size_t column) {
-  if (!is_loaded()) {
+  if (!is_metadata_loaded()) {
     throw std::logic_error("Image is not loaded!");
   }
   size_t value = static_cast<size_t>(pixel);
