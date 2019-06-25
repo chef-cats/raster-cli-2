@@ -28,6 +28,7 @@ public:
   }
 
   std::string str() const { return _stream.str(); }
+  operator std::string() const { return _stream.str(); }
 
 private:
   std::stringstream _stream;
