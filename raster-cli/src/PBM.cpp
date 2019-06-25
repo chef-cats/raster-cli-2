@@ -1,5 +1,18 @@
 #include <PBM.hpp>
 
+static const size_t UCHAR_BITS = CHAR_BIT * sizeof(unsigned char);
+
+struct PixelPosition {
+  explicit PixelPosition(size_t index, size_t offset) : _index(index), _offset(offset) {}
+
+  size_t _index;
+  size_t _offset;
+};
+
+static PixelPosition get_pixel_position(size_t width) {
+  return PixelPosition(width / UCHAR_BITS, width % UCHAR_BITS);
+}
+
 PBM::PBM(const std::string& file_path) : NetpbmImage(file_path) {}
 
 bool PBM::is_loaded() const {
@@ -11,14 +24,11 @@ PBM::Color PBM::get_pixel(size_t width, size_t height) const {
     throw std::logic_error("Image is not loaded!");
   }
 
+  const auto pixel_position = get_pixel_position(width);
+  const unsigned char mask = (1 << pixel_position._offset);
+
   const auto& pixels = _pixels.get();
-
-  const size_t index = width / (CHAR_BIT * sizeof(unsigned char));
-  const size_t indent = width % (CHAR_BIT * sizeof(unsigned char));
-
-  const unsigned char mask = (1 << indent);
-
-  unsigned char pixel = pixels.at(height * get_width() + index) & mask;
+  unsigned char pixel = pixels.at(height * get_width() + pixel_position._index) & mask;
   return pixel ? Color::BLACK : Color::WHITE;
 }
 
@@ -27,13 +37,11 @@ void PBM::set_pixel(Color color, unsigned char width, unsigned char height) {
     throw std::logic_error("Image is not loaded!");
   }
 
+  const auto pixel_position = get_pixel_position(width);
+  const unsigned char mask = (1 << pixel_position._offset);
+
   auto& pixels = _pixels.get();
-
-  const size_t index = width / (CHAR_BIT * sizeof(unsigned char));
-  const size_t indent = width % (CHAR_BIT * sizeof(unsigned char));
-
-  unsigned char& pixels_chunk = pixels.at(height * get_width() + index);
-  const unsigned char mask = (1 << indent);
+  unsigned char& pixels_chunk = pixels.at(height * get_width() + pixel_position._index);
 
   if (color == Color::BLACK) {
     pixels_chunk |= mask;
@@ -56,8 +64,8 @@ void PBM::set_pixels(const std::vector<unsigned char>& pixels) {
   }
 
   size_t bits_count = get_width() * get_height();
-  if (bits_count < (pixels.size() - 1) * CHAR_BIT * sizeof(unsigned char)
-      && pixels.size() * CHAR_BIT * sizeof(unsigned char) < bits_count) {
+  if (bits_count < (pixels.size() - 1) * UCHAR_BITS
+      && pixels.size() * UCHAR_BITS < bits_count) {
     throw std::invalid_argument("Size of image doesn't match");
   }
 
