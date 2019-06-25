@@ -21,6 +21,9 @@
     <Filter Include="Source Files\images">
       <UniqueIdentifier>{64ce4c8c-d34c-4085-9a1e-2ad88fcafc3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operations">
+      <UniqueIdentifier>{dda1b9af-96fa-441d-b6d0-f4d10c53b78d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -34,9 +37,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raster-cli\include\Operation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -51,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp">
       <Filter>Header Files\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp">
+      <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

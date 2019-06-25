@@ -1,6 +1,6 @@
 #include <images/Netpbm.hpp>
 
-#include <Operation.hpp>
+#include <operations/Operation.hpp>
 
 Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
 
