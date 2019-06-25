@@ -1,5 +1,5 @@
 #pragma once
-#include "NetpbmImage.hpp"
+#include "Netpbm.hpp"
 #include <vector>
 
 using PGMPixel = char;
@@ -14,14 +14,14 @@ using PGMPixel = char;
  * [1, 255].
  */
 
-class PGMImage : public NetpbmImage {
+class PGM : public Netpbm {
 public:
-  PGMImage(const std::string& file_name);
-  PGMImage(const PGMImage& other) = default;
-  PGMImage(PGMImage&& other) = default;
-  PGMImage& operator=(const PGMImage& rhs) = default;
-  PGMImage& operator=(PGMImage&& rhs) = default;
-  virtual ~PGMImage() = default;
+  PGM(const std::string& file_name);
+  PGM(const PGM& other) = default;
+  PGM(PGM&& other) = default;
+  PGM& operator=(const PGM& rhs) = default;
+  PGM& operator=(PGM&& rhs) = default;
+  virtual ~PGM() = default;
 
 public:
   PGMPixel get_pixel(size_t row, size_t column) const;

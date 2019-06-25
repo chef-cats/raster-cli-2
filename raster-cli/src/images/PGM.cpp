@@ -1,19 +1,18 @@
-#include "..\include\PGMImage.hpp"
+#include <images/PGM.hpp>
+#include <utils/Formatter.hpp>
 
-
-PGMImage::PGMImage(const std::string& file_name) : NetpbmImage(file_name) {}
+PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
 
 /**
  * Get pixel with coordinates row and column of the image
- * 
+ *
  * @throw std::out_of_range - if row values is bigger than image's height
  *                            or column values is bigger than image's width
- * @throw std::logic_error - if the image is not loaded. 
+ * @throw std::logic_error - if the image is not loaded.
  */
-PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
-  }
+PGMPixel PGM::get_pixel(size_t row, size_t column) const {
+  Netpbm::load_check();
+
   return _pixels[row][column];
 }
 
@@ -27,13 +26,15 @@ PGMPixel PGMImage::get_pixel(size_t row, size_t column) const {
  *                           (numbers of grey between black and white).
  * @throw std::logic_error - if the image is not loaded.
  */
-void PGMImage::set_pixel(PGMPixel pixel, size_t row, size_t column) {
-  if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
-  }
+void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
+  Netpbm::load_check();
+
   size_t value = static_cast<size_t>(pixel);
   if (value > _max_value) {
-    throw std::range_error("Try to set invalid value!");
+    throw std::range_error(Formatter()
+                           << "Try to set invalid value to " << get_file_path()
+                           << ". The max value is " << static_cast<int>(_max_value)
+                           << "but you try to set " << static_cast<int>(pixel) << "!");
   }
   _pixels[row][column] = pixel;
 }

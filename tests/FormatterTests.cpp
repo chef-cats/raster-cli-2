@@ -12,6 +12,7 @@ BOOST_AUTO_TEST_CASE(SaveOneString) {
   f << message;
   std::string result = f.str();
   BOOST_CHECK_EQUAL(result, message);
+  BOOST_CHECK_EQUAL((std::string)f, message);
 }
 
 BOOST_AUTO_TEST_CASE(SaveMultipleStrings) {
@@ -24,6 +25,7 @@ BOOST_AUTO_TEST_CASE(SaveMultipleStrings) {
   f << message1 << delim << message2;
 
   BOOST_CHECK_EQUAL(f.str(), expected_result);
+  BOOST_CHECK_EQUAL((std::string)f, expected_result);
 }
 
 BOOST_AUTO_TEST_CASE(SaveMultipleTypesOfData) {
@@ -40,6 +42,7 @@ BOOST_AUTO_TEST_CASE(SaveMultipleTypesOfData) {
   f << message1 << delim << number1 << delim << number2 << delim  << std::fixed << number3;
 
   BOOST_CHECK_EQUAL(f.str(), expected_result);
+  BOOST_CHECK_EQUAL((std::string)f, expected_result);
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*FormatterUnitTests*/)

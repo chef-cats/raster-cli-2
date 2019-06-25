@@ -14,10 +14,6 @@
 template <typename Type>
 using DelayLoad = boost::optional<Type>;
 
-/**
- * Forward declaration of NetpbmImage.
- */
-class Operation;
 
 /**
  * Image in Netpbm format.
@@ -25,22 +21,19 @@ class Operation;
  * Holds common data for all sub-formats of Netpbm.
  * More info: <https://en.wikipedia.org/wiki/Netpbm_format>
  */
-class NetpbmImage : public Image {
+class Netpbm : public Image {
 public:
-  NetpbmImage(const std::string& file_path);
+  Netpbm(const std::string& file_path);
+  Netpbm(const Netpbm& rhs) = default;
+  Netpbm(Netpbm&& rhs) = default;
+  Netpbm& operator=(const Netpbm& rhs) = default;
+  Netpbm& operator=(Netpbm&& rhs) = default;
+  virtual ~Netpbm() = default;
 
-  void apply(const Operation& operation) override;
-
-  /**
-   * Outputs image's data to a stream.
-   *
-   * @throw std::logic_error if image is not loaded yet.
-   */
-  virtual std::ostream& write(std::ostream& out) const = 0;
-  /**
-   * Reads image's data from a stream.
-   */
-  virtual std::istream& read(std::istream& in) = 0;
+public:
+  virtual void apply(const Operation& operation) = 0;
+  virtual void load() = 0;
+  virtual void save() const = 0;
 
 public:
   bool is_loaded() const;
@@ -50,9 +43,15 @@ public:
   const size_t get_height() const;
 
 protected:
+  void load_check() const;
+
   void set_format_id(const std::string& format_id);
   void set_width(size_t width);
   void set_height(size_t height);
+
+ protected:
+  virtual std::ostream& write(std::ostream& out) const = 0;
+  virtual std::istream& read(std::istream& in) = 0;
 
 private:
   DelayLoad<std::string> _format_id; ///< ID of the format.
