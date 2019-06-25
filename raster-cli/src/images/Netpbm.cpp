@@ -1,4 +1,5 @@
 #include <images/Netpbm.hpp>
+#include <utils/Formatter.hpp>
 
 #include <operations/Operation.hpp>
 
@@ -41,7 +42,8 @@ std::istream& Netpbm::read(std::istream& in) {
  */
 void Netpbm::loadCheck() const {
   if (!is_loaded()) {
-    throw std::logic_error("Image is not loaded!");
+    throw std::logic_error(Formatter()
+                           << "Image " << get_file_path() << " is not loaded!");
   }
 }
 
