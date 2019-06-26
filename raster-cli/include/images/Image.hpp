@@ -33,15 +33,6 @@ public:
    * @param operation [in] What operation to take effect.
    */
   virtual void apply(const Operation& operation) = 0;
-  /**
-   * Load the image from the file which was used for the image construction
-   */
-  virtual void load() = 0;
-  /**
-   * Save the image into the file with the same name as the file
-   * which was used for the image construction but with a timestamp suffix
-   */
-  virtual void save() const = 0;
 
 public:
   std::string get_file_path() const { return _file_path; }

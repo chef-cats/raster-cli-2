@@ -32,8 +32,6 @@ public:
 
 public:
   virtual void apply(const Operation& operation) = 0;
-  virtual void load() = 0;
-  virtual void save() const = 0;
 
 public:
   bool is_loaded() const;
@@ -48,10 +46,6 @@ protected:
   void set_format_id(const std::string& format_id);
   void set_width(size_t width);
   void set_height(size_t height);
-
- protected:
-  virtual std::ostream& write(std::ostream& out) const = 0;
-  virtual std::istream& read(std::istream& in) = 0;
 
 private:
   DelayLoad<std::string> _format_id; ///< ID of the format.
