@@ -3,7 +3,7 @@
 /**
  * Forward declaration of NetpbmImage.
  */
-class Netpbm;
+class PGM;
 
 /**
  * Base of the operation hierarchy.
@@ -14,5 +14,5 @@ class Netpbm;
  */
 class Operation {
 public:
-  void apply_to(Netpbm& image) const {}
+  virtual void apply_to(PGM& image) const {}
 };
