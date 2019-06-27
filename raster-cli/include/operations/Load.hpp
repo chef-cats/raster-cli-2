@@ -23,5 +23,3 @@ private:
   void read_from_binary_file(ImageType& image, uint64_t bytes_to_read,
                              std::ifstream& file) const;
 };
-
-#include "LoadImpl.hpp"

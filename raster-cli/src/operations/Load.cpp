@@ -1,7 +1,9 @@
 #include <operations/Load.hpp>
+#include <operations/LoadImpl.hpp>
 #include <images/PGM.hpp>
 #include <utils/Formatter.hpp>
 #include <cstdint>
+
 
 /**
  * @throws std::logic_error - if there is not implemented method which read the
