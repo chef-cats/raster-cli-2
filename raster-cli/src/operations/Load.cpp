@@ -17,7 +17,7 @@ void Load::apply_to(PGM& image) const {
   }
 
   load_meta_data(image, file);
-
+  image.allocate_pixels();
   const std::string image_format = image.get_format_id();
   const uint64_t bytes_to_read = ((uint64_t)image.get_height()) * image.get_width();
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Netpbm.hpp"
+#include <operations/Load.hpp>
 #include <vector>
 
 using PGMPixel = char;
@@ -28,6 +29,7 @@ public:
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
 
 public:
+  friend void Load::apply_to(PGM&) const;
   void allocate_pixels();
 
 private:
