@@ -38,3 +38,13 @@ void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
   }
   _pixels[row][column] = pixel;
 }
+
+void PGM::allocate_pixels() {
+  size_t row_cnt = get_height();
+  size_t col_size = get_width();
+
+  _pixels.resize(row_cnt);
+  for (std::vector<PGMPixel>& row : _pixels) {
+    row.resize(col_size);
+  }
+}
