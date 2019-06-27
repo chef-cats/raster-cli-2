@@ -137,6 +137,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Load.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\operations\LoadImpl.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\FileOperations.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />

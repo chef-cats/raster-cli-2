@@ -67,5 +67,8 @@
     <ClInclude Include="..\..\..\raster-cli\include\utils\FileOperations.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\operations\LoadImpl.hpp">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
