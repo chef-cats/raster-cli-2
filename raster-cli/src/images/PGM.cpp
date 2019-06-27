@@ -43,6 +43,10 @@ void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
   _pixels[row][column] = pixel;
 }
 
+size_t PGM::get_max_value() const {
+  return _max_value;
+}
+
 /**
  * Allocate pixels after the metadata is loaded.
  * This method is invoked by Load operation.
@@ -58,4 +62,17 @@ void PGM::allocate_pixels() {
   for (std::vector<PGMPixel>& row : _pixels) {
     row.resize(col_size);
   }
+}
+/**
+ * @throws std::range_error - if you change to set max_value bigger than 255
+ *                            @see PGM standard
+ */
+void PGM::set_max_value(size_t max_value) {
+  static const size_t max_possible_value = 255;
+  if (max_value > max_possible_value) {
+    throw std::range_error(
+        Formatter() << "The max possible max_value for PGM is " << max_possible_value
+                    << " but you try to set it to " << max_value << "!");
+  }
+  _max_value = max_value;
 }

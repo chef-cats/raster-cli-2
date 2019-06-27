@@ -30,10 +30,12 @@ public:
 public:
   PGMPixel get_pixel(size_t row, size_t column) const;
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
+  size_t get_max_value() const;
 
 protected:
   friend class Load;
   void allocate_pixels();
+  void set_max_value(size_t max_value);
 
 private:
   size_t _max_value;
