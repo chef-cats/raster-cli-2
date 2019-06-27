@@ -41,6 +41,7 @@ public:
   const size_t get_height() const;
 
 protected:
+  friend class Load;
   void load_check() const;
 
   void set_format_id(const std::string& format_id);
