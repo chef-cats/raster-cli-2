@@ -32,7 +32,7 @@ public:
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
 
 public:
-  friend void Load::apply_to(PGM&) const;
+  friend class Load;
   void allocate_pixels();
 
 private:
