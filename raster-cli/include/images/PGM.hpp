@@ -31,7 +31,7 @@ public:
   PGMPixel get_pixel(size_t row, size_t column) const;
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
 
-public:
+protected:
   friend class Load;
   void allocate_pixels();
 
