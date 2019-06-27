@@ -25,6 +25,9 @@ public:
   virtual ~PGM() = default;
 
 public:
+  virtual void apply(const Operation& operation) override;
+
+public:
   PGMPixel get_pixel(size_t row, size_t column) const;
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
 

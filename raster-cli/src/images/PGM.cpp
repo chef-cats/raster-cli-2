@@ -3,6 +3,10 @@
 
 PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
 
+void PGM::apply(const Operation& operation) {
+  operation.apply_to(*this);
+}
+
 /**
  * Get pixel with coordinates row and column of the image
  *
@@ -42,7 +46,7 @@ void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
 /**
  * Allocate pixels after the metadata is loaded.
  * This method is invoked by Load operation.
- * 
+ *
  * @throws std::logic_error - if you invoke this function
  *                            loading of the metadata.
  */
