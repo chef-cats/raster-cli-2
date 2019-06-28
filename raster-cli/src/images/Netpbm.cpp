@@ -41,14 +41,19 @@ std::istream& Netpbm::read(std::istream& in) {
  * @throws std::logic_error - if the image is not loaded.
  */
 void Netpbm::metadata_check() const {
-  if (!is_loaded()) {
-    throw std::logic_error(Formatter()
-                           << "Image " << get_file_path() << " is not loaded!");
+  std::string message = Formatter()
+                        << "Image metadata" << get_file_path() << " is not loaded!";
+  if (!_format_id) {
+    throw std::logic_error("Format id " + message);
+  } else if (!_width) {
+    throw std::logic_error("Width " + message);
+  } else if (!_height) {
+    throw std::logic_error("Height " + message);
   }
 }
 
-bool Netpbm::is_loaded() const {
-  return _format_id && _width && _height;
+void Netpbm::load_check() const {
+  Netpbm::metadata_check();
 }
 
 /**

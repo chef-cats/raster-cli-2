@@ -36,7 +36,7 @@ public:
   virtual void save() const = 0;
 
 public:
-  bool is_loaded() const;
+  virtual void load_check() const;
 
   const std::string& get_format_id() const;
   const size_t get_width() const;
