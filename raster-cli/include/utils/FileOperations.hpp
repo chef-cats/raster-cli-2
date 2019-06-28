@@ -12,6 +12,12 @@ namespace operations {
  */
 void file_healthcheck(std::ifstream& file, const std::string& file_name);
 
+/**
+ * Read one line skip all whitespace symbols after it
+ */
+void read_line(std::ifstream& file, std::string& result);
+
+
 template <typename Type>
 void read_from_text_file(std::vector<Type>& data, uint64_t bytes_to_read,
                          std::ifstream& file);
