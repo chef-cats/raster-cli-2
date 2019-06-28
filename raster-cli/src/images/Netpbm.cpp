@@ -8,10 +8,10 @@ Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
 /**
  * Outputs image's data to a stream.
  *
- * @see load_check
+ * @see metadata_check
  */
 std::ostream& Netpbm::write(std::ostream& out) const {
-  load_check();
+  metadata_check();
 
   return out << get_format_id() << get_width() << get_height();
 }
@@ -40,15 +40,20 @@ std::istream& Netpbm::read(std::istream& in) {
  *
  * @throws std::logic_error - if the image is not loaded.
  */
-void Netpbm::load_check() const {
-  if (!is_loaded()) {
-    throw std::logic_error(Formatter()
-                           << "Image " << get_file_path() << " is not loaded!");
+void Netpbm::metadata_check() const {
+  std::string message = Formatter()
+                        << "Image metadata" << get_file_path() << " is not loaded!";
+  if (!_format_id) {
+    throw std::logic_error("Format id " + message);
+  } else if (!_width) {
+    throw std::logic_error("Width " + message);
+  } else if (!_height) {
+    throw std::logic_error("Height " + message);
   }
 }
 
-bool Netpbm::is_loaded() const {
-  return _format_id && _width && _height;
+void Netpbm::load_check() const {
+  Netpbm::metadata_check();
 }
 
 /**
@@ -57,21 +62,21 @@ bool Netpbm::is_loaded() const {
  * @throws std::logic_error - if the image is not loaded.
  */
 const std::string& Netpbm::get_format_id() const {
-  load_check();
+  metadata_check();
 
   return _format_id.get();
 }
 
-/// @see load_check
+/// @see metadata_check
 const size_t Netpbm::get_width() const {
-  load_check();
+  metadata_check();
 
   return _width.get();
 }
 
-/// @see load_check
+/// @see metadata_check
 const size_t Netpbm::get_height() const {
-  load_check();
+  metadata_check();
 
   return _height.get();
 }
