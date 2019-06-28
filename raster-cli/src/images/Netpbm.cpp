@@ -29,8 +29,8 @@ void Netpbm::load_metadata(std::ifstream& file) {
   set_width(width);
 
   fop::skip_lines(file, file_name, COMMENT_SYMBOL);
-  fop::skip_whitespace(file);
   fop::file_healthcheck(file, file_name);
+  fop::skip_whitespace(file);
 }
 
 /**
