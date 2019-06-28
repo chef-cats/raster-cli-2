@@ -22,6 +22,9 @@ public:
   PGM& operator=(const PGM& rhs) = default;
   PGM& operator=(PGM&& rhs) = default;
   virtual ~PGM() = default;
+  
+public:
+  virtual void apply(const Operation& operation) override;
 
 public:
   virtual void load_check() const override;

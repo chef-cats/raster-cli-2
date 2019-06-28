@@ -1,7 +1,12 @@
 #include <images/PGM.hpp>
 #include <utils/Formatter.hpp>
+#include <operations/Operation.hpp>
 
 PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
+
+void PGM::apply(const Operation& operation) {
+  operation.apply_to(*this);
+}
 
 /**
  * throws std::logic_error - if some of the data is not loaded.
