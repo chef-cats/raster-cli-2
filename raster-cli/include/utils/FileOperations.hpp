@@ -4,6 +4,13 @@
 
 namespace file {
 namespace operations {
+/**
+ * Checks whether the file into a good state
+ *
+ * throws std::ios_base::failure - the file is not opened or the was 
+ *                   reading has fail or the file is not available anymore
+ */
+void file_healthcheck(std::ifstream& file, const std::string& file_name);
 
 template <typename Type>
 void read_from_text_file(std::vector<Type>& data, uint64_t bytes_to_read,
