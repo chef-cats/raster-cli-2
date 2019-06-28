@@ -12,7 +12,7 @@ void PGM::apply(const Operation& operation) {
  * throws std::logic_error - if some of the data is not loaded.
  */
 void PGM::load_check() const {
-  Netpbm::load_check();
+  metadata_check();
   if (!_pixels) {
     throw std::logic_error(Formatter() << "The pixel of image " << get_file_path()
                                        << " are not loaded but the all metadata is.");
@@ -27,7 +27,7 @@ void PGM::load_check() const {
  * @throw std::logic_error - if the image is not loaded.
  */
 PGMPixel PGM::get_pixel(size_t row, size_t column) const {
-  Netpbm::load_check();
+  load_check();
 
   return _pixels.get()[row][column];
 }
@@ -43,7 +43,7 @@ PGMPixel PGM::get_pixel(size_t row, size_t column) const {
  * @throw std::logic_error - if the image is not loaded.
  */
 void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
-  Netpbm::load_check();
+  load_check();
 
   size_t value = static_cast<size_t>(pixel);
   if (value > *_max_value) {
