@@ -80,6 +80,17 @@ void Netpbm::metadata_check() const {
   }
 }
 
+/**
+ * Open the image file and reads only the metadata
+ */
+void Netpbm::load() {
+  std::string file_name = get_file_path();
+  std::ifstream file(file_name);
+  fop::file_healthcheck(file, file_name);
+
+  load_metadata(file);
+}
+
 void Netpbm::load_check() const {
   Netpbm::metadata_check();
 }
