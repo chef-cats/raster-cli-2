@@ -36,16 +36,10 @@ void read_line(std::ifstream& file, std::string& result) {
 void skip_lines(std::ifstream& file, const std::string& file_name, char special_symbol) {
   std::string buffer;
   char symbol;
-  do {
-    file.get(symbol);
-    if (symbol == special_symbol) {
-      read_line(file, buffer);
-    } else {
-      file.unget();
-      file.clear();
-    }
+  while (file.peek() == special_symbol) {
+    read_line(file, buffer);
     file_healthcheck(file, file_name);
-  } while (symbol == special_symbol);
+  }
 }
 
 void write_to_text_file(const PGM& image, std::ofstream& file) {
