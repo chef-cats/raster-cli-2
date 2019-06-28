@@ -17,6 +17,12 @@ void file_healthcheck(std::ifstream& file, const std::string& file_name);
  */
 void read_line(std::ifstream& file, std::string& result);
 
+/**
+ * Skip the sequence of lines start with special_symbol. After this operation the seekg
+ * will at the last whitespace symbol. At the next get it's guarantee that it won't be read
+ * a whitespace.
+ */
+void skip_lines(std::ifstream& file, const std::string& file_name, char special_symbol);
 
 template <typename Type>
 void read_from_text_file(std::vector<Type>& data, uint64_t bytes_to_read,
