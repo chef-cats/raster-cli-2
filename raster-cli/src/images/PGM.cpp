@@ -44,6 +44,15 @@ size_t PGM::get_max_value() const {
   return _max_value.get();
 }
 
+void PGM::metadata_check() const {
+  Netpbm::metadata_check();
+  if (!_max_value) {
+    throw std::logic_error(
+        Formatter() << "The max value is not load, but the other metadata is. File: "
+                    << get_file_path());
+  }
+}
+
 /**
  * throw std::logic_error - when you try to change the max value for the second time
  */

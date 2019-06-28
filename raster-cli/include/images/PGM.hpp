@@ -29,6 +29,7 @@ public:
   size_t get_max_value() const;
 
 protected:
+  virtual void metadata_check() const override;
   void set_max_value(size_t max_value);
   std::vector<std::vector<PGMPixel>>& get_pixels();
 
