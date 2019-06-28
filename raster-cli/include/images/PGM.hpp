@@ -24,6 +24,7 @@ public:
   virtual ~PGM() = default;
 
 public:
+  virtual void load_check() const override;
   PGMPixel get_pixel(size_t row, size_t column) const;
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
   size_t get_max_value() const;
@@ -31,9 +32,10 @@ public:
 protected:
   virtual void metadata_check() const override;
   void set_max_value(size_t max_value);
-  std::vector<std::vector<PGMPixel>>& get_pixels();
+  const std::vector<std::vector<PGMPixel>>& get_pixels() const;
+  void set_pixels(const std::vector<std::vector<PGMPixel>>& pixels);
 
 private:
   DelayLoad<size_t> _max_value;
-  std::vector<std::vector<PGMPixel>> _pixels;
+  DelayLoad<std::vector<std::vector<PGMPixel>>> _pixels;
 };

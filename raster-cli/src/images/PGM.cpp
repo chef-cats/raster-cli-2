@@ -4,6 +4,17 @@
 PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
 
 /**
+ * throws std::logic_error - if some of the data is not loaded.
+ */
+void PGM::load_check() const {
+  Netpbm::load_check();
+  if (!_pixels) {
+    throw std::logic_error(Formatter() << "The pixel of image " << get_file_path()
+                                       << " are not loaded but the all metadata is.");
+  }
+}
+
+/**
  * Get pixel with coordinates row and column of the image
  *
  * @throw std::out_of_range - if row values is bigger than image's height
@@ -11,9 +22,9 @@ PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
  * @throw std::logic_error - if the image is not loaded.
  */
 PGMPixel PGM::get_pixel(size_t row, size_t column) const {
-  Netpbm::metadata_check();
+  Netpbm::load_check();
 
-  return _pixels[row][column];
+  return _pixels.get()[row][column];
 }
 
 /**
@@ -27,21 +38,21 @@ PGMPixel PGM::get_pixel(size_t row, size_t column) const {
  * @throw std::logic_error - if the image is not loaded.
  */
 void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
-  Netpbm::metadata_check();
+  Netpbm::load_check();
 
   size_t value = static_cast<size_t>(pixel);
-  if (value > get_max_value()) {
+  if (value > *_max_value) {
     throw std::range_error(Formatter()
                            << "Try to set invalid value to " << get_file_path()
-                           << ". The max value is " << static_cast<int>(get_max_value())
+                           << ". The max value is " << static_cast<int>(*_max_value)
                            << "but you try to set " << static_cast<int>(pixel) << "!");
   }
-  _pixels[row][column] = pixel;
+  _pixels.get()[row][column] = pixel;
 }
 
 size_t PGM::get_max_value() const {
   metadata_check();
-  return _max_value.get();
+  return *_max_value;
 }
 
 void PGM::metadata_check() const {
@@ -65,6 +76,11 @@ void PGM::set_max_value(size_t max_value) {
   }
 }
 
-std::vector<std::vector<PGMPixel>>& PGM::get_pixels() {
-  return _pixels;
+const std::vector<std::vector<PGMPixel>>& PGM::get_pixels() const {
+  return _pixels.get();
+}
+
+void PGM::set_pixels(const std::vector<std::vector<PGMPixel>>& pixels) {
+  metadata_check();
+  _pixels = pixels;
 }
