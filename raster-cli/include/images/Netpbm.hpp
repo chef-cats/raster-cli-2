@@ -36,15 +36,14 @@ public:
   virtual void save() const = 0;
 
 public:
-  bool is_loaded() const;
+  virtual void load_check() const;
 
   const std::string& get_format_id() const;
   const size_t get_width() const;
   const size_t get_height() const;
 
 protected:
-  void load_check() const;
-
+  virtual void metadata_check() const;
   void set_format_id(const std::string& format_id);
   void set_width(size_t width);
   void set_height(size_t height);
