@@ -11,7 +11,7 @@ PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
  * @throw std::logic_error - if the image is not loaded.
  */
 PGMPixel PGM::get_pixel(size_t row, size_t column) const {
-  Netpbm::load_check();
+  Netpbm::metadata_check();
 
   return _pixels[row][column];
 }
@@ -27,13 +27,13 @@ PGMPixel PGM::get_pixel(size_t row, size_t column) const {
  * @throw std::logic_error - if the image is not loaded.
  */
 void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
-  Netpbm::load_check();
+  Netpbm::metadata_check();
 
   size_t value = static_cast<size_t>(pixel);
-  if (value > _max_value) {
+  if (value > get_max_value()) {
     throw std::range_error(Formatter()
                            << "Try to set invalid value to " << get_file_path()
-                           << ". The max value is " << static_cast<int>(_max_value)
+                           << ". The max value is " << static_cast<int>(get_max_value())
                            << "but you try to set " << static_cast<int>(pixel) << "!");
   }
   _pixels[row][column] = pixel;

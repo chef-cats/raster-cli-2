@@ -43,8 +43,7 @@ public:
   const size_t get_height() const;
 
 protected:
-  void load_check() const;
-
+  virtual void metadata_check() const;
   void set_format_id(const std::string& format_id);
   void set_width(size_t width);
   void set_height(size_t height);
