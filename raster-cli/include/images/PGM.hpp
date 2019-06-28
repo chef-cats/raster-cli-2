@@ -26,6 +26,11 @@ public:
 public:
   PGMPixel get_pixel(size_t row, size_t column) const;
   void set_pixel(PGMPixel pixel, size_t row, size_t column);
+  size_t get_max_value() const;
+
+protected:
+  void set_max_value(size_t max_value);
+  std::vector<std::vector<PGMPixel>>& get_pixels();
 
 private:
   DelayLoad<size_t> _max_value;

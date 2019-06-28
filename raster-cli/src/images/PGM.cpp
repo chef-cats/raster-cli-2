@@ -38,3 +38,24 @@ void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
   }
   _pixels[row][column] = pixel;
 }
+
+size_t PGM::get_max_value() const {
+  metadata_check();
+  return _max_value.get();
+}
+
+/**
+ * throw std::logic_error - when you try to change the max value for the second time
+ */
+void PGM::set_max_value(size_t max_value) {
+  if (_max_value) {
+    throw std::logic_error(Formatter()
+                           << "The max value is already set. File: " << get_file_path());
+  } else {
+    _max_value = max_value;
+  }
+}
+
+std::vector<std::vector<PGMPixel>>& PGM::get_pixels() {
+  return _pixels;
+}
