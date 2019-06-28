@@ -1,9 +1,37 @@
 #include <images/Netpbm.hpp>
+#include <utils/Constants.hpp>
 #include <utils/Formatter.hpp>
+#include <utils/FileOperations.hpp>
 
 #include <operations/Operation.hpp>
 
+namespace fop = file::operations;
+
 Netpbm::Netpbm(const std::string& file_path) : Image(file_path) {}
+
+void Netpbm::load_metadata(std::ifstream& file) {
+  std::string file_name = get_file_path();
+  fop::file_healthcheck(file, file_name);
+
+  std::string buffer;
+
+  fop::read_line(file, buffer);
+  set_format_id(buffer);
+
+  fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+
+  size_t height;
+  file >> height;
+  set_height(height);
+
+  size_t width;
+  file >> width;
+  set_width(width);
+
+  fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+  fop::skip_whitespace(file);
+  fop::file_healthcheck(file, file_name);
+}
 
 /**
  * Outputs image's data to a stream.
