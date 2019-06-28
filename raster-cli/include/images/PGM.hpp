@@ -34,6 +34,9 @@ public:
 
 protected:
   virtual void metadata_check() const override;
+  virtual void load_metadata(std::ifstream& file) override;
+
+protected:
   void set_max_value(size_t max_value);
   const std::vector<std::vector<PGMPixel>>& get_pixels() const;
   void set_pixels(const std::vector<std::vector<PGMPixel>>& pixels);

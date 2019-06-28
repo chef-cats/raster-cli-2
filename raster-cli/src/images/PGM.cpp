@@ -1,6 +1,10 @@
 #include <images/PGM.hpp>
-#include <utils/Formatter.hpp>
 #include <operations/Operation.hpp>
+#include <utils/Constants.hpp>
+#include <utils/Formatter.hpp>
+#include <utils/FileOperations.hpp>
+
+namespace fop = file::operations;
 
 PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
 
@@ -67,6 +71,19 @@ void PGM::metadata_check() const {
         Formatter() << "The max value is not load, but the other metadata is. File: "
                     << get_file_path());
   }
+}
+
+void PGM::load_metadata(std::ifstream& file) {
+  std::string file_path = get_file_path();
+  Netpbm::load_metadata(file);
+
+  size_t max_value;
+  file >> max_value;
+  set_max_value(max_value);
+
+  fop::skip_lines(file, file_path, COMMENT_SYMBOL);
+  fop::file_healthcheck(file, file_path);
+  fop::skip_whitespace(file);
 }
 
 /**
