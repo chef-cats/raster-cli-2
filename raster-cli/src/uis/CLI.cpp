@@ -62,7 +62,7 @@ void CLI::handle_last_event() {
     _current_session->all_to_negative();
   } else if (cmd == "rotate") {
     if (!_last_event->_args || _last_event->_args->size() == 0) {
-      throw std::logic_error("Expected argument to rotate operation!");
+      throw std::logic_error("Expected argument to 'rotate' operation!");
     }
 
     Direction direction;
@@ -81,8 +81,12 @@ void CLI::handle_last_event() {
   } else if (cmd == "undo") {
     /// @todo Implement.
   } else if (cmd == "add") {
-    /// @todo Validation
-    _current_session->add_image(_last_event->_args->at(0));
+    if (!_last_event->_args || _last_event->_args->size() == 0) {
+      throw std::logic_error("Expected argument to 'add' operation!");
+    }
+	const std::string& image = _last_event->_args->at(0);
+
+    _current_session->add_image(image);
   } else if (cmd == "save") {
     _current_session->save_all();
   } else if (cmd == "session") {
