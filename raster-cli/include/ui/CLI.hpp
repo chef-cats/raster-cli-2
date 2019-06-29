@@ -1,5 +1,6 @@
 #pragma once
 
+#include <sessions/Session.hpp>
 #include <utils/Types.hpp>
 
 #include <boost/optional.hpp>
@@ -12,29 +13,6 @@ bool needs_args(const std::string& cmd) {
   return cmd == "load" || cmd == "rotate" || cmd == "load" || cmd == "session"
          || cmd == "switch";
 }
-
-/// @todo Implement Session.
-class Session {
-public:
-  Session(unsigned long long id) {}
-  Session(unsigned long long id, const std::vector<std::string>& images) {}
-
-  void all_to_grayscale() {}
-
-  void all_to_monochrome() {}
-
-  void all_to_negative() {}
-
-  void rotate_all(Direction direction) {}
-
-  void undo_last_operation() {}
-
-  void add_image(const std::string& image) {}
-
-  void remove_image() {}
-
-  void save_all() {}
-};
 
 /// @todo Implement generic UI interface class and inherit it.
 class CLI {

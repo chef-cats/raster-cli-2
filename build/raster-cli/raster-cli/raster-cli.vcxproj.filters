@@ -27,6 +27,9 @@
     <Filter Include="Header Files\ui">
       <UniqueIdentifier>{60f401c5-e9a0-4278-85e4-a638dafb6f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sessions">
+      <UniqueIdentifier>{3fd31d46-9832-46cd-8a25-86ee49ef8e3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -69,6 +72,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Types.hpp">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp">
+      <Filter>Header Files\sessions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
