@@ -126,12 +126,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\utils\FileOperations.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\raster-cli\include\images\BinaryPGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\ImageFactory.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
