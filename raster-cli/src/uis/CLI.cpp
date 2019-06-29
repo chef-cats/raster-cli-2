@@ -53,7 +53,6 @@ static void args_check(const DelayLoad<std::vector<std::string>>& args,
     }
 }
 
-/// @todo Implement.
 static std::string get_operation_name(OperationID operation_id) {
     switch (operation_id) {
     default:
@@ -108,6 +107,7 @@ void CLI::handle_last_event() {
 
 void CLI::run_event_loop() {
     while (_should_run) {
+        capture_event();
         handle_last_event();
     }
 }
