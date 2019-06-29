@@ -24,11 +24,11 @@
     <Filter Include="Header Files\operations">
       <UniqueIdentifier>{dda1b9af-96fa-441d-b6d0-f4d10c53b78d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ui">
-      <UniqueIdentifier>{60f401c5-e9a0-4278-85e4-a638dafb6f31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\sessions">
       <UniqueIdentifier>{3fd31d46-9832-46cd-8a25-86ee49ef8e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\uis">
+      <UniqueIdentifier>{60f401c5-e9a0-4278-85e4-a638dafb6f31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +62,7 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\ui\CLI.hpp">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\uis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp">
       <Filter>Header Files\utils</Filter>
