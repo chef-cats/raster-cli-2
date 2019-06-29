@@ -14,10 +14,6 @@ class CLI {
     void run_event_loop();
 
   private:
-    void welcome() const;
-
-    void prompt() const;
-
     void capture_event();
 
     void handle_last_event();

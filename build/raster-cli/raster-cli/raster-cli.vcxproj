@@ -143,6 +143,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\HelperFunctions.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Types.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\src\uis\CLIUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

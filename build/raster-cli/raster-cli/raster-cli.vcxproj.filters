@@ -82,5 +82,8 @@
     <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp">
       <Filter>Header Files\uis</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\src\uis\CLIUtils.hpp">
+      <Filter>Source Files\uis</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

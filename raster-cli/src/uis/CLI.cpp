@@ -1,86 +1,7 @@
 #include <uis/CLI.hpp>
 
-#include <utils/Formatter.hpp>
-
-#include <iostream>
-#include <sstream>
-
-static bool needs_args(const std::string& cmd) {
-    return cmd == "load" || cmd == "rotate" || cmd == "load" || cmd == "session"
-           || cmd == "switch";
-}
-
-static Direction parse_direction(const std::string& direction_token) {
-    Direction direction;
-    if (direction_token == "left") {
-        direction = Direction::LEFT;
-    } else if (direction_token == "right") {
-        direction = Direction::RIGHT;
-    } else {
-        throw std::invalid_argument(Formatter()
-                                    << direction_token << " is not a valid direction!");
-    }
-    return direction;
-}
-
-static std::string get_cmd(std::istream& in) {
-    std::string cmd;
-    std::cin >> cmd;
-    return cmd;
-}
-
-static std::vector<std::string> get_args_for(const std::string& cmd, std::istream& in) {
-    std::vector<std::string> args;
-    if (needs_args(cmd)) {
-        std::string args_line;
-        getline(std::cin, args_line);
-        std::stringstream args_parser(args_line);
-
-        while (true) {
-            std::string arg;
-            args_parser >> arg;
-            if (!args_parser) {
-                break;
-            }
-            args.push_back(arg);
-        }
-    }
-    return args;
-}
-
-static void args_check(const DelayLoad<std::vector<std::string>>& args,
-                       const std::string& cmd) {
-    if (!args || args->size() == 0) {
-        throw std::logic_error(Formatter()
-                               << "Expected argument to '" << cmd << "' operation!");
-    }
-}
-
-static std::string get_operation_name(OperationID operation_id) {
-    switch (operation_id) {
-    default:
-        throw std::invalid_argument("Unknown operation!");
-    }
-}
-
-static void write_session_info(const Session::Info& session_info, std::ostream& out) {
-    std::cout << "You switched to session with ID: " << session_info.get_id() << "!"
-              << std::endl;
-
-    std::cout << "Name of images in the session:";
-    for (const std::string& image : session_info.get_images()) {
-        std::cout << " " << image;
-    }
-    std::cout << std::endl;
-
-    std::cout << "Pending transformations:";
-    for (const Session::Info::OperationInfo& operation_info :
-         session_info.get_operations_info()) {
-        std::cout << " " << operation_info.get_count() << "*"
-                  << get_operation_name(operation_info.get_id());
-    }
-    std::cout << std::endl;
-}
+#include <utils/HelperFunctions.hpp>
+#include "CLIUtils.hpp"
 
 CLI* CLI::get_instance() {
     static CLI* instance = new CLI;
@@ -89,25 +10,6 @@ CLI* CLI::get_instance() {
 
 CLI::CLI() : _should_run(true) {
     init_handlers();
-}
-
-void CLI::welcome() const {
-    std::cout << "Welcome to Raster CLI!" << std::endl;
-    std::cout << "An application developed by Yoanna Nikolova and Ivan Mollov."
-              << std::endl;
-
-    std::cout << std::endl;
-
-    std::cout << "Tips: " << std::endl;
-    std::cout << "* If you're in trouble you can use the 'help' command." << std::endl;
-    std::cout
-        << "* If you need info for a particular command you can run 'help <command>'."
-        << std::endl;
-    std::cout << std::endl;
-}
-
-void CLI::prompt() const {
-    std::cout << "> ";
 }
 
 void CLI::capture_event() {
