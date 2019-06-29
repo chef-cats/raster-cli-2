@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE(WriteVector) {
 
   std::vector<int> data = {1, 5, 3, 7, 200};
   size_t elem_cnt = data.size();
-  fop::write_to_text_file(data, ofile);
+  fop::write_to_text_file(ofile, data, elem_cnt);
   BOOST_CHECK_EQUAL(ofile.good(), true);
   ofile.close();
 

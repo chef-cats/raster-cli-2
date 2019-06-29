@@ -13,10 +13,13 @@ inline void read_from_text_file(std::vector<Type>& data, std::ifstream& file, si
 }
 
 template <typename Type>
-inline void write_to_text_file(const std::vector<Type>& data, std::ofstream& file) {
-  for (auto& element : data) {
-    file << element << " ";
+inline void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
+                               size_t elem_cnt) {
+  --elem_cnt;
+  for (size_t i = 0; i < elem_cnt; ++i) {
+    file << data[i] << " ";
   }
+  file << data[elem_cnt];
 }
 
 template <typename Type>

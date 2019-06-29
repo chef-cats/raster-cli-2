@@ -41,10 +41,19 @@ template <typename Type>
 void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t elem_cnt);
 
 /**
- * This function required Type to has operator <<
+ * This function writes a data which is save into the a vector, into a file.
+ * After each of the elements will be written a space except the last one. After the last 
+ * element won't have any whitespace symbol.
+ *
+ * The function required Type to has operator <<
+ *
+ * @param [in] file - open file to write the data
+ * @param [in] data - container with data to be written into file
+ * @param [in] elem_cnt - count of the element from data which want to write into the file
  */
 template <typename Type>
-void write_to_text_file(const std::vector<Type>& data, std::ofstream& file);
+void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
+                        size_t elem_cnt);
 
 /**
  * If the Type has a virtual methods the function doesn't work
