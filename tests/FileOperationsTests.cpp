@@ -133,9 +133,12 @@ BOOST_AUTO_TEST_CASE(ReadVectorTxt) {
     }
 
     std::vector<int> data = {1, 5, 3, 7, 200};
+    uint64_t elem_cnt = data.size();
+
     for (auto element : data) {
         ofile << element << " ";
     }
+
     BOOST_CHECK_EQUAL(ofile.good(), true);
     ofile.close();
 
@@ -143,10 +146,14 @@ BOOST_AUTO_TEST_CASE(ReadVectorTxt) {
     if (!ifile) {
         BOOST_FAIL("Can't open file");
     }
+
     std::vector<int> result;
-    fop::read_from_text_file(result, ifile, data.size());
+    uint64_t read_elem;
+
+    read_elem = fop::read_from_text_file(ifile, elem_cnt, result);
+    
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
-    BOOST_CHECK_EQUAL(data.size(), result.size());
+    BOOST_CHECK(read_elem, elem_cnt);
 
     size_t size = result.size();
     for (int i = 0; i < size; ++i) {
@@ -163,8 +170,13 @@ BOOST_AUTO_TEST_CASE(WriteVectorTxt) {
 
     std::vector<int> data = {1, 5, 3, 7, 200};
     size_t elem_cnt = data.size();
-    fop::write_to_text_file(ofile, data, elem_cnt);
+    size_t written_elem;
+
+    written_elem = fop::write_to_text_file(ofile, elem_cnt, data);
+    
     BOOST_CHECK_EQUAL(ofile.good(), true);
+    BOOST_CHECK_EQUAL(written_elem, elem_cnt);
+
     ofile.close();
 
     std::ifstream ifile(file_name);
@@ -193,9 +205,9 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
 
     std::vector<type> container = {1, 5, 3, 7, 200};
     size_t size = container.size();
-    size_t bytes = size * sizeof(type);
+    size_t input_bytes = size * sizeof(type);
 
-    ofile.write((const char*)container.data(), bytes);
+    ofile.write((const char*)container.data(), input_bytes);
     BOOST_CHECK_EQUAL(ofile.good(), true);
     ofile.close();
 
@@ -206,11 +218,11 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
 
     std::vector<int> result(size);
     uint64_t read_bytes;
-    read_bytes = fop::read_from_binary_file(ifile, bytes, result);
+    read_bytes = fop::read_from_binary_file(ifile, input_bytes, result);
 
 
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
-    BOOST_CHECK_EQUAL(read_bytes, bytes);
+    BOOST_CHECK_EQUAL(read_bytes, input_bytes);
 
     for (int i = 0; i < size; ++i) {
         BOOST_CHECK_EQUAL(container[i], result[i]);
@@ -227,13 +239,13 @@ BOOST_AUTO_TEST_CASE(WriteVectorBinary) {
 
     std::vector<int> container = {1, 5, 3, 7, 200};
     uint64_t size = container.size();
-    uint64_t bytes = size * sizeof(type);
-    uint64_t write_bytes;
+    uint64_t input_bytes = size * sizeof(type);
+    uint64_t written_bytes;
 
-    write_bytes = fop::write_to_binary_file(ofile, bytes, container);
+    written_bytes = fop::write_to_binary_file(ofile, input_bytes, container);
     
     BOOST_CHECK_EQUAL(ofile.good(), true);
-    BOOST_CHECK_EQUAL(write_bytes, bytes);
+    BOOST_CHECK_EQUAL(written_bytes, input_bytes);
     ofile.close();
 
     std::ifstream ifile(file_name);
@@ -243,7 +255,7 @@ BOOST_AUTO_TEST_CASE(WriteVectorBinary) {
 
     std::vector<int> result;
     result.resize(size);
-    ifile.read((char*)result.data(), bytes);
+    ifile.read((char*)result.data(), input_bytes);
 
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
     BOOST_CHECK_EQUAL(ifile.peek(), EOF);

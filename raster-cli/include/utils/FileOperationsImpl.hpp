@@ -5,22 +5,31 @@ namespace file {
 namespace operations {
 
 template <typename Type>
-inline void read_from_text_file(std::vector<Type>& data, std::ifstream& file,
-                                size_t elem_cnt) {
+inline uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt,
+                               std::vector<Type>& data) {
     data.resize(elem_cnt);
-    for (auto& element : data) {
-        file >> element;
+    uint64_t element_id = 0;
+    for (element_id; file && element_id < elem_cnt; ++element_id) {
+        file >> data[element_id];
     }
+
+    return element_id ? element_id - 1 : element_id;
 }
 
 template <typename Type>
-inline void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
-                               size_t elem_cnt) {
+inline uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
+                              const std::vector<Type>& data) {
     --elem_cnt;
-    for (size_t i = 0; i < elem_cnt; ++i) {
-        file << data[i] << " ";
+    uint64_t element_id = 0;
+    for (element_id; file && element_id < elem_cnt; ++element_id) {
+        file << data[element_id] << " ";
     }
-    file << data[elem_cnt];
+
+    if (file) {
+        file << data[element_id++];
+    }
+
+    return element_id;
 }
 
 template <typename Type>

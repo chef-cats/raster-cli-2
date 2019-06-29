@@ -36,9 +36,11 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
 
 /**
  * This function required Type to has operator >>
+ *
+ * @return  the count of the read elements
  */
 template <typename Type>
-void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t elem_cnt);
+uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt, std::vector<Type>& data);
 
 /**
  * This function writes a data which is save into the a vector, into a file.
@@ -48,16 +50,18 @@ void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t el
  * The function required Type to has operator <<
  *
  * @param [in] file - open file to write the data
- * @param [in] data - container with data to be written into file
  * @param [in] elem_cnt - count of the element from data which want to write into the file
+ * @param [in] data - container with data to be written into file
+ *
+ * @return  the count of the written elements
  */
 template <typename Type>
-void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
-                        size_t elem_cnt);
+uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
+                        const std::vector<Type>& data);
 
 /**
- * This function read bytes from a binary file and save it into a vector. The function 
- * doesn't end before the reading of the exact count of bytes. The vector must be 
+ * This function read bytes from a binary file and save it into a vector. The function
+ * doesn't end before the reading of the exact count of bytes. The vector must be
  * allocated before using of this function.
  * After an invoking of this function you have to check the file health.
  * If the file is not good, the data may not be read from the file because some error.
@@ -65,18 +69,18 @@ void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
  * Please, make a specification for you Type
  *
  * @param [in] file
- * @param [in] bytes_to_read - the bytes which must be read. The function doesn't end before
- *                             the reading of the exact count of bytes. 
+ * @param [in] bytes_to_read - the bytes which must be read. The function doesn't end
+ * before the reading of the exact count of bytes.
  * @param [out] container
  *
  * @return the count of the read bytes
  */
 template <typename Type>
 uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
-                           std::vector<Type>& container);
+                               std::vector<Type>& container);
 
 /**
- * This function write bytes from a vector and save it into a binary file.  
+ * This function write bytes from a vector and save it into a binary file.
  * After an invoking of this function you have to check the file health.
  * If the file is not good, the data may not be read from the file because some error
  *
@@ -87,7 +91,7 @@ uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
  */
 template <typename Type>
 uint64_t write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
-                          const std::vector<Type>& container);
+                              const std::vector<Type>& container);
 
 } // namespace operations
 } // namespace file
