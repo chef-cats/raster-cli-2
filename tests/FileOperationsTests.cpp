@@ -213,6 +213,38 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     }
 }
 
+BOOST_AUTO_TEST_CASE(WriteVectorBinary) {
+   using type = int;
+    std::string file_name = path_to_files + "temp\\WriteVectorBinary.txt";
+    std::ofstream ofile(file_name);
+    if (!ofile) {
+        BOOST_FAIL("Can't open file");
+    }
+
+    std::vector<int> container = {1, 5, 3, 7, 200};
+    size_t size = container.size();
+    size_t bytes = size * sizeof(type);
+    fop::write_to_binary_file(ofile, bytes, container);
+    BOOST_CHECK_EQUAL(ofile.good(), true);
+    ofile.close();
+
+    std::ifstream ifile(file_name);
+    if (!ifile) {
+        BOOST_FAIL("Can't open file");
+    }
+
+    std::vector<int> result;
+    result.resize(size);
+    ifile.read((char*)result.data(), bytes);
+
+    BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
+    BOOST_CHECK_EQUAL(ifile.peek(), EOF);
+    
+    for (size_t i = 0; i < size; ++i) {
+        BOOST_CHECK_EQUAL(container[i], result[i]);
+    }
+}
+
 //=============================================================================
 
 BOOST_AUTO_TEST_SUITE_END(/*PositiveTests*/)
