@@ -54,12 +54,11 @@ static void args_check(const DelayLoad<std::vector<std::string>>& args,
 }
 
 /// @todo Implement.
-static std::string get_operation_name(OperationId& operation_id) {
+static std::string get_operation_name(const OperationID& operation_id) {
   return "";
 }
 
 static void write_session_info(const Session::Info& session_info, std::ostream& out) {
-  const std::vector<Session::Info> session_info = _current_session->info();
   std::cout << "You switched to session with ID: " << session_info.get_id() << "!"
             << std::endl;
   std::cout << "Name of images in the session:";
@@ -70,8 +69,8 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
   std::cout << "Pending transformations:";
   for (const Session::Info::OperationInfo& operation_info :
        session_info.get_operations_info()) {
-    std::cout << " " << operation_info.count() << "*"
-              << get_operation_name(operation_info.id());
+    std::cout << " " << operation_info.get_count() << "*"
+              << get_operation_name(operation_info.get_id());
   }
   std::cout << std::endl;
 }
@@ -130,7 +129,7 @@ void CLI::handle_last_event() {
     _current_session->save_all();
   } else if (cmd == "session") {
     if (args.at(0) == "info") {
-      write_session_info(_current_session->info(), std::cout);
+      write_session_info(_current_session->get_info(), std::cout);
     } else {
       throw std::logic_error(Formatter()
                              << "Unknown session operation '" << args.at(0) << "'");
@@ -139,7 +138,7 @@ void CLI::handle_last_event() {
     const unsigned long long session_id = std::stoull(args.at(0));
     _current_session = _sessions.begin() + session_id;
 
-    write_session_info(_current_session->info(), std::cout);
+    write_session_info(_current_session->get_info(), std::cout);
   }
 }
 

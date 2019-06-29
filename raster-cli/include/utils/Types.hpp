@@ -19,3 +19,10 @@ using DelayLoad = boost::optional<Type>;
  * Usually used when rotating images.
  */
 enum class Direction : bool { LEFT, RIGHT };
+
+/**
+ * Holds valid operations IDs.
+ * 
+ * @todo Implement.
+ */
+enum class OperationID : unsigned short {};
