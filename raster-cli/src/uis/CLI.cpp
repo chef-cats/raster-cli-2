@@ -54,8 +54,11 @@ static void args_check(const DelayLoad<std::vector<std::string>>& args,
 }
 
 /// @todo Implement.
-static std::string get_operation_name(const OperationID& operation_id) {
-    return "";
+static std::string get_operation_name(OperationID operation_id) {
+    switch (operation_id) {
+    default:
+        throw std::invalid_argument("Unknown operation!");
+    }
 }
 
 static void write_session_info(const Session::Info& session_info, std::ostream& out) {
