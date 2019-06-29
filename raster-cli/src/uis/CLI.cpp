@@ -64,9 +64,9 @@ void CLI::handle_last_event() {
     if (!_last_event->_args || _last_event->_args->size() == 0) {
       throw std::logic_error("Expected argument to 'rotate' operation!");
     }
+    const std::string& direction_string = _last_event->_args->at(0);
 
     Direction direction;
-    const std::string& direction_string = _last_event->_args->at(0);
     /// @todo Split to utils.
     if (direction_string == "left") {
       direction = Direction::LEFT;
@@ -91,10 +91,12 @@ void CLI::handle_last_event() {
     _current_session->save_all();
   } else if (cmd == "session") {
     /// @todo Implement.
-
   } else if (cmd == "switch") {
-    /// @todo Validate.
+    if (!_last_event->_args || _last_event->_args->size() == 0) {
+      throw std::logic_error("Expected argument to 'switch' operation!");
+    }
     const unsigned long long session_id = std::stoull(_last_event->_args->at(0));
+
     _current_session = _sessions.begin() + session_id;
   }
 }
