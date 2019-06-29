@@ -1,6 +1,5 @@
 #include <utils/FileOperations.hpp>
 #include <utils/Formatter.hpp>
-#include "FileOperationsImpl.hpp"
 
 namespace file {
 namespace operations {
@@ -32,10 +31,9 @@ void read_line(std::ifstream& file, std::string& result) {
   std::getline(file, result);
   skip_whitespace(file);
 }
-
+ 
 void skip_lines(std::ifstream& file, const std::string& file_name, char special_symbol) {
   std::string buffer;
-  char symbol;
   while (file.peek() == special_symbol) {
     read_line(file, buffer);
     file_healthcheck(file, file_name);

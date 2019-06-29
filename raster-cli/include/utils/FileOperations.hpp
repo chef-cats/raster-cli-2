@@ -1,4 +1,5 @@
-#include <fstream>
+#include <fstream>+
+
 #include <images/PGM.hpp>
 #include <vector>
 
@@ -37,7 +38,7 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
  * This function required Type to has operator >>
  */
 template <typename Type>
-void read_from_text_file(std::vector<Type>& data, std::ifstream& file);
+void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t elem_cnt);
 
 /**
  * This function required Type to has operator <<
@@ -61,5 +62,8 @@ template <typename Type>
 void write_to_binary_file(const std::vector<Type>& data, uint64_t bytes_to_read,
                           std::ofstream& file);
 
+
 } // namespace operations
 } // namespace file
+
+#include "FileOperationsImpl.hpp"
