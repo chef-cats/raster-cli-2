@@ -121,7 +121,7 @@ void CLI::handle_last_event() {
         Direction direction = parse_direction(direction_token);
         _current_session->rotate_all(direction);
     } else if (cmd == "undo") {
-        /// @todo Implement.
+        _current_session->undo_last_operation();
     } else if (cmd == "add") {
         const std::string& image = args.at(0);
         _current_session->add_image(image);
