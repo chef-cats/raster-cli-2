@@ -125,8 +125,8 @@ BOOST_AUTO_TEST_SUITE_END(/*ReadLineTests*/)
 
 //=============================================================================
 
-BOOST_AUTO_TEST_CASE(ReadVector) {
-    std::string file_name = path_to_files + "temp\\ReadVector.txt";
+BOOST_AUTO_TEST_CASE(ReadVectorTxt) {
+    std::string file_name = path_to_files + "temp\\ReadVectorTxt.txt";
     std::ofstream ofile(file_name);
     if (!ofile) {
         BOOST_FAIL("Can't open file");
@@ -154,8 +154,8 @@ BOOST_AUTO_TEST_CASE(ReadVector) {
     }
 }
 
-BOOST_AUTO_TEST_CASE(WriteVector) {
-    std::string file_name = path_to_files + "temp\\WriteVector.txt";
+BOOST_AUTO_TEST_CASE(WriteVectorTxt) {
+    std::string file_name = path_to_files + "temp\\WriteVectorTxt.txt";
     std::ofstream ofile(file_name);
     if (!ofile) {
         BOOST_FAIL("Can't open file");
@@ -179,6 +179,38 @@ BOOST_AUTO_TEST_CASE(WriteVector) {
         BOOST_CHECK_EQUAL(data[i], result[i]);
     }
     BOOST_CHECK_EQUAL(ifile.peek(), EOF);
+}
+
+
+BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
+    using type = int;
+
+    std::string file_name = path_to_files + "temp\\ReadVectorBinary.txt";
+    std::ofstream ofile(file_name);
+    if (!ofile) {
+        BOOST_FAIL("Can't open file");
+    }
+
+    std::vector<type> container = {1, 5, 3, 7, 200};
+    size_t size = container.size();
+    size_t bytes = size * sizeof(type);
+
+    ofile.write((const char*)container.data(), bytes);
+    BOOST_CHECK_EQUAL(ofile.good(), true);
+    ofile.close();
+
+    std::ifstream ifile(file_name);
+    if (!ifile) {
+        BOOST_FAIL("Can't open file");
+    }
+
+    std::vector<int> result(size);
+    fop::read_from_binary_file(ifile, bytes, result);
+    BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
+
+    for (int i = 0; i < size; ++i) {
+        BOOST_CHECK_EQUAL(container[i], result[i]);
+    }
 }
 
 //=============================================================================
