@@ -43,8 +43,10 @@ inline void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
 }
 
 template <typename Type>
-inline void write_to_binary_file(const std::vector<Type>& data, uint64_t bytes_to_read,
-                                 std::ofstream& file) {}
+inline void write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
+                                 const std::vector<Type>& container) {
+    file.write((const char*)container.data(), bytes_to_write);
+}
 
 } // namespace operations
 } // namespace file

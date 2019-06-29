@@ -78,8 +78,8 @@ void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
  * Please, make a specification for you Type
  */
 template <typename Type>
-void write_to_binary_file(const std::vector<Type>& data, uint64_t bytes_to_read,
-                          std::ofstream& file);
+void write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
+                          const std::vector<Type>& container);
 
 } // namespace operations
 } // namespace file
