@@ -21,8 +21,7 @@ enum class Direction : bool { LEFT, RIGHT };
 
 /**
  * Holds valid operations IDs.
- * 
+ *
  * @todo Implement.
  */
 enum class OperationID : unsigned short {};
-
