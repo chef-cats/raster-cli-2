@@ -1,4 +1,4 @@
-#include <ui/CLI.hpp>
+#include <uis/CLI.hpp>
 
 #include <utils/Formatter.hpp>
 

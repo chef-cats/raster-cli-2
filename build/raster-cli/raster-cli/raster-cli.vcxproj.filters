@@ -67,9 +67,6 @@
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\ui\CLI.hpp">
-      <Filter>Header Files\uis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -81,6 +78,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp">
       <Filter>Header Files\sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp">
+      <Filter>Header Files\uis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

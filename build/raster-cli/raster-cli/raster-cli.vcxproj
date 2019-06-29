@@ -138,7 +138,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\include\ui\CLI.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\HelperFunctions.hpp" />
