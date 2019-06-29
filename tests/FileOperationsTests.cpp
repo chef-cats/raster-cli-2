@@ -205,8 +205,12 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     }
 
     std::vector<int> result(size);
-    fop::read_from_binary_file(ifile, bytes, result);
+    uint64_t read_bytes;
+    read_bytes = fop::read_from_binary_file(ifile, bytes, result);
+
+
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
+    BOOST_CHECK_EQUAL(read_bytes, bytes);
 
     for (int i = 0; i < size; ++i) {
         BOOST_CHECK_EQUAL(container[i], result[i]);
@@ -222,10 +226,14 @@ BOOST_AUTO_TEST_CASE(WriteVectorBinary) {
     }
 
     std::vector<int> container = {1, 5, 3, 7, 200};
-    size_t size = container.size();
-    size_t bytes = size * sizeof(type);
-    fop::write_to_binary_file(ofile, bytes, container);
+    uint64_t size = container.size();
+    uint64_t bytes = size * sizeof(type);
+    uint64_t write_bytes;
+
+    write_bytes = fop::write_to_binary_file(ofile, bytes, container);
+    
     BOOST_CHECK_EQUAL(ofile.good(), true);
+    BOOST_CHECK_EQUAL(write_bytes, bytes);
     ofile.close();
 
     std::ifstream ifile(file_name);

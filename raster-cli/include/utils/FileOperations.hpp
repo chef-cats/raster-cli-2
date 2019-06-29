@@ -56,7 +56,7 @@ void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
                         size_t elem_cnt);
 
 /**
- * This function read bytes for a binary file and save it into a vector. The function 
+ * This function read bytes from a binary file and save it into a vector. The function 
  * doesn't end before the reading of the exact count of bytes. The vector must be 
  * allocated before using of this function.
  * After an invoking of this function you have to check the file health.
@@ -68,17 +68,25 @@ void write_to_text_file(std::ofstream& file, const std::vector<Type>& data,
  * @param [in] bytes_to_read - the bytes which must be read. The function doesn't end before
  *                             the reading of the exact count of bytes. 
  * @param [out] container
+ *
+ * @return the count of the read bytes
  */
 template <typename Type>
-void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
                            std::vector<Type>& container);
 
 /**
+ * This function write bytes from a vector and save it into a binary file.  
+ * After an invoking of this function you have to check the file health.
+ * If the file is not good, the data may not be read from the file because some error
+ *
  * If the Type has a virtual methods the function doesn't work
  * Please, make a specification for you Type
+ *
+ * @return the count of the written bytes
  */
 template <typename Type>
-void write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
+uint64_t write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
                           const std::vector<Type>& container);
 
 } // namespace operations

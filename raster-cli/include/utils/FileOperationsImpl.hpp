@@ -24,7 +24,7 @@ inline void write_to_text_file(std::ofstream& file, const std::vector<Type>& dat
 }
 
 template <typename Type>
-inline void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+inline uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
                                   std::vector<Type>& container) {
     uint64_t read_bytes;
     uint64_t left_bytes = bytes_to_read;
@@ -40,12 +40,18 @@ inline void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
         read_bytes = current_pos - start_pos;
         left_bytes -= read_bytes;
     }
+    
+    return bytes_to_read - left_bytes;
 }
 
 template <typename Type>
-inline void write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
+inline uint64_t write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
                                  const std::vector<Type>& container) {
+    std::streampos start_pos = file.tellp();
+    
     file.write((const char*)container.data(), bytes_to_write);
+    
+    return file.tellp() - start_pos;
 }
 
 } // namespace operations
