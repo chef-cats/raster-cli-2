@@ -7,7 +7,7 @@ namespace operations {
 /**
  * Checks whether the file into a good state
  *
- * throws std::ios_base::failure - the file is not opened or the was 
+ * throws std::ios_base::failure - the file is not opened or the was
  *                   reading has fail or the file is not available anymore
  */
 void file_healthcheck(std::ifstream& file, const std::string& file_name);
@@ -28,14 +28,16 @@ void skip_whitespace(std::ifstream& file);
 
 /**
  * Skip the sequence of lines start with special_symbol. After this operation the seekg
- * will at the last whitespace symbol. At the next get it's guarantee that it won't be read
- * a whitespace.
+ * will at the last whitespace symbol. At the next get it's guarantee that it won't be
+ * read a whitespace.
  */
 void skip_lines(std::ifstream& file, const std::string& file_name, char special_symbol);
 
+/**
+ * This function required Type to has operator >>
+ */
 template <typename Type>
-void read_from_text_file(std::vector<Type>& data, uint64_t bytes_to_read,
-                         std::ifstream& file);
+void read_from_text_file(std::vector<Type>& data, std::ifstream& file);
 
 void write_to_text_file(const PGM& image, std::ofstream& file);
 

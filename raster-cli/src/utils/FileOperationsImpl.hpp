@@ -5,8 +5,11 @@ namespace file {
 namespace operations {
 
 template <typename Type>
-void read_from_text_file(std::vector<Type>& data, uint64_t bytes_to_read,
-                         std::ifstream& file) {}
+void read_from_text_file(std::vector<Type>& data, std::ifstream& file) {
+  for (auto& element : data) {
+    file >> element;
+  }
+}
 
 template <typename Type>
 void read_from_binary_file(std::vector<Type>& data, uint64_t bytes_to_read,
