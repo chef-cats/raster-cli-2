@@ -1,5 +1,7 @@
 #include <ui/CLI.hpp>
 
+#include <utils/Formatter.hpp>
+
 #include <iostream>
 #include <sstream>
 
@@ -37,10 +39,14 @@ void CLI::capture_event() {
 void CLI::handle_last_event() {
   if (!_last_event) {
     throw std::logic_error("No previous events!");
-  } else if (_last_event->_cmd == "exit") {
+  }
+
+  const auto& cmd = _last_event->_cmd;
+
+  if (cmd == "exit") {
     _should_run = false;
     return;
-  } else if (_last_event->_cmd == "load") {
+  } else if (cmd == "load") {
     if (_last_event->_args) {
       _sessions.emplace_back(get_unique_session_id(), _last_event->_args.get());
     } else {
@@ -48,35 +54,41 @@ void CLI::handle_last_event() {
     }
 
     _current_session = std::prev(_sessions.end());
-  } else if (_last_event->_cmd == "grayscale") {
+  } else if (cmd == "grayscale") {
     _current_session->all_to_grayscale();
-  } else if (_last_event->_cmd == "monochrome") {
+  } else if (cmd == "monochrome") {
     _current_session->all_to_monochrome();
-  } else if (_last_event->_cmd == "negative") {
+  } else if (cmd == "negative") {
     _current_session->all_to_negative();
-  } else if (_last_event->_cmd == "rotate") {
-    Direction direction;
-    if (!_last_event->_args) {
+  } else if (cmd == "rotate") {
+    if (!_last_event->_args || _last_event->_args->size() == 0) {
       throw std::logic_error("Expected argument to rotate operation!");
-    } else if (_last_event->_args->at(0) == "left") {
-      direction = Direction::LEFT;
-    } else if (_last_event->_args->at(0) == "right") {
-      direction = Direction::RIGHT;
     }
-    /// @todo Validate args size.
+
+    Direction direction;
+    const std::string& direction_string = _last_event->_args->at(0);
+    /// @todo Split to utils.
+    if (direction_string == "left") {
+      direction = Direction::LEFT;
+    } else if (direction_string == "right") {
+      direction = Direction::RIGHT;
+    } else {
+      throw std::invalid_argument(Formatter()
+                                  << direction_string << " is not a valid direction!");
+    }
 
     _current_session->rotate_all(direction);
-  } else if (_last_event->_cmd == "undo") {
+  } else if (cmd == "undo") {
     /// @todo Implement.
-  } else if (_last_event->_cmd == "add") {
+  } else if (cmd == "add") {
     /// @todo Validation
     _current_session->add_image(_last_event->_args->at(0));
-  } else if (_last_event->_cmd == "save") {
+  } else if (cmd == "save") {
     _current_session->save_all();
-  } else if (_last_event->_cmd == "session") {
+  } else if (cmd == "session") {
     /// @todo Implement.
 
-  } else if (_last_event->_cmd == "switch") {
+  } else if (cmd == "switch") {
     /// @todo Validate.
     const unsigned long long session_id = std::stoull(_last_event->_args->at(0));
     _current_session = _sessions.begin() + session_id;
