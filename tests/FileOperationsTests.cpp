@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_SUITE_END(/*SkipTests*/)
 BOOST_AUTO_TEST_SUITE(ReadLineTests)
 
 BOOST_AUTO_TEST_CASE(ReadOneLine) {
-  std::string file_name = path_to_files + "ReadOneLine.txt";
+  std::string file_name = path_to_files + "temp\\ReadOneLine.txt";
   std::ofstream ofile(file_name);
   if (!ofile) {
     BOOST_FAIL("Can't open file");
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(ReadOneLine) {
 
 
 BOOST_AUTO_TEST_CASE(ReadTwoLines) {
-  std::string file_name = path_to_files + "ReadTwoLines.txt";
+  std::string file_name = path_to_files + "temp\\ReadTwoLines.txt";
   std::ofstream ofile(file_name);
   if (!ofile) {
     BOOST_FAIL("Can't open file");
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_SUITE_END(/*ReadLineTests*/)
 //=============================================================================
 
 BOOST_AUTO_TEST_CASE(ReadVector) {
-  std::string file_name = path_to_files + "ReadVector.txt";
+  std::string file_name = path_to_files + "temp\\ReadVector.txt";
   std::ofstream ofile(file_name);
   if (!ofile) {
     BOOST_FAIL("Can't open file");
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(ReadVector) {
 
 
 BOOST_AUTO_TEST_CASE(WriteVector) {
-  std::string file_name = path_to_files + "WriteVector.txt";
+  std::string file_name = path_to_files + "temp\\WriteVector.txt";
   std::ofstream ofile(file_name);
   if (!ofile) {
     BOOST_FAIL("Can't open file");
