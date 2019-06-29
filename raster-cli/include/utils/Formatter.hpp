@@ -15,21 +15,21 @@
  */
 
 class Formatter {
-public:
-  Formatter() = default;
-  Formatter(const Formatter&) = delete;
-  Formatter& operator=(Formatter&) = delete;
-  ~Formatter() = default;
+  public:
+    Formatter() = default;
+    Formatter(const Formatter&) = delete;
+    Formatter& operator=(Formatter&) = delete;
+    ~Formatter() = default;
 
-  template <typename Type>
-  Formatter& operator<<(const Type& value) {
-    _stream << value;
-    return *this;
-  }
+    template <typename Type>
+    Formatter& operator<<(const Type& value) {
+        _stream << value;
+        return *this;
+    }
 
-  std::string str() const { return _stream.str(); }
-  operator std::string() const { return _stream.str(); }
+    std::string str() const { return _stream.str(); }
+    operator std::string() const { return _stream.str(); }
 
-private:
-  std::stringstream _stream;
+  private:
+    std::stringstream _stream;
 };

@@ -42,7 +42,7 @@ void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t el
 
 /**
  * This function writes a data which is save into the a vector, into a file.
- * After each of the elements will be written a space except the last one. After the last 
+ * After each of the elements will be written a space except the last one. After the last
  * element won't have any whitespace symbol.
  *
  * The function required Type to has operator <<
@@ -70,7 +70,6 @@ void read_from_binary_file(std::vector<Type>& data, uint64_t bytes_to_read,
 template <typename Type>
 void write_to_binary_file(const std::vector<Type>& data, uint64_t bytes_to_read,
                           std::ofstream& file);
-
 
 } // namespace operations
 } // namespace file

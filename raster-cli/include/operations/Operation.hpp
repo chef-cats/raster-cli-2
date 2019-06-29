@@ -13,6 +13,6 @@ class PGM;
  * @todo Implement it properly.
  */
 class Operation {
-public:
-  void apply_to(PGM& image) const {}
+  public:
+    void apply_to(PGM& image) const {}
 };
