@@ -40,9 +40,6 @@ class Netpbm : public Image {
   protected:
     virtual void load_metadata(std::ifstream& file);
 
-    virtual std::ostream& write(std::ostream& out) const = 0;
-    virtual std::istream& read(std::istream& in) = 0;
-
   private:
     DelayLoad<std::string> _format_id; ///< ID of the format.
     DelayLoad<size_t> _width;          ///< Count of pixels in a row.
