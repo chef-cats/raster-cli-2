@@ -23,12 +23,13 @@ static Direction parse_direction(const std::string& direction_token) {
   return direction;
 }
 
-CLI::CLI() : _should_run(true) {}
-
-void CLI::capture_event() {
+static std::string get_cmd(std::istream& in) {
   std::string cmd;
   std::cin >> cmd;
+  return cmd;
+}
 
+static std::vector<std::string> get_args_for(const std::string& cmd, std::istream& in) {
   std::vector<std::string> args;
   if (needs_args(cmd)) {
     std::string args_line;
@@ -41,6 +42,14 @@ void CLI::capture_event() {
       args.push_back(arg);
     }
   }
+  return args;
+}
+
+CLI::CLI() : _should_run(true) {}
+
+void CLI::capture_event() {
+  std::string cmd = get_cmd(std::cin);
+  std::vector<std::string> args = get_args_for(cmd, std::cin);
 
   if (args.size() != 0) {
     _last_event = Event(cmd, args);
