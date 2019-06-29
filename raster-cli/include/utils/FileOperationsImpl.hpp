@@ -5,7 +5,8 @@ namespace file {
 namespace operations {
 
 template <typename Type>
-void read_from_text_file(std::vector<Type>& data, std::ifstream& file) {
+void read_from_text_file(std::vector<Type>& data, std::ifstream& file, size_t elem_cnt) {
+  data.resize(elem_cnt);
   for (auto& element : data) {
     file >> element;
   }

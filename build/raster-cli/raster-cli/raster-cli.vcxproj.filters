@@ -64,10 +64,10 @@
     <ClInclude Include="..\..\..\raster-cli\include\utils\FileOperations.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\src\utils\FileOperationsImpl.hpp">
-      <Filter>Source Files\utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\utils\FileOperationsImpl.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
