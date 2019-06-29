@@ -42,9 +42,5 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
   }
 }
 
-void write_to_text_file(const PGM& image, std::ofstream& file) {
-  // TODO
-}
-
 } // namespace operations
 } // namespace file

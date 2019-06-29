@@ -39,7 +39,11 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
 template <typename Type>
 void read_from_text_file(std::vector<Type>& data, std::ifstream& file);
 
-void write_to_text_file(const PGM& image, std::ofstream& file);
+/**
+ * This function required Type to has operator <<
+ */
+template <typename Type>
+void write_to_text_file(const std::vector<Type>& data, std::ofstream& file);
 
 /**
  * If the Type has a virtual methods the function doesn't work
