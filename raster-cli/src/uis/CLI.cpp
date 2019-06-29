@@ -36,9 +36,12 @@ static std::vector<std::string> get_args_for(const std::string& cmd, std::istrea
         getline(std::cin, args_line);
         std::stringstream args_parser(args_line);
 
-        while (args_parser) {
+        while (true) {
             std::string arg;
-            std::cin >> arg;
+            args_parser >> arg;
+            if (!args_parser) {
+                break;
+			}
             args.push_back(arg);
         }
     }
@@ -79,7 +82,27 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
     std::cout << std::endl;
 }
 
-CLI::CLI() : _should_run(true) {}
+CLI::CLI() : _should_run(true) {
+    init_handlers();
+}
+
+void CLI::welcome() const {
+    std::cout << "Welcome to Raster CLI!" << std::endl;
+    std::cout << "An application developed by Yoanna Nikolova and Ivan Mollov."
+              << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "Tips: " << std::endl;
+    std::cout << "* If you're in trouble you can use the 'help' command." << std::endl;
+    std::cout << "* If you need info for a particular command you can run 'help <command>'."
+              << std::endl;
+    std::cout << std::endl;
+}
+
+void CLI::prompt() const {
+    std::cout << "> ";
+}
 
 void CLI::capture_event() {
     std::string cmd = get_cmd(std::cin);
@@ -106,7 +129,10 @@ void CLI::handle_last_event() {
 }
 
 void CLI::run_event_loop() {
+    welcome();
+
     while (_should_run) {
+        prompt();
         capture_event();
         handle_last_event();
     }

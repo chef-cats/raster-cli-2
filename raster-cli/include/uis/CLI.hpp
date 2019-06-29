@@ -12,17 +12,21 @@ class CLI {
     void run_event_loop();
 
   private:
+    void welcome() const;
+
+    void prompt() const;
+
     void capture_event();
 
     void handle_last_event();
 
     unsigned long long get_unique_session_id() const;
 
-	void init_handlers();
+    void init_handlers();
 
-	const std::string& get_cmd_alias() const;
+    const std::string& get_cmd_alias() const;
 
-	const std::vector<std::string>& get_args_alias() const;
+    const std::vector<std::string>& get_args_alias() const;
 
     struct Event {
         Event(const std::string& cmd);
