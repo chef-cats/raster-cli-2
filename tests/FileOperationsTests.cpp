@@ -156,6 +156,32 @@ BOOST_AUTO_TEST_CASE(ReadVector) {
 }
 
 
+BOOST_AUTO_TEST_CASE(WriteVector) {
+  std::string file_name = path_to_files + "WriteVector.txt";
+  std::ofstream ofile(file_name);
+  if (!ofile) {
+    BOOST_FAIL("Can't open file");
+  }
+
+  std::vector<int> data = {1, 5, 3, 7, 200};
+  size_t elem_cnt = data.size();
+  fop::write_to_text_file(data, ofile);
+  BOOST_CHECK_EQUAL(ofile.good(), true);
+  ofile.close();
+
+  std::ifstream ifile(file_name);
+  if (!ifile) {
+    BOOST_FAIL("Can't open file");
+  }
+  std::vector<int> result;
+  result.resize(elem_cnt);
+  for (size_t i = 0; i < elem_cnt; ++i) {
+    ifile >> result[i];
+    BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
+    BOOST_CHECK_EQUAL(data[i], result[i]);
+  }
+  BOOST_CHECK_EQUAL(ifile.peek(), EOF);
+}
 
 //=============================================================================
 
