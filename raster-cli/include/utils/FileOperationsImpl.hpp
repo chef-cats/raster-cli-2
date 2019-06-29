@@ -13,7 +13,7 @@ inline uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt,
         file >> data[element_id];
     }
 
-    return element_id ? element_id - 1 : element_id;
+    return element_id;
 }
 
 template <typename Type>

@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE(ReadVectorTxt) {
     read_elem = fop::read_from_text_file(ifile, elem_cnt, result);
     
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
-    BOOST_CHECK(read_elem, elem_cnt);
+    BOOST_CHECK_EQUAL(read_elem, elem_cnt);
 
     size_t size = result.size();
     for (int i = 0; i < size; ++i) {
