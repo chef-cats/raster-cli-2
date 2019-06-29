@@ -3,11 +3,6 @@
 #include <utils/HelperFunctions.hpp>
 #include "CLIUtils.hpp"
 
-CLI* CLI::get_instance() {
-    static CLI* instance = new CLI;
-	return instance;
-}
-
 CLI::CLI() : _should_run(true) {
     init_handlers();
 }

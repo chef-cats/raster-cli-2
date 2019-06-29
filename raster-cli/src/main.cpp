@@ -5,9 +5,9 @@
 #include <memory>
 
 int main() {
-    CLI* cli = CLI::get_instance();
+    CLI cli;
 
-	cli->run_event_loop();
+	cli.run_event_loop();
 
     return EXIT_SUCCESS;
 }
