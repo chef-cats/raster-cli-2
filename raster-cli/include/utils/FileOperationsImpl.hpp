@@ -24,8 +24,23 @@ inline void write_to_text_file(std::ofstream& file, const std::vector<Type>& dat
 }
 
 template <typename Type>
-inline void read_from_binary_file(std::vector<Type>& data, uint64_t bytes_to_read,
-                                  std::ifstream& file) {}
+inline void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+                                  std::vector<Type>& container) {
+    uint64_t read_bytes;
+    uint64_t left_bytes = bytes_to_read;
+    std::streampos start_pos = file.tellg();
+    std::streampos current_pos = start_pos;
+
+    while (file && left_bytes != 0) {
+        start_pos = current_pos;
+
+        file.read((char*)container.data(), left_bytes);
+
+        current_pos = file.tellg();
+        read_bytes = current_pos - start_pos;
+        left_bytes -= read_bytes;
+    }
+}
 
 template <typename Type>
 inline void write_to_binary_file(const std::vector<Type>& data, uint64_t bytes_to_read,
