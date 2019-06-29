@@ -11,7 +11,7 @@
  * @returns Image* to the new object or nullptr.
  */
 static Image* create_image(const std::string& file_path) {
-  std::string file_format = load_format_id(file_path);
+    std::string file_format = load_format_id(file_path);
 
-  return nullptr;
+    return nullptr;
 }
