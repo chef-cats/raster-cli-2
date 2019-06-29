@@ -139,6 +139,8 @@ void CLI::handle_last_event() {
         _current_session = _sessions.begin() + session_id;
 
         write_session_info(_current_session->get_info(), std::cout);
+    } else {
+        throw std::invalid_argument(Formatter() << "Unknown operation'" << cmd << "'");
     }
 }
 
