@@ -64,13 +64,14 @@ void CLI::handle_last_event() {
   }
 
   const auto& cmd = _last_event->_cmd;
+  const auto& args = _last_event->_args;
 
   if (cmd == "exit") {
     _should_run = false;
     return;
   } else if (cmd == "load") {
-    if (_last_event->_args) {
-      _sessions.emplace_back(get_unique_session_id(), _last_event->_args.get());
+    if (args) {
+      _sessions.emplace_back(get_unique_session_id(), args.get());
     } else {
       _sessions.emplace_back(get_unique_session_id());
     }
@@ -83,20 +84,20 @@ void CLI::handle_last_event() {
   } else if (cmd == "negative") {
     _current_session->all_to_negative();
   } else if (cmd == "rotate") {
-    if (!_last_event->_args || _last_event->_args->size() == 0) {
+    if (!args || args->size() == 0) {
       throw std::logic_error("Expected argument to 'rotate' operation!");
     }
-    const std::string& direction_token = _last_event->_args->at(0);
+    const std::string& direction_token = args->at(0);
 
     Direction direction = parse_direction(direction_token);
     _current_session->rotate_all(direction);
   } else if (cmd == "undo") {
     /// @todo Implement.
   } else if (cmd == "add") {
-    if (!_last_event->_args || _last_event->_args->size() == 0) {
+    if (!args || args->size() == 0) {
       throw std::logic_error("Expected argument to 'add' operation!");
     }
-    const std::string& image = _last_event->_args->at(0);
+    const std::string& image = args->at(0);
 
     _current_session->add_image(image);
   } else if (cmd == "save") {
@@ -104,10 +105,10 @@ void CLI::handle_last_event() {
   } else if (cmd == "session") {
     /// @todo Implement.
   } else if (cmd == "switch") {
-    if (!_last_event->_args || _last_event->_args->size() == 0) {
+    if (!args || args->size() == 0) {
       throw std::logic_error("Expected argument to 'switch' operation!");
     }
-    const unsigned long long session_id = std::stoull(_last_event->_args->at(0));
+    const unsigned long long session_id = std::stoull(args->at(0));
 
     _current_session = _sessions.begin() + session_id;
   }
