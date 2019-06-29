@@ -30,6 +30,9 @@
     <Filter Include="Header Files\uis">
       <UniqueIdentifier>{60f401c5-e9a0-4278-85e4-a638dafb6f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\uis">
+      <UniqueIdentifier>{73d02ff3-a635-4dde-af4e-78b8c19b1b0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -40,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp">
       <Filter>Source Files\images</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\uis\CLI.cpp">
+      <Filter>Source Files\uis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
