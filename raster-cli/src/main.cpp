@@ -2,10 +2,12 @@
 
 #include <uis/CLI.hpp>
 
-int main() {
-    CLI cli;
+#include <memory>
 
-	cli.run_event_loop();
+int main() {
+    CLI* cli = CLI::get_instance();
+
+	cli->run_event_loop();
 
     return EXIT_SUCCESS;
 }

@@ -41,7 +41,7 @@ static std::vector<std::string> get_args_for(const std::string& cmd, std::istrea
             args_parser >> arg;
             if (!args_parser) {
                 break;
-			}
+            }
             args.push_back(arg);
         }
     }
@@ -82,6 +82,11 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
     std::cout << std::endl;
 }
 
+CLI* CLI::get_instance() {
+    static CLI* instance = new CLI;
+	return instance;
+}
+
 CLI::CLI() : _should_run(true) {
     init_handlers();
 }
@@ -95,8 +100,9 @@ void CLI::welcome() const {
 
     std::cout << "Tips: " << std::endl;
     std::cout << "* If you're in trouble you can use the 'help' command." << std::endl;
-    std::cout << "* If you need info for a particular command you can run 'help <command>'."
-              << std::endl;
+    std::cout
+        << "* If you need info for a particular command you can run 'help <command>'."
+        << std::endl;
     std::cout << std::endl;
 }
 

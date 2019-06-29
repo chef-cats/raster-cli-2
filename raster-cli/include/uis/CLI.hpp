@@ -7,6 +7,8 @@
 /// @todo Implement generic UI interface class and inherit it.
 class CLI {
   public:
+    static CLI* get_instance();
+
     CLI();
 
     void run_event_loop();
