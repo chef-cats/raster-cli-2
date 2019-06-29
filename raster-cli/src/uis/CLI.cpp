@@ -10,6 +10,19 @@ static bool needs_args(const std::string& cmd) {
          || cmd == "switch";
 }
 
+static Direction parse_direction(const std::string& direction_token) {
+  Direction direction;
+  if (direction_token == "left") {
+    direction = Direction::LEFT;
+  } else if (direction_token == "right") {
+    direction = Direction::RIGHT;
+  } else {
+    throw std::invalid_argument(Formatter()
+                                << direction_token << " is not a valid direction!");
+  }
+  return direction;
+}
+
 CLI::CLI() : _should_run(true) {}
 
 void CLI::capture_event() {
@@ -64,19 +77,9 @@ void CLI::handle_last_event() {
     if (!_last_event->_args || _last_event->_args->size() == 0) {
       throw std::logic_error("Expected argument to 'rotate' operation!");
     }
-    const std::string& direction_string = _last_event->_args->at(0);
+    const std::string& direction_token = _last_event->_args->at(0);
 
-    Direction direction;
-    /// @todo Split to utils.
-    if (direction_string == "left") {
-      direction = Direction::LEFT;
-    } else if (direction_string == "right") {
-      direction = Direction::RIGHT;
-    } else {
-      throw std::invalid_argument(Formatter()
-                                  << direction_string << " is not a valid direction!");
-    }
-
+    Direction direction = parse_direction(direction_token);
     _current_session->rotate_all(direction);
   } else if (cmd == "undo") {
     /// @todo Implement.
@@ -84,7 +87,7 @@ void CLI::handle_last_event() {
     if (!_last_event->_args || _last_event->_args->size() == 0) {
       throw std::logic_error("Expected argument to 'add' operation!");
     }
-	const std::string& image = _last_event->_args->at(0);
+    const std::string& image = _last_event->_args->at(0);
 
     _current_session->add_image(image);
   } else if (cmd == "save") {
