@@ -1,27 +1,17 @@
 #pragma once
 
+#include <utils/Types.hpp>
+
 #include <boost/optional.hpp>
 
 #include <iostream>
 #include <sstream>
 #include <vector>
 
-/**
- * Wrapper of type that needs to be loaded later.
- *
- * Provides method to check if the variable is loaded.
- * @todo Separate to utils file.
- */
-template <typename Type>
-using DelayLoad = boost::optional<Type>;
-
 bool needs_args(const std::string& cmd) {
   return cmd == "load" || cmd == "rotate" || cmd == "load" || cmd == "session"
          || cmd == "switch";
 }
-
-/// @todo Separate to utils.
-enum class Direction : bool { LEFT, RIGHT };
 
 /// @todo Implement Session.
 class Session {
