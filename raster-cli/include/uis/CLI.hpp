@@ -9,13 +9,13 @@ class CLI {
   public:
     CLI();
 
+    void run_event_loop();
+
+  private:
     void capture_event();
 
     void handle_last_event();
 
-    void run_event_loop();
-
-  private:
     unsigned long long get_unique_session_id() const;
 
 	void init_handlers();
