@@ -24,6 +24,8 @@ class PGM : public Netpbm {
 
   public:
     virtual void apply(const Operation& operation) override;
+    virtual void load() = 0;
+    virtual void save() const = 0;
 
   public:
     virtual void load_check() const override;
