@@ -1,13 +1,9 @@
 #pragma once
 
 #include <sessions/Session.hpp>
-#include <utils/Types.hpp>
-
-#include <boost/optional.hpp>
 
 #include <iostream>
 #include <sstream>
-#include <vector>
 
 bool needs_args(const std::string& cmd) {
   return cmd == "load" || cmd == "rotate" || cmd == "load" || cmd == "session"

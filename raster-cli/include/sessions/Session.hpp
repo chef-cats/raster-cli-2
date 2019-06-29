@@ -1,5 +1,10 @@
 #pragma once
 
+#include <utils/Types.hpp>
+
+#include <string>
+#include <vector>
+
 /**
  * Class to manage a session.
  * 
