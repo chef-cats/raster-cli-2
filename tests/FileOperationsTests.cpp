@@ -126,10 +126,8 @@ BOOST_AUTO_TEST_SUITE_END(/*ReadLineTests*/)
 
 //=============================================================================
 
-BOOST_AUTO_TEST_SUITE(ReadVector) 
-
-BOOST_AUTO_TEST_CASE(ReadOneVector) {
-  std::string file_name = path_to_files + "ReadTwoLines.txt";
+BOOST_AUTO_TEST_CASE(ReadVector) {
+  std::string file_name = path_to_files + "ReadVector.txt";
   std::ofstream ofile(file_name);
   if (!ofile) {
     BOOST_FAIL("Can't open file");
@@ -147,10 +145,7 @@ BOOST_AUTO_TEST_CASE(ReadOneVector) {
     BOOST_FAIL("Can't open file");
   }
   std::vector<int> result;
-  int elem;
-  while (ifile && ifile >> elem) {
-    result.push_back(elem);
-  }
+  fop::read_from_text_file(result, ifile, data.size());
   BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
   BOOST_CHECK_EQUAL(data.size(), result.size());
 
@@ -160,7 +155,7 @@ BOOST_AUTO_TEST_CASE(ReadOneVector) {
   }
 }
 
-BOOST_AUTO_TEST_SUITE_END(ReadVector)
+
 
 //=============================================================================
 
