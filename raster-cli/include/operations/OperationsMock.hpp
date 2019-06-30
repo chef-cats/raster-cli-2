@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file 
+ * @file
  * Contains mocks of all operations.
  * @todo Implement
  * @todo Rename Operation to Transformation

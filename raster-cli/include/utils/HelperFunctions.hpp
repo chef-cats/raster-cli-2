@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Types.hpp"
 #include "Formatter.hpp"
+#include "Types.hpp"
 
 #include <operations/OperationsMock.hpp>
 
