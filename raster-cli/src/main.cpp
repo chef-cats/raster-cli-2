@@ -7,7 +7,7 @@
 int main() {
     CLI cli;
 
-	cli.run_event_loop();
+    cli.run_event_loop();
 
     return EXIT_SUCCESS;
 }

@@ -37,12 +37,8 @@ static std::vector<std::string> get_args_for(const std::string& cmd, std::istrea
         getline(std::cin, args_line);
         std::stringstream args_parser(args_line);
 
-        while (true) {
-            std::string arg;
-            args_parser >> arg;
-            if (!args_parser) {
-                break;
-            }
+        std::string arg;
+        while (args_parser >> arg) {
             args.push_back(arg);
         }
     }
