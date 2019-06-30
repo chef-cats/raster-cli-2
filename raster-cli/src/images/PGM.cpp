@@ -85,6 +85,16 @@ void PGM::load_metadata(std::ifstream& file) {
     fop::file_healthcheck(file, file_path);
     fop::skip_whitespace(file);
 }
+
+void PGM::save_metadata(std::ofstream& file) {
+    Netpbm::save_metadata(file);
+
+    file << get_max_value();
+    file << std::endl;
+
+    fop::file_healthcheck(file, get_file_path());
+}
+
 /**
  * Allocate pixels after the metadata is loaded.
  * This method is invoked by Load operation.
