@@ -103,5 +103,8 @@
     <ClInclude Include="..\..\..\raster-cli\src\uis\CLIUtils.hpp">
       <Filter>Source Files\uis</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\src\sessions\OperationsMock.hpp">
+      <Filter>Source Files\sessions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
