@@ -16,4 +16,5 @@ class BinaryPGM : public PGM {
 
   protected:
     void read_pixels(std::ifstream& file);
+    void write_pixels(std::ofstream& file) const;
 };
