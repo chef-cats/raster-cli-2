@@ -13,10 +13,9 @@ void Netpbm::load_metadata(std::ifstream& file) {
     std::string file_name = get_file_path();
     fop::file_healthcheck(file, file_name);
 
-    std::string buffer;
-
-    fop::read_line(file, buffer);
-    set_format_id(buffer);
+    std::string format;
+    file >> format;
+    set_format_id(format);
 
     fop::skip_lines(file, file_name, COMMENT_SYMBOL);
 
