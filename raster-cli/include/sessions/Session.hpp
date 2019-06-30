@@ -38,9 +38,11 @@ class Session {
     Info get_info() const;
 
   private:
-    class OperationsRecord;
+    void add_operation_to_all(const Operation& operation);
 
     uint64_t _id;
+
+    class OperationsRecord;
 	std::vector<OperationsRecord> _records;
 };
 
@@ -48,7 +50,7 @@ class Session::OperationsRecord {
   public:
     OperationsRecord(const std::string& image);
 
-    void add_operation();
+    void add_operation(const Operation& operation);
 
     void remove_last_operation();
 
