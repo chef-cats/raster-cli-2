@@ -1,5 +1,6 @@
-#include <images/BinaryPGM.hpp>
+#include <experimental/filesystem>
 #include <fstream>
+#include <images/BinaryPGM.hpp>
 #include <iterator>
 
 #include <boost/test/data/test_case.hpp>
@@ -7,11 +8,15 @@
 
 const std::string path = "..\\..\\..\\tests\\TestInput\\BinaryPGM\\";
 
+const std::vector<std::string> FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
 
+const std::string TEMP_FOLDER = path + "temp\\";
+
+namespace fs = std::experimental::filesystem;
 
 BOOST_AUTO_TEST_SUITE(PGMUnitTests)
 
-BOOST_AUTO_TEST_SUITE(BinaryPGMTests) 
+BOOST_AUTO_TEST_SUITE(BinaryPGMTests)
 
 BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     std::string file_path = path + "OneSymbolImage.pgm";
@@ -32,15 +37,34 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     BOOST_CHECK_EQUAL(image.get_pixel(0, 0), content);
 }
 
+BOOST_DATA_TEST_CASE(LoadImage, FILE_NAMES, file_name) {
+    std::string file_path = path + file_name;
 
-BOOST_AUTO_TEST_CASE(LoadImage) {
-    std::string file_name = "coins.pgm";
+    BinaryPGM image(file_path);
+
+    image.load();
+}
+
+BOOST_DATA_TEST_CASE(SaveImage, FILE_NAMES, file_name) {
     std::string input_file = path + file_name;
-    std::string result_file = path + "temp\\" + file_name;
+    std::string result_file = TEMP_FOLDER + file_name;
 
-     BinaryPGM image(result_file);
+    if (!fs::copy_file(input_file, result_file, fs::copy_options::overwrite_existing)) {
+        BOOST_FAIL("Can't copy files\n");
+    }
 
-     image.load();
+    BinaryPGM image(result_file);
+
+    image.load();
+    image.save();
+
+    std::ifstream ifs1(input_file);
+    std::ifstream ifs2(result_file);
+
+    std::istream_iterator<char> b1(ifs1), e1;
+    std::istream_iterator<char> b2(ifs2), e2;
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
