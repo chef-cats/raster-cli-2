@@ -24,6 +24,15 @@
     <Filter Include="Header Files\operations">
       <UniqueIdentifier>{dda1b9af-96fa-441d-b6d0-f4d10c53b78d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sessions">
+      <UniqueIdentifier>{3fd31d46-9832-46cd-8a25-86ee49ef8e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\uis">
+      <UniqueIdentifier>{60f401c5-e9a0-4278-85e4-a638dafb6f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uis">
+      <UniqueIdentifier>{73d02ff3-a635-4dde-af4e-78b8c19b1b0b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{b80f70dc-b104-4af6-99a8-2c1ae0f53b1d}</UniqueIdentifier>
     </Filter>
@@ -37,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp">
       <Filter>Source Files\images</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\uis\CLI.cpp">
+      <Filter>Source Files\uis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\raster-cli\src\utils\FileOperations.cpp">
       <Filter>Source Files\utils</Filter>
@@ -75,6 +87,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Types.hpp">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp">
+      <Filter>Header Files\sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp">
+      <Filter>Header Files\uis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\src\uis\CLIUtils.hpp">
+      <Filter>Source Files\uis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
