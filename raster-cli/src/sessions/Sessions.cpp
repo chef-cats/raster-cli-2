@@ -50,6 +50,18 @@ void Session::add_operation_to_all(const Operation& operation) {
 Session::OperationsRecord::OperationsRecord(const std::string& image)
     : _image(create_image(image)) {}
 
+void Session::OperationsRecord::remove_last_operation() {
+    _operations.pop_back();
+}
+
+void Session::OperationsRecord::add_operation(const Operation& operation) {
+    _operations.emplace_back(new Operation(operation));
+}
+
+void Session::OperationsRecord::execute_operations() {
+	/// @todo Implement
+}
+
 uint64_t Session::Info::get_id() const {
     return 0;
 }
