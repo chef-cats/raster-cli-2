@@ -10,11 +10,13 @@ void file_healthcheck(std::ifstream& file, const std::string& file_name) {
                                      << "The file: " << file_name << " is not open.");
     }
     if (file.fail()) {
+        file.clear();
         throw std::ios_base::failure((
             Formatter() << "Some of the data is not into the correct type into the file: "
                         << file_name << "!"));
     }
     if (file.bad()) {
+        file.clear();
         throw std::ios_base::failure(Formatter() << "File: " << file_name
                                                  << " has broken during reading");
     }
