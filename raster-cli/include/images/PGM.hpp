@@ -24,6 +24,8 @@ class PGM : public Netpbm {
 
   public:
     virtual void apply(const Operation& operation) override;
+    virtual void load() = 0;
+    virtual void save() const = 0;
 
   public:
     virtual void load_check() const override;
@@ -34,6 +36,7 @@ class PGM : public Netpbm {
   protected:
     virtual void metadata_check() const override;
     virtual void load_metadata(std::ifstream& file) override;
+    virtual void save_metadata(std::ofstream& file) const override;
 
   protected:
     void set_max_value(size_t max_value);

@@ -53,6 +53,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\utils\FileOperations.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPGM.cpp">
+      <Filter>Source Files\images</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
@@ -87,6 +90,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Types.hpp">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\images\BinaryPGM.hpp">
+      <Filter>Header Files\images</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp">
       <Filter>Header Files\sessions</Filter>

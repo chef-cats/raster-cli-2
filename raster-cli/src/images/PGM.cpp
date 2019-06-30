@@ -86,6 +86,15 @@ void PGM::load_metadata(std::ifstream& file) {
     fop::skip_whitespace(file);
 }
 
+void PGM::save_metadata(std::ofstream& file)  const {
+    Netpbm::save_metadata(file);
+
+    file << get_max_value();
+    file << std::endl;
+
+    fop::file_healthcheck(file, get_file_path());
+}
+
 /**
  * throw std::logic_error - when you try to change the max value for the second time
  */
@@ -104,5 +113,19 @@ const std::vector<std::vector<PGMPixel>>& PGM::get_pixels() const {
 
 void PGM::set_pixels(const std::vector<std::vector<PGMPixel>>& pixels) {
     metadata_check();
+    size_t max_value = get_max_value();
+
+    for (auto& pixels_line : pixels) {
+        for (auto& pixel : pixels_line) {
+            if (pixel > max_value) {
+                throw std::range_error(
+                    Formatter()
+                    << "Try to set invalid value to " << get_file_path()
+                    << ". The max value is " << static_cast<int>(max_value)
+                    << "but you try to set " << static_cast<int>(pixel) << "!");
+            }
+        }
+    }
+
     _pixels = pixels;
 }

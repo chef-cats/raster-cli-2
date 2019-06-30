@@ -11,7 +11,7 @@ namespace operations {
  * throws std::ios_base::failure - the file is not opened or the was
  *                   reading has fail or the file is not available anymore
  */
-void file_healthcheck(std::ifstream& file, const std::string& file_name);
+void file_healthcheck(std::ios& file, const std::string& file_name);
 
 /**
  * Read one line skip all whitespace symbols after it
@@ -93,6 +93,15 @@ template <typename Type>
 uint64_t write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
                               const std::vector<Type>& container);
 
+/**
+ * Reopen text file to binary. The current possition into the file is saved.
+ */
+void reopen_as_binary(std::ifstream& file, const std::string& file_path);
+
+/**
+ * Reopen text file to binary. The current possition into the file is saved.
+ */
+void reopen_as_binary(std::ofstream& file, const std::string& file_path);
 } // namespace operations
 } // namespace file
 
