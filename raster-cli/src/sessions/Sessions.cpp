@@ -1,32 +1,9 @@
-#include "OperationsMock.hpp"
+#include <operations/OperationsMock.hpp>
 
 #include <sessions/Session.hpp>
+#include <utils/HelperFunctions.hpp>
 
 #include <unordered_map>
-
-static TransformationID get_op_id(const Operation* operation) {
-    if (dynamic_cast<const ToGrayscale*>(operation)) {
-        return TransformationID::TO_GRAYSCALE;
-    }
-    if (dynamic_cast<const ToMonochrome*>(operation)) {
-        return TransformationID::TO_MONOCHROME;
-    }
-    if (dynamic_cast<const ToNegative*>(operation)) {
-        return TransformationID::TO_NEGATIVE;
-    }
-
-    const Rotate* rotate = dynamic_cast<const Rotate*>(operation);
-    if (rotate) {
-        if (rotate->get_direction() == Direction::LEFT) {
-            return TransformationID::ROTATE_LEFT;
-        }
-        if (rotate->get_direction() == Direction::RIGHT) {
-            return TransformationID::ROTATE_RIGHT;
-        }
-    }
-
-    throw std::invalid_argument("Unknown operation!");
-}
 
 Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) {
     _records.reserve(images.size());
@@ -76,7 +53,7 @@ Session::Info Session::get_info() const {
 
         const std::vector<std::unique_ptr<Operation>>& op_log = record.get_log();
         for (const std::unique_ptr<Operation>& op : op_log) {
-            TransformationID op_id = get_op_id(op.get());
+            TransformationID op_id = get_trans_id(op.get());
 
             ++op_count[op_id];
         }

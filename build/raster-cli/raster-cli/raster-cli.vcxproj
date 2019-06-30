@@ -139,6 +139,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\operations\OperationsMock.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />
@@ -147,7 +148,6 @@
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\HelperFunctions.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Types.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\src\sessions\OperationsMock.hpp" />
     <ClInclude Include="..\..\..\raster-cli\src\uis\CLIUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file 
+ * Contains mocks of all operations.
+ * @todo Implement
+ * @todo Rename Operation to Transformation
+ */
+
 #include <operations/Operation.hpp>
 #include <utils/Types.hpp>
 
