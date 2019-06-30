@@ -11,7 +11,7 @@ namespace operations {
  * throws std::ios_base::failure - the file is not opened or the was
  *                   reading has fail or the file is not available anymore
  */
-void file_healthcheck(std::ifstream& file, const std::string& file_name);
+void file_healthcheck(std::ios& file, const std::string& file_name);
 
 /**
  * Read one line skip all whitespace symbols after it

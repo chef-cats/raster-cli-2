@@ -4,8 +4,8 @@
 namespace file {
 namespace operations {
 
-void file_healthcheck(std::ifstream& file, const std::string& file_name) {
-    if (!file.is_open()) {
+void file_healthcheck(std::ios& file, const std::string& file_name) {
+    if (!file.rdbuf()) {
         throw std::ios_base::failure(Formatter()
                                      << "The file: " << file_name << " is not open.");
     }
