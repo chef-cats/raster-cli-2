@@ -106,10 +106,12 @@ void PGM::allocate_pixels() {
     size_t row_cnt = get_height();
     size_t col_size = get_width();
 
-    _pixels->resize(row_cnt);
-    for (std::vector<PGMPixel>& row : *_pixels) {
+    std::vector<std::vector<PGMPixel>> pixels;
+    pixels.resize(row_cnt);
+    for (std::vector<PGMPixel>& row : pixels) {
         row.resize(col_size);
     }
+    _pixels = pixels;
 }
 
 /**
