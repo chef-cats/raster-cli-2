@@ -42,5 +42,23 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
     }
 }
 
+void reopen_as_binary(std::ifstream& file, const std::string& file_path) {
+    auto pixel_start = file.tellg();
+
+    file.close();
+    file.open(file_path, std::ios::binary);
+
+    file.seekg(pixel_start);
+}
+
+void reopen_as_binary(std::ofstream& file, const std::string& file_path) {
+    auto pixel_start = file.tellp();
+
+    file.close();
+    file.open(file_path, std::ios::binary | std::ios::app);
+
+    file.seekp(pixel_start);
+}
+
 } // namespace operations
 } // namespace file

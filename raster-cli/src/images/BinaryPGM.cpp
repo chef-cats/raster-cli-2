@@ -16,6 +16,8 @@ void BinaryPGM::load() {
 
     PGM::load_metadata(file);
 
+    fop::reopen_as_binary(file, file_path);
+    
     read_pixels(file);
 
     file.clear();
@@ -31,6 +33,9 @@ void BinaryPGM::save() const {
     fop::file_healthcheck(file, file_path);
 
     save_metadata(file);
+
+    fop::reopen_as_binary(file, file_path);
+
     write_pixels(file);
 
     file.clear();
