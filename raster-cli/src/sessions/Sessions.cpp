@@ -1,5 +1,7 @@
 #include <sessions/Session.hpp>
 
+#include "OperationsMock.hpp"
+
 Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) {
     _records.reserve(images.size());
     for (size_t index = 0; index < images.size(); ++index) {
@@ -7,7 +9,9 @@ Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) 
     }
 }
 
-void Session::all_to_grayscale() {}
+void Session::all_to_grayscale() {
+    add_operation_to_all(ToGrayscale());
+}
 
 void Session::all_to_monochrome() {}
 
@@ -22,6 +26,12 @@ void Session::add_image(const std::string& image) {}
 void Session::remove_image() {}
 
 void Session::save_all() {}
+
+void Session::add_operation_to_all(const Operation& operation) {
+    for (auto& record : _records) {
+        record.add_operation(operation);
+    }
+}
 
 Session::OperationsRecord::OperationsRecord(const std::string& image)
     : _image(create_image(image)) {}
