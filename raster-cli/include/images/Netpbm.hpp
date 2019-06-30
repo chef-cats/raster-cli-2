@@ -38,6 +38,8 @@ class Netpbm : public Image {
     void set_height(size_t height);
 
   protected:
+    virtual void load_metadata(std::ifstream& file);
+
     virtual std::ostream& write(std::ostream& out) const = 0;
     virtual std::istream& read(std::istream& in) = 0;
 
