@@ -14,5 +14,5 @@ class PGM;
  */
 class Operation {
   public:
-    void apply_to(PGM& image) const {}
+    virtual void apply_to(PGM& image) const {}
 };

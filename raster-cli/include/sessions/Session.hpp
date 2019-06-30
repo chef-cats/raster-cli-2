@@ -1,8 +1,8 @@
 #pragma once
 
-#include <utils/Types.hpp>
 #include <images/ImageFactory.hpp>
 #include <operations/Operation.hpp>
+#include <utils/Types.hpp>
 
 #include <memory>
 #include <string>
@@ -41,7 +41,7 @@ class Session {
     uint64_t _id;
 
     class OperationsRecord;
-	std::vector<OperationsRecord> _records;
+    std::vector<OperationsRecord> _records;
 };
 
 class Session::OperationsRecord {
@@ -54,6 +54,10 @@ class Session::OperationsRecord {
 
     void execute_operations();
 
+    const Image& get_image() const;
+
+    const std::vector<std::unique_ptr<Operation>>& get_log() const;
+
   private:
     std::unique_ptr<Image> _image;
     std::vector<std::unique_ptr<Operation>> _operations;
@@ -63,16 +67,30 @@ class Session::Info {
   public:
     class OperationInfo;
 
+    Info(uint64_t id, const std::vector<std::string>& images,
+         const std::vector<OperationInfo>& op_info);
+
     uint64_t get_id() const;
 
     const std::vector<std::string>& get_images() const;
 
     const std::vector<OperationInfo>& get_operations_info() const;
+
+  private:
+    uint64_t _id;
+    std::vector<std::string> _images;
+    std::vector<OperationInfo> _op_info;
 };
 
 class Session::Info::OperationInfo {
   public:
+    OperationInfo(OperationID id, size_t count);
+
     size_t get_count() const;
 
     OperationID get_id() const;
+
+  private:
+    OperationID _id;
+    size_t _count;
 };
