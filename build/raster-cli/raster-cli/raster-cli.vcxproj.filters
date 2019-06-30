@@ -36,6 +36,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{b80f70dc-b104-4af6-99a8-2c1ae0f53b1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\sessions">
+      <UniqueIdentifier>{047958ce-1885-4e7e-9d33-53564625abf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp">
@@ -52,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\raster-cli\src\utils\FileOperations.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\sessions\Sessions.cpp">
+      <Filter>Source Files\sessions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,43 +13,43 @@
  */
 class Session {
   public:
-    Session(uint64_t id, const std::vector<std::string>& images) {}
+    class Info;
 
-    void all_to_grayscale() {}
+    Session(uint64_t id, const std::vector<std::string>& images);
 
-    void all_to_monochrome() {}
+    void all_to_grayscale();
 
-    void all_to_negative() {}
+    void all_to_monochrome();
 
-    void rotate_all(Direction direction) {}
+    void all_to_negative();
 
-    void undo_last_operation() {}
+    void rotate_all(Direction direction);
 
-    void add_image(const std::string& image) {}
+    void undo_last_operation();
 
-    void remove_image() {}
+    void add_image(const std::string& image);
 
-    void save_all() {}
+    void remove_image();
 
-    class Info {
-      public:
-        uint64_t get_id() const { return 0; }
+    void save_all();
 
-        const std::vector<std::string>& get_images() const {
-            return std::vector<std::string>();
-        }
+    Info get_info() const;
+};
 
-        class OperationInfo {
-          public:
-            size_t get_count() const { return 0; }
+class Session::Info {
+  public:
+    class OperationInfo;
 
-            OperationID get_id() const { return OperationID(); }
-        };
+    uint64_t get_id() const;
 
-        const std::vector<OperationInfo>& get_operations_info() const {
-            return std::vector<OperationInfo>();
-        }
-    };
+    const std::vector<std::string>& get_images() const;
 
-    Info get_info() const { return Info(); }
+    const std::vector<OperationInfo>& get_operations_info() const;
+};
+
+class Session::Info::OperationInfo {
+  public:
+    size_t get_count() const;
+
+    OperationID get_id() const;
 };
