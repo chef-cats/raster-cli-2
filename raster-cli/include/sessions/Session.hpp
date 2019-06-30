@@ -1,7 +1,10 @@
 #pragma once
 
 #include <utils/Types.hpp>
+#include <images/ImageFactory.hpp>
+#include <operations/Operation.hpp>
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -34,6 +37,26 @@ class Session {
     void save_all();
 
     Info get_info() const;
+
+  private:
+    class OperationsRecord;
+
+	std::vector<OperationsRecord> _records;
+};
+
+class Session::OperationsRecord {
+  public:
+    OperationsRecord(const std::string& image);
+
+    void add_operation();
+
+    void remove_last_operation();
+
+    void execute_operations();
+
+  private:
+    std::unique_ptr<Image> _image;
+    std::vector<std::unique_ptr<Operation>> _operations;
 };
 
 class Session::Info {
