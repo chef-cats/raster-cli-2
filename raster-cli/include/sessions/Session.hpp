@@ -13,7 +13,7 @@
  */
 class Session {
   public:
-    Session(unsigned long long id, const std::vector<std::string>& images) {}
+    Session(uint64_t id, const std::vector<std::string>& images) {}
 
     void all_to_grayscale() {}
 
@@ -33,7 +33,7 @@ class Session {
 
     class Info {
       public:
-        unsigned long long get_id() const { return 0; }
+        uint64_t get_id() const { return 0; }
 
         const std::vector<std::string>& get_images() const {
             return std::vector<std::string>();

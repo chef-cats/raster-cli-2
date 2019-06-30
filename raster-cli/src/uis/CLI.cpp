@@ -41,7 +41,7 @@ void CLI::run_event_loop() {
     }
 }
 
-unsigned long long CLI::get_unique_session_id() const {
+uint64_t CLI::get_unique_session_id() const {
     return _sessions.size();
 }
 
@@ -96,7 +96,7 @@ void CLI::init_handlers() {
     _handlers["switch"] = [this]() {
         const auto& args = get_args_alias();
 
-        const unsigned long long session_id = std::stoull(args.at(0));
+        const uint64_t session_id = std::stoull(args.at(0));
         _current_session = _sessions.begin() + session_id;
 
         write_session_info(_current_session->get_info(), std::cout);

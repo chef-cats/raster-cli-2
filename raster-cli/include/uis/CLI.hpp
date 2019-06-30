@@ -18,7 +18,7 @@ class CLI {
 
     void handle_last_event();
 
-    unsigned long long get_unique_session_id() const;
+    uint64_t get_unique_session_id() const;
 
     void init_handlers();
 
