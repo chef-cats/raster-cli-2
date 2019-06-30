@@ -96,25 +96,6 @@ void PGM::save_metadata(std::ofstream& file)  const {
 }
 
 /**
- * Allocate pixels after the metadata is loaded.
- * This method is invoked by Load operation.
- *
- * @throws std::logic_error - if you invoke this function
- *                            loading of the metadata.
- */
-void PGM::allocate_pixels() {
-    size_t row_cnt = get_height();
-    size_t col_size = get_width();
-
-    std::vector<std::vector<PGMPixel>> pixels;
-    pixels.resize(row_cnt);
-    for (std::vector<PGMPixel>& row : pixels) {
-        row.resize(col_size);
-    }
-    _pixels = pixels;
-}
-
-/**
  * throw std::logic_error - when you try to change the max value for the second time
  */
 void PGM::set_max_value(size_t max_value) {

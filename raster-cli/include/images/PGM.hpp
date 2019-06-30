@@ -39,9 +39,6 @@ class PGM : public Netpbm {
     virtual void save_metadata(std::ofstream& file) const override;
 
   protected:
-    void allocate_pixels();
-
-  protected:
     void set_max_value(size_t max_value);
     const std::vector<std::vector<PGMPixel>>& get_pixels() const;
     void set_pixels(const std::vector<std::vector<PGMPixel>>& pixels);

@@ -15,7 +15,6 @@ void BinaryPGM::load() {
     fop::file_healthcheck(file, file_path);
 
     PGM::load_metadata(file);
-    PGM::allocate_pixels();
 
     read_pixels(file);
 
