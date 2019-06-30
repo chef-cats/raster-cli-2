@@ -19,6 +19,9 @@ void BinaryPGM::load() {
     }
 
     read_pixels(file);
+
+    file.clear();
+    file.close();
 }
 
 void BinaryPGM::save() const {}
@@ -37,5 +40,6 @@ void BinaryPGM::read_pixels(std::ifstream& file) {
             file::operations::file_healthcheck(file, file_path);
         }
     }
+
     set_pixels(std::move(pixels));
 }
