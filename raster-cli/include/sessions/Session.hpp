@@ -65,32 +65,32 @@ class Session::OperationsRecord {
 
 class Session::Info {
   public:
-    class OperationInfo;
+    class TransformationInfo;
 
     Info(uint64_t id, const std::vector<std::string>& images,
-         const std::vector<OperationInfo>& op_info);
+         const std::vector<TransformationInfo>& op_info);
 
     uint64_t get_id() const;
 
     const std::vector<std::string>& get_images() const;
 
-    const std::vector<OperationInfo>& get_operations_info() const;
+    const std::vector<TransformationInfo>& get_transformations_info() const;
 
   private:
     uint64_t _id;
     std::vector<std::string> _images;
-    std::vector<OperationInfo> _op_info;
+    std::vector<TransformationInfo> _trans_info;
 };
 
-class Session::Info::OperationInfo {
+class Session::Info::TransformationInfo {
   public:
-    OperationInfo(OperationID id, size_t count);
+    TransformationInfo(TransformationID id, size_t count);
 
     size_t get_count() const;
 
-    OperationID get_id() const;
+    TransformationID get_id() const;
 
   private:
-    OperationID _id;
+    TransformationID _id;
     size_t _count;
 };

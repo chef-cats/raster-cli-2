@@ -61,7 +61,7 @@ static void args_check(const DelayLoad<std::vector<std::string>>& args,
 /**
  * Get string representation of @param operation_id
  */
-static std::string get_operation_name(OperationID operation_id) {
+static std::string get_operation_name(TransformationID operation_id) {
     switch (operation_id) {
     default:
         throw std::invalid_argument("Unknown operation!");
@@ -85,7 +85,7 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
     std::cout << std::endl;
 
     std::cout << "Pending transformations:";
-    for (const auto& operation_info : session_info.get_operations_info()) {
+    for (const auto& operation_info : session_info.get_transformations_info()) {
         std::cout << " " << operation_info.get_count() << "*"
                   << get_operation_name(operation_info.get_id());
     }

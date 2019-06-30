@@ -4,24 +4,24 @@
 
 #include <unordered_map>
 
-static OperationID get_op_id(const Operation* operation) {
+static TransformationID get_op_id(const Operation* operation) {
     if (dynamic_cast<const ToGrayscale*>(operation)) {
-        return OperationID::TO_GRAYSCALE;
+        return TransformationID::TO_GRAYSCALE;
     }
     if (dynamic_cast<const ToMonochrome*>(operation)) {
-        return OperationID::TO_MONOCHROME;
+        return TransformationID::TO_MONOCHROME;
     }
     if (dynamic_cast<const ToNegative*>(operation)) {
-        return OperationID::TO_NEGATIVE;
+        return TransformationID::TO_NEGATIVE;
     }
 
     const Rotate* rotate = dynamic_cast<const Rotate*>(operation);
     if (rotate) {
         if (rotate->get_direction() == Direction::LEFT) {
-            return OperationID::ROTATE_LEFT;
+            return TransformationID::ROTATE_LEFT;
         }
         if (rotate->get_direction() == Direction::RIGHT) {
-            return OperationID::ROTATE_RIGHT;
+            return TransformationID::ROTATE_RIGHT;
         }
     }
 
@@ -69,20 +69,20 @@ void Session::save_all() {
 
 Session::Info Session::get_info() const {
     std::vector<std::string> images;
-    std::unordered_map<OperationID, size_t> op_count;
+    std::unordered_map<TransformationID, size_t> op_count;
 
     for (auto& record : _records) {
         images.emplace_back(record.get_image().get_file_path());
 
         const std::vector<std::unique_ptr<Operation>>& op_log = record.get_log();
         for (const std::unique_ptr<Operation>& op : op_log) {
-            OperationID op_id = get_op_id(op.get());
+            TransformationID op_id = get_op_id(op.get());
 
             ++op_count[op_id];
         }
     }
 
-    std::vector<Session::Info::OperationInfo> op_info;
+    std::vector<Session::Info::TransformationInfo> op_info;
     for (const auto& op_iter : op_count) {
         op_info.emplace_back(op_iter.first, op_iter.second);
     }
@@ -122,8 +122,8 @@ Session::OperationsRecord::get_log() const {
 }
 
 Session::Info::Info(uint64_t id, const std::vector<std::string>& images,
-                    const std::vector<Session::Info::OperationInfo>& op_info)
-    : _id(id), _images(images), _op_info(op_info) {}
+                    const std::vector<Session::Info::TransformationInfo>& op_info)
+    : _id(id), _images(images), _trans_info(op_info) {}
 
 uint64_t Session::Info::get_id() const {
     return _id;
@@ -133,18 +133,18 @@ const std::vector<std::string>& Session::Info::get_images() const {
     return _images;
 }
 
-const std::vector<Session::Info::OperationInfo>&
-Session::Info::get_operations_info() const {
-    return _op_info;
+const std::vector<Session::Info::TransformationInfo>&
+Session::Info::get_transformations_info() const {
+    return _trans_info;
 }
 
-Session::Info::OperationInfo::OperationInfo(OperationID id, size_t count)
+Session::Info::TransformationInfo::TransformationInfo(TransformationID id, size_t count)
     : _id(id), _count(count) {}
 
-size_t Session::Info::OperationInfo::get_count() const {
+size_t Session::Info::TransformationInfo::get_count() const {
     return _count;
 }
 
-OperationID Session::Info::OperationInfo::get_id() const {
+TransformationID Session::Info::TransformationInfo::get_id() const {
     return _id;
 }
