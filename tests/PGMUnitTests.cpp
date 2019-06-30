@@ -1,4 +1,6 @@
 #include <images/BinaryPGM.hpp>
+#include <fstream>
+#include <iterator>
 
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>
@@ -12,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(PGMUnitTests)
 BOOST_AUTO_TEST_SUITE(BinaryPGMTests) 
 
 BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
-    std::string file_path = path + "OneSymbolImage";
+    std::string file_path = path + "OneSymbolImage.pgm";
     std::string file_format = "P5";
     size_t height = 1;
     size_t width = 1;
@@ -28,6 +30,24 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     BOOST_CHECK_EQUAL(image.get_width(), width);
     BOOST_CHECK_EQUAL(image.get_max_value(), max_value);
     BOOST_CHECK_EQUAL(image.get_pixel(0, 0), content);
+}
+
+
+BOOST_AUTO_TEST_CASE(saveImage) {
+    std::string file_name = "coins.pgm";
+    std::string input_file = path + file_name;
+    std::string result_file = path + "temp\\" + file_name;
+
+     BinaryPGM image(result_file);
+
+     image.load();
+
+    std::ifstream ifs1(input_file);
+    std::ifstream ifs2(result_file);
+    std::istream_iterator<char> b1(ifs1), e1;
+    std::istream_iterator<char> b2(ifs2), e2;
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
