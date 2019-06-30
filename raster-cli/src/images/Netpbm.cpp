@@ -33,7 +33,7 @@ void Netpbm::load_metadata(std::ifstream& file) {
     fop::skip_whitespace(file);
 }
 
-void Netpbm::save_metadata(std::ofstream& file) {
+void Netpbm::save_metadata(std::ofstream& file) const {
     std::string file_name = get_file_path();
     fop::file_healthcheck(file, file_name);
 

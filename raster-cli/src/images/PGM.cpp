@@ -86,7 +86,7 @@ void PGM::load_metadata(std::ifstream& file) {
     fop::skip_whitespace(file);
 }
 
-void PGM::save_metadata(std::ofstream& file) {
+void PGM::save_metadata(std::ofstream& file)  const {
     Netpbm::save_metadata(file);
 
     file << get_max_value();

@@ -36,7 +36,7 @@ class PGM : public Netpbm {
   protected:
     virtual void metadata_check() const override;
     virtual void load_metadata(std::ifstream& file) override;
-    virtual void save_metadata(std::ofstream& file) override;
+    virtual void save_metadata(std::ofstream& file) const override;
 
   protected:
     void allocate_pixels();
