@@ -1,13 +1,13 @@
 #pragma once
 
-#include <utils/Types.hpp>
 #include <utils/Formatter.hpp>
+#include <utils/Types.hpp>
 
 #include <sessions/Session.hpp>
 
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 #include <vector>
 
 /**
@@ -51,7 +51,7 @@ static std::vector<std::string> get_args_for(const std::string& cmd, std::istrea
 
 /**
  * Check if @params args has at least one element.
- * 
+ *
  * @throws std::logic_error if args doesn't have at least one element.
  */
 static void args_check(const DelayLoad<std::vector<std::string>>& args,
@@ -74,7 +74,7 @@ static std::string get_operation_name(OperationID operation_id) {
 
 /**
  * Writes information about a session to the output.
- * 
+ *
  * @param [in] session_info Info for session in generic format.
  * @param [in] out Where to output.
  */
@@ -89,8 +89,7 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
     std::cout << std::endl;
 
     std::cout << "Pending transformations:";
-    for (const Session::Info::OperationInfo& operation_info :
-         session_info.get_operations_info()) {
+    for (const auto& operation_info : session_info.get_operations_info()) {
         std::cout << " " << operation_info.get_count() << "*"
                   << get_operation_name(operation_info.get_id());
     }
