@@ -1,6 +1,11 @@
 #include <sessions/Session.hpp>
 
-Session::Session(uint64_t id, const std::vector<std::string>& images) {}
+Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) {
+    _records.reserve(images.size());
+    for (size_t index = 0; index < images.size(); ++index) {
+        _records.emplace_back(images[index]);
+    }
+}
 
 void Session::all_to_grayscale() {}
 
@@ -17,6 +22,9 @@ void Session::add_image(const std::string& image) {}
 void Session::remove_image() {}
 
 void Session::save_all() {}
+
+Session::OperationsRecord::OperationsRecord(const std::string& image)
+    : _image(create_image(image)) {}
 
 uint64_t Session::Info::get_id() const {
     return 0;

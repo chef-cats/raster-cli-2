@@ -40,6 +40,7 @@ class Session {
   private:
     class OperationsRecord;
 
+    uint64_t _id;
 	std::vector<OperationsRecord> _records;
 };
 
