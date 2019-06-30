@@ -9,7 +9,7 @@ BinaryPGM::BinaryPGM(const std::string& file_name) : PGM(file_name) {}
 void BinaryPGM::load() {
     std::string file_path = get_file_path();
 
-    std::ifstream file(file_path, std::ios::binary);
+    std::ifstream file(file_path);
     if (!file) {
         throw std::ios_base::failure(Formatter()
                                      << "Can't open the file with name: " << file_path);
@@ -49,12 +49,10 @@ void BinaryPGM::read_pixels(std::ifstream& file) {
 
     std::vector<std::vector<PGMPixel>> pixels(height);
     for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            pixels[i].resize(width);
-            file::operations::read_from_binary_file(file, width * sizeof(PGMPixel),
-                                                    pixels[i]);
-            file::operations::file_healthcheck(file, file_path);
-        }
+         pixels[i].resize(width);
+         file::operations::read_from_binary_file(file, width * sizeof(PGMPixel),
+                                                   pixels[i]);
+         file::operations::file_healthcheck(file, file_path);
     }
 
     set_pixels(std::move(pixels));
