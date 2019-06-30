@@ -33,6 +33,18 @@ void Netpbm::load_metadata(std::ifstream& file) {
     fop::skip_whitespace(file);
 }
 
+void Netpbm::save_metadata(std::ofstream& file) {
+    std::string file_name = get_file_path();
+    fop::file_healthcheck(file, file_name);
+
+    file << get_format_id() << std::endl;
+    file << get_height();
+    file << get_width();
+    file << std::endl;
+
+    fop::file_healthcheck(file, file_name);
+}
+
 /**
  * Kind of an assertion. Checks if the image is loaded.
  *
