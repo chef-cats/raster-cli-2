@@ -59,7 +59,9 @@ void Session::OperationsRecord::add_operation(const Operation& operation) {
 }
 
 void Session::OperationsRecord::execute_operations() {
-	/// @todo Implement
+    for (const auto& operation : _operations) {
+        _image->apply(*operation);
+	}
 }
 
 uint64_t Session::Info::get_id() const {
