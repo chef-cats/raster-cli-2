@@ -16,8 +16,6 @@
  */
 class Session {
   public:
-    class Info;
-
     Session(uint64_t id, const std::vector<std::string>& images);
 
     void all_to_grayscale();
@@ -36,6 +34,7 @@ class Session {
 
     void save_all();
 
+    class Info;
     Info get_info() const;
 
   private:
