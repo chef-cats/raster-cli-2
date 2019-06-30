@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Types.hpp"
+#include "Formatter.hpp"
+
 #include <fstream>
 #include <string>
 
@@ -27,4 +30,17 @@ static unsigned char high_bit_offset() {
     UnsignedType bits_count = (CHAR_BIT * sizeof(UnsignedType));
 
     return bits_count - 1;
+}
+
+static Direction parse_direction(const std::string& direction_token) {
+    Direction direction;
+    if (direction_token == "left") {
+        direction = Direction::LEFT;
+    } else if (direction_token == "right") {
+        direction = Direction::RIGHT;
+    } else {
+        throw std::invalid_argument(Formatter()
+                                    << direction_token << " is not a valid direction!");
+    }
+    return direction;
 }

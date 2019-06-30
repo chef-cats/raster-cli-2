@@ -11,3 +11,17 @@ using PGMPixel = unsigned char;
  */
 template <typename Type>
 using DelayLoad = boost::optional<Type>;
+
+/**
+ * Defines valid directions.
+ *
+ * Usually used when rotating images.
+ */
+enum class Direction : bool { LEFT, RIGHT };
+
+/**
+ * Holds valid operations IDs.
+ *
+ * @todo Implement.
+ */
+enum class OperationID : unsigned short {};
