@@ -5,7 +5,7 @@
 Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) {
     _records.reserve(images.size());
     for (size_t index = 0; index < images.size(); ++index) {
-        _records.emplace_back(images[index]);
+        add_image(images[index]);
     }
 }
 
@@ -13,19 +13,33 @@ void Session::all_to_grayscale() {
     add_operation_to_all(ToGrayscale());
 }
 
-void Session::all_to_monochrome() {}
+void Session::all_to_monochrome() {
+    add_operation_to_all(ToMonochrome());
+}
 
-void Session::all_to_negative() {}
+void Session::all_to_negative() {
+    add_operation_to_all(ToNegative());
+}
 
-void Session::rotate_all(Direction direction) {}
+void Session::rotate_all(Direction direction) {
+    add_operation_to_all(Rotate(direction));
+}
 
-void Session::undo_last_operation() {}
+void Session::undo_last_operation() {
+    for (auto& record : _records) {
+        record.remove_last_operation();
+	}
+}
 
-void Session::add_image(const std::string& image) {}
+void Session::add_image(const std::string& image) {
+    _records.emplace_back(image);
+}
 
-void Session::remove_image() {}
-
-void Session::save_all() {}
+void Session::save_all() {
+    for (auto& record : _records) {
+        record.execute_operations();
+    }
+}
 
 void Session::add_operation_to_all(const Operation& operation) {
     for (auto& record : _records) {

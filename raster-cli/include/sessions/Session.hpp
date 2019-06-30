@@ -30,8 +30,6 @@ class Session {
 
     void add_image(const std::string& image);
 
-    void remove_image();
-
     void save_all();
 
     class Info;
