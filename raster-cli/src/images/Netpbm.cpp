@@ -39,6 +39,7 @@ void Netpbm::save_metadata(std::ofstream& file) const {
 
     file << get_format_id() << std::endl;
     file << get_height();
+    file << " ";
     file << get_width();
     file << std::endl;
 
