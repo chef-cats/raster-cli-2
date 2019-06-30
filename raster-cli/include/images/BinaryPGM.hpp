@@ -13,4 +13,7 @@ class BinaryPGM : public PGM {
   public:
     virtual void load() override;
     virtual void save() const override;
+
+  protected:
+    void read_pixels(std::ifstream& file);
 };
