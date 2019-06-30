@@ -10,17 +10,26 @@
 #include <sstream>
 #include <vector>
 
+/**
+ * @returns true if the command requires arguments.
+ */
 static bool needs_args(const std::string& cmd) {
     return cmd == "load" || cmd == "rotate" || cmd == "session" || cmd == "add"
            || cmd == "switch";
 }
 
+/**
+ * Get a command @param cmd.
+ */
 static std::string get_cmd(std::istream& in) {
     std::string cmd;
     std::cin >> cmd;
     return cmd;
 }
 
+/**
+ * Get the appropriate arguments from @param in for the command @param cmd.
+ */
 static std::vector<std::string> get_args_for(const std::string& cmd, std::istream& in) {
     std::vector<std::string> args;
     if (needs_args(cmd)) {
@@ -40,6 +49,11 @@ static std::vector<std::string> get_args_for(const std::string& cmd, std::istrea
     return args;
 }
 
+/**
+ * Check if @params args has at least one element.
+ * 
+ * @throws std::logic_error if args doesn't have at least one element.
+ */
 static void args_check(const DelayLoad<std::vector<std::string>>& args,
                        const std::string& cmd) {
     if (!args || args->size() == 0) {
@@ -48,6 +62,9 @@ static void args_check(const DelayLoad<std::vector<std::string>>& args,
     }
 }
 
+/**
+ * Get string representation of @param operation_id
+ */
 static std::string get_operation_name(OperationID operation_id) {
     switch (operation_id) {
     default:
@@ -55,6 +72,12 @@ static std::string get_operation_name(OperationID operation_id) {
     }
 }
 
+/**
+ * Writes information about a session to the output.
+ * 
+ * @param [in] session_info Info for session in generic format.
+ * @param [in] out Where to output.
+ */
 static void write_session_info(const Session::Info& session_info, std::ostream& out) {
     std::cout << "You switched to session with ID: " << session_info.get_id() << "!"
               << std::endl;
@@ -74,6 +97,9 @@ static void write_session_info(const Session::Info& session_info, std::ostream& 
     std::cout << std::endl;
 }
 
+/**
+ * Prints a welcome message.
+ */
 void welcome() {
     std::cout << "Welcome to Raster CLI!" << std::endl;
     std::cout << "An application developed by Yoanna Nikolova and Ivan Mollov."
@@ -89,6 +115,9 @@ void welcome() {
     std::cout << std::endl;
 }
 
+/**
+ * Prints prompt to the standard output.
+ */
 void prompt() {
     std::cout << "> ";
 }

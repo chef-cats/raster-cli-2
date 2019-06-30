@@ -101,6 +101,8 @@ void CLI::init_handlers() {
 
         write_session_info(_current_session->get_info(), std::cout);
     };
+
+	/// @todo Add 'help' operation.
 }
 
 const std::string& CLI::get_cmd_alias() const {
@@ -108,7 +110,7 @@ const std::string& CLI::get_cmd_alias() const {
         throw std::logic_error("No previous events!");
     }
 
-    return _last_event->_cmd;
+    return _last_event->get_cmd();
 }
 
 const std::vector<std::string>& CLI::get_args_alias() const {
@@ -116,15 +118,22 @@ const std::vector<std::string>& CLI::get_args_alias() const {
         throw std::logic_error("No previous events!");
     }
 
-    const auto& args = _last_event->_args;
-    if (!args) {
-        throw std::logic_error("No arguments!");
-    }
-
-    return args.get();
+    return _last_event->get_args();
 }
 
 CLI::Event::Event(const std::string& cmd) : _cmd(cmd) {}
 
 CLI::Event::Event(const std::string& cmd, const std::vector<std::string>& args)
     : _cmd(cmd), _args(args) {}
+
+const std::string& CLI::Event::get_cmd() const {
+    return _cmd;
+}
+
+const std::vector<std::string>& CLI::Event::get_args() const {
+    if (!_args) {
+        throw std::logic_error("No arguments");
+    }
+
+	return _args.get();
+}
