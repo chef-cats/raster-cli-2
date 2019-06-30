@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
 }
 
 
-BOOST_AUTO_TEST_CASE(saveImage) {
+BOOST_AUTO_TEST_CASE(LoadImage) {
     std::string file_name = "coins.pgm";
     std::string input_file = path + file_name;
     std::string result_file = path + "temp\\" + file_name;
@@ -41,13 +41,6 @@ BOOST_AUTO_TEST_CASE(saveImage) {
      BinaryPGM image(result_file);
 
      image.load();
-
-    std::ifstream ifs1(input_file);
-    std::ifstream ifs2(result_file);
-    std::istream_iterator<char> b1(ifs1), e1;
-    std::istream_iterator<char> b2(ifs2), e2;
-
-    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
