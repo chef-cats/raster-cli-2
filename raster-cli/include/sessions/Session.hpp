@@ -2,8 +2,8 @@
 
 #include <images/ImageFactory.hpp>
 #include <operations/Operation.hpp>
-#include <utils/Types.hpp>
 #include <sessions/SessionInfo.hpp>
+#include <utils/Types.hpp>
 
 #include <memory>
 #include <string>
@@ -54,5 +54,5 @@ class Session::PendingImageTransformations {
 
   private:
     std::unique_ptr<Image> _image;
-    std::vector<std::unique_ptr<const Operation>> _operations;
+    std::vector<std::unique_ptr<const Operation>> transformations;
 };
