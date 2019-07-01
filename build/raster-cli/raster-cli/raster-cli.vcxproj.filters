@@ -68,6 +68,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\pixels\PGMPixel.cpp">
       <Filter>Source Files\pixels</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\include\pixels\PPMPixel.cpp">
+      <Filter>Source Files\pixels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
@@ -123,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\images\PPM.hpp">
       <Filter>Header Files\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\pixels\PPMPixel.hpp">
+      <Filter>Header Files\pixels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

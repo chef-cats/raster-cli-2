@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\raster-cli\include\pixels\PPMPixel.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PGMPixel.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\pixels\PPMPixel.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />

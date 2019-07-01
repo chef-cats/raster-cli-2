@@ -15,7 +15,7 @@
 
 class PGM : public Netpbm {
   public:
-     class Pixel;
+    class Pixel;
   public:
     PGM(const std::string& file_name);
     PGM(const PGM& other) = default;
