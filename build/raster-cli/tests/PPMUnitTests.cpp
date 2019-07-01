@@ -7,8 +7,10 @@
 #include <boost/test/unit_test.hpp>
 
 const std::string path = "..\\..\\..\\tests\\TestInput\\PPM\\";
+const std::string test_folder = path + "temp\\";
 
-const std::string TEMP_FOLDER = path + "temp\\";
+const std::vector<std::string> ASCII_FILES
+    = {"snail.ascii.ppm"};
 
 namespace fs = std::experimental::filesystem;
 
@@ -39,6 +41,14 @@ BOOST_AUTO_TEST_CASE(ReadOnePixelImage) {
     BOOST_CHECK_EQUAL(pixel.get_red(), red);
     BOOST_CHECK_EQUAL(pixel.get_green(), green);
     BOOST_CHECK_EQUAL(pixel.get_blue(), blue);
+}
+
+BOOST_DATA_TEST_CASE(LoadImage, ASCII_FILES, file_name) {
+    std::string file_path = path + file_name;
+
+    TextPPM image(file_path);
+
+    image.load();
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPPMTests*/)
