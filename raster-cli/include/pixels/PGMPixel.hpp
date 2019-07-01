@@ -13,7 +13,9 @@ class PGM::Pixel {
     Pixel& operator=(const Pixel& rhs) = default;
     Pixel& operator=(Pixel&& rhs) = default;
     ~Pixel() = default;
-    
+
+    bool operator==(const PGM::Pixel& rhs) { return get_value() == rhs.get_value(); }
+
   public:
     void set_value(int value);
     int get_value() const;
