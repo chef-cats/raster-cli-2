@@ -3,14 +3,10 @@
 #include <images/TextPPM.hpp>
 #include <iterator>
 #include "TestHelpers.hpp"
+#include "Constants.hpp"
 
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>
-
-const std::string path = "..\\..\\..\\tests\\TestInput\\PPM\\";
-const std::string test_folder = path + "temp\\";
-
-const std::vector<std::string> ASCII_FILE_NAMES = {"snail.ascii.ppm"};
 
 namespace fs = std::experimental::filesystem;
 
@@ -19,7 +15,7 @@ BOOST_AUTO_TEST_SUITE(PPMUnitTests)
 BOOST_AUTO_TEST_SUITE(BinaryPPMTests)
 
 BOOST_AUTO_TEST_CASE(ReadOnePixelImage) {
-    std::string file_path = path + "OneSymbolImage.ascii.ppm";
+    std::string file_path = ppm_path + "OneSymbolImage.ascii.ppm";
     std::string file_format = "P3";
     size_t height = 1;
     size_t width = 1;
@@ -43,17 +39,17 @@ BOOST_AUTO_TEST_CASE(ReadOnePixelImage) {
     BOOST_CHECK_EQUAL(pixel.get_blue(), blue);
 }
 
-BOOST_DATA_TEST_CASE(LoadImage, ASCII_FILE_NAMES, file_name) {
-    std::string file_path = path + file_name;
+BOOST_DATA_TEST_CASE(LoadImage, PPM_ASCII_FILE_NAMES, file_name) {
+    std::string file_path = ppm_path + file_name;
 
     TextPPM image(file_path);
 
     image.load();
 }
 
-BOOST_DATA_TEST_CASE(SaveImage, ASCII_FILE_NAMES, file_name) {
-    std::string input_file = path + file_name;
-    std::string result_file = test_folder + file_name;
+BOOST_DATA_TEST_CASE(SaveImage, PPM_ASCII_FILE_NAMES, file_name) {
+    std::string input_file = ppm_path + file_name;
+    std::string result_file = ppm_temp_folder + file_name;
 
     if (!fs::copy_file(input_file, result_file, fs::copy_options::overwrite_existing)) {
         BOOST_FAIL("Can't copy files\n");

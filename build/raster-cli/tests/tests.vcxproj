@@ -31,6 +31,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\tests\include\Constants.hpp" />
     <ClInclude Include="..\..\..\tests\include\TestHelpers.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
