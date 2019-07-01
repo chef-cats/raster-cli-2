@@ -131,6 +131,7 @@
     <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\NetpbmWithMaxValue.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\images\PPM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\TextPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\pixels\PGMPixel.cpp" />

@@ -20,12 +20,16 @@ class PPM : public NetpbmWithMaxValue {
     virtual void save() const = 0;
 
   public:
+    virtual void load_check() const override;
     Pixel get_pixel(size_t row, size_t column) const;
     void set_pixel(Pixel pixel, size_t row, size_t column);
 
   protected:
     const std::vector<std::vector<Pixel>>& get_pixels() const;
     void set_pixels(const std::vector<std::vector<Pixel>>& pixels);
+
+private: 
+   void validatePixel(Pixel pixel);
 
   private:
     DelayLoad<std::vector<std::vector<Pixel>>> _pixels;

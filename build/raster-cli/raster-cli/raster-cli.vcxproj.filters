@@ -74,6 +74,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\images\NetpbmWithMaxValue.cpp">
       <Filter>Source Files\images</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\images\PPM.cpp">
+      <Filter>Source Files\images</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
