@@ -2,6 +2,15 @@
 #include <images/NetpbmWithMaxValue.hpp>
 #include <vector>
 
+
+/**
+ * Images with PGM format.
+ *
+ * This class represents a Portable PixMap images.
+ * Color image.
+ *
+ * https://en.wikipedia.org/wiki/Netpbm_format
+ */
 class PPM : public NetpbmWithMaxValue {
   public:
     class Pixel;

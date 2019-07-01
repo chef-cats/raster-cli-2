@@ -1,6 +1,15 @@
 #pragma once
 #include <images/Netpbm.hpp>
 
+
+/**
+ * NetpbmWithMaxValue present Netpbm image with
+ * additional paramenter max_value. This paramenter defined range of possible
+ * values for each pixel between black and white - [0, max_value]. Black is 0 and
+ * max_value is white. The possible values for max_value are into the
+ * [1, 255].
+ *
+ */
 class NetpbmWithMaxValue : public Netpbm {
   public:
     NetpbmWithMaxValue(const std::string& file_name);

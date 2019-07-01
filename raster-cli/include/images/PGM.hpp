@@ -7,10 +7,9 @@
  * Images with PGM format.
  *
  * This class represents an Portable GrayMap images.
- * These are grayscale images which have defined range of possible
- * values betwee black and white - [0, max_value]. Black is 0 and
- * max_value is white. The possible values for max_value are into the
- * [1, 255].
+ * Grayscale image.
+ *
+ * https://en.wikipedia.org/wiki/Netpbm_format
  */
 
 class PGM : public NetpbmWithMaxValue {
