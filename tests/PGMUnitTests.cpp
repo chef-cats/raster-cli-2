@@ -100,6 +100,28 @@ BOOST_DATA_TEST_CASE(LoadImage, TEXT_FILE_NAMES, file_name) {
     image.load();
 }
 
+BOOST_DATA_TEST_CASE(SaveImage, TEXT_FILE_NAMES, file_name) {
+    std::string input_file = path + file_name;
+    std::string result_file = TEMP_FOLDER + file_name;
+
+    if (!fs::copy_file(input_file, result_file, fs::copy_options::overwrite_existing)) {
+        BOOST_FAIL("Can't copy files\n");
+    }
+
+    TextPGM image(result_file);
+
+    image.load();
+    image.save();
+
+    std::ifstream ifs1(input_file);
+    std::ifstream ifs2(result_file);
+
+    std::istream_iterator<char> b1(ifs1), e1;
+    std::istream_iterator<char> b2(ifs2), e2;
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
+}
+
 BOOST_AUTO_TEST_SUITE_END(/*TextPGMTests*/)
 
 BOOST_AUTO_TEST_SUITE_END(/*PGMUnitTests*/)
