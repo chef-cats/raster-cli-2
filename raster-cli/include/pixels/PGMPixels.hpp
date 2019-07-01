@@ -1,9 +1,10 @@
 #pragma once
 #include <images/PGM.hpp>
-#include <utils/Formatter.hpp>
 #include <iostream>
+#include <utils/Constants.hpp>
+#include <utils/Formatter.hpp>
 
-struct PGM::Pixel { 
+struct PGM::Pixel {
     unsigned char data;
     operator unsigned char() const { return data; }
 };
@@ -17,8 +18,9 @@ static std::ostream& operator<<(std::ostream& out, const PGM::Pixel& pixel) {
 static std::istream& operator>>(std::istream& out, PGM::Pixel& pixel) {
     int data;
     out >> data;
-    if (data >= 255 || data < 0) {
-        throw std::range_error(Formatter() << "Try to set invalid PGM pixel value " << data);
+    if (data > PGM_PIXEL_MAX_VALLUE || data < PGM_PIXEL_MIN_VALLUE) {
+        throw std::range_error(Formatter()
+                               << "Try to set invalid PGM pixel value " << data);
     }
     pixel.data = data;
     return out;
