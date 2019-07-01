@@ -1,6 +1,8 @@
 #pragma once
 #include <images/PPM.hpp>
 
+#include <iostream>
+
 /**
  * PPM pixel are color. One pixel is 24 bits: 8 for red, 8 for green, 8 for blue.
  */
@@ -30,3 +32,31 @@ private:
     char _green;
     char _blue;
 };
+
+static std::ostream& operator<<(std::ostream& out, const PPM::Pixel& pixel) {
+    int red = pixel.get_red();
+    out << red << " ";
+
+    int green = pixel.get_green();
+    out << green << " ";
+
+    int blue = pixel.get_blue();
+    out << blue << " ";
+
+    return out;
+}
+
+static std::istream& operator>>(std::istream& out, PPM::Pixel& pixel) {
+    int red;
+    out >> red;
+
+    int green;
+    out >> green;
+
+    int blue;
+    out >> blue;
+
+    pixel.set(red, green, blue);
+
+    return out;
+}
