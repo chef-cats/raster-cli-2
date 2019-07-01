@@ -1,7 +1,7 @@
 #include <uis/CLI.hpp>
 
-#include <utils/HelperFunctions.hpp>
 #include "CLIUtils.hpp"
+#include <utils/HelperFunctions.hpp>
 
 CLI::CLI() : _should_run(true) {
     init_handlers();
@@ -56,11 +56,17 @@ void CLI::init_handlers() {
         _current_session = std::prev(_sessions.end());
     };
 
-    _handlers["grayscale"] = [this]() { _current_session->all_to_grayscale(); };
+    _handlers["grayscale"] = [this]() {
+        _current_session->apply_transformation(TransformationID::TO_GRAYSCALE);
+    };
 
-    _handlers["monochrome"] = [this]() { _current_session->all_to_monochrome(); };
+    _handlers["monochrome"] = [this]() {
+        _current_session->apply_transformation(TransformationID::TO_MONOCHROME);
+    };
 
-    _handlers["negative"] = [this]() { _current_session->all_to_negative(); };
+    _handlers["negative"] = [this]() {
+        _current_session->apply_transformation(TransformationID::TO_NEGATIVE);
+    };
 
     _handlers["rotate"] = [this]() {
         const auto& args = get_args_alias();
@@ -68,7 +74,9 @@ void CLI::init_handlers() {
         const std::string& direction_token = args.at(0);
 
         Direction direction = parse_direction(direction_token);
-        _current_session->rotate_all(direction);
+        _current_session->apply_transformation(direction == Direction::LEFT
+                                                   ? TransformationID::ROTATE_LEFT
+                                                   : TransformationID::ROTATE_RIGHT);
     };
 
     _handlers["undo"] = [this]() { _current_session->undo_last_operation(); };
@@ -102,7 +110,7 @@ void CLI::init_handlers() {
         write_session_info(_current_session->get_info(), std::cout);
     };
 
-	/// @todo Add 'help' operation.
+    /// @todo Add 'help' operation.
 }
 
 const std::string& CLI::get_cmd_alias() const {
@@ -135,5 +143,5 @@ const std::vector<std::string>& CLI::Event::get_args() const {
         throw std::logic_error("No arguments");
     }
 
-	return _args.get();
+    return _args.get();
 }

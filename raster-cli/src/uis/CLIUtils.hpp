@@ -74,20 +74,19 @@ static std::string get_operation_name(TransformationID operation_id) {
  * @param [in] session_info Info for session in generic format.
  * @param [in] out Where to output.
  */
-static void write_session_info(const Session::Info& session_info, std::ostream& out) {
-    std::cout << "You switched to session with ID: " << session_info.get_id() << "!"
+static void write_session_info(const SessionInfo& session_info, std::ostream& out) {
+    std::cout << "You switched to session with ID: " << session_info.get_id_info() << "!"
               << std::endl;
 
     std::cout << "Name of images in the session:";
-    for (const std::string& image : session_info.get_images()) {
+    for (const std::string& image : session_info.get_images_info()) {
         std::cout << " " << image;
     }
     std::cout << std::endl;
 
     std::cout << "Pending transformations:";
     for (const auto& operation_info : session_info.get_transformations_info()) {
-        std::cout << " " << operation_info.get_count() << "*"
-                  << get_operation_name(operation_info.get_id());
+        std::cout << get_operation_name(operation_info);
     }
     std::cout << std::endl;
 }

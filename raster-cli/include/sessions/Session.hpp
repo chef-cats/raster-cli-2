@@ -3,6 +3,7 @@
 #include <images/ImageFactory.hpp>
 #include <operations/Operation.hpp>
 #include <utils/Types.hpp>
+#include <sessions/SessionInfo.hpp>
 
 #include <memory>
 #include <string>
@@ -18,13 +19,7 @@ class Session {
   public:
     Session(uint64_t id, const std::vector<std::string>& images);
 
-    void all_to_grayscale();
-
-    void all_to_monochrome();
-
-    void all_to_negative();
-
-    void rotate_all(Direction direction);
+    void apply_transformation(TransformationID id);
 
     void undo_last_operation();
 
@@ -32,65 +27,32 @@ class Session {
 
     void save_all();
 
-    class Info;
-    Info get_info() const;
+    SessionInfo get_info() const;
 
   private:
-    void add_operation_to_all(const Operation& operation);
+    void add_transformation_to_all_images(std::unique_ptr<const Operation> operation);
 
     uint64_t _id;
 
-    class OperationsRecord;
-    std::vector<OperationsRecord> _records;
+    class PendingImageTransformations;
+    std::vector<PendingImageTransformations> _pending_image_transformations;
+
+    SessionInfo _session_info;
 };
 
-class Session::OperationsRecord {
+class Session::PendingImageTransformations {
   public:
-    OperationsRecord(const std::string& image);
+    PendingImageTransformations(const std::string& image);
 
-    void add_operation(const Operation& operation);
+    void add_transformation(std::unique_ptr<const Operation> operation);
 
-    void remove_last_operation();
+    void cancel_last_transformation();
 
-    void execute_operations();
+    void execute_transformations();
 
     const Image& get_image() const;
 
-    const std::vector<std::unique_ptr<Operation>>& get_log() const;
-
   private:
     std::unique_ptr<Image> _image;
-    std::vector<std::unique_ptr<Operation>> _operations;
-};
-
-class Session::Info {
-  public:
-    class TransformationInfo;
-
-    Info(uint64_t id, const std::vector<std::string>& images,
-         const std::vector<TransformationInfo>& op_info);
-
-    uint64_t get_id() const;
-
-    const std::vector<std::string>& get_images() const;
-
-    const std::vector<TransformationInfo>& get_transformations_info() const;
-
-  private:
-    uint64_t _id;
-    std::vector<std::string> _images;
-    std::vector<TransformationInfo> _trans_info;
-};
-
-class Session::Info::TransformationInfo {
-  public:
-    TransformationInfo(TransformationID id, size_t count);
-
-    size_t get_count() const;
-
-    TransformationID get_id() const;
-
-  private:
-    TransformationID _id;
-    size_t _count;
+    std::vector<std::unique_ptr<const Operation>> _operations;
 };

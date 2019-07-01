@@ -1,127 +1,66 @@
-#include <operations/OperationsMock.hpp>
+#include <operations/TransformationFactory.hpp>
 
 #include <sessions/Session.hpp>
 #include <utils/HelperFunctions.hpp>
 
 #include <unordered_map>
 
-Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id) {
-    _records.reserve(images.size());
+Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id), _session_info(id) {
+    _pending_image_transformations.reserve(images.size());
     for (size_t index = 0; index < images.size(); ++index) {
         add_image(images[index]);
     }
 }
 
-void Session::all_to_grayscale() {
-    add_operation_to_all(ToGrayscale());
-}
-
-void Session::all_to_monochrome() {
-    add_operation_to_all(ToMonochrome());
-}
-
-void Session::all_to_negative() {
-    add_operation_to_all(ToNegative());
-}
-
-void Session::rotate_all(Direction direction) {
-    add_operation_to_all(Rotate(direction));
+void Session::apply_transformation(TransformationID id) {
+    std::unique_ptr<const Operation> transformation = create_transformation(id);
+    add_transformation_to_all_images(std::move(transformation));
 }
 
 void Session::undo_last_operation() {
-    for (auto& record : _records) {
-        record.remove_last_operation();
+    for (auto& record : _pending_image_transformations) {
+        record.cancel_last_transformation();
     }
 }
 
 void Session::add_image(const std::string& image) {
-    _records.emplace_back(image);
+    _pending_image_transformations.emplace_back(image);
 }
 
 void Session::save_all() {
-    for (auto& record : _records) {
-        record.execute_operations();
+    for (auto& record : _pending_image_transformations) {
+        record.execute_transformations();
     }
 }
 
-Session::Info Session::get_info() const {
-    std::vector<std::string> images;
-    std::unordered_map<TransformationID, size_t> op_count;
-
-    for (auto& record : _records) {
-        images.emplace_back(record.get_image().get_file_path());
-
-        const std::vector<std::unique_ptr<Operation>>& op_log = record.get_log();
-        for (const std::unique_ptr<Operation>& op : op_log) {
-            TransformationID op_id = get_trans_id(op.get());
-
-            ++op_count[op_id];
-        }
-    }
-
-    std::vector<Session::Info::TransformationInfo> op_info;
-    for (const auto& op_iter : op_count) {
-        op_info.emplace_back(op_iter.first, op_iter.second);
-    }
-    return Info(_id, images, op_info);
+SessionInfo Session::get_info() const {
+    return SessionInfo(_id, {}, {});
 }
 
-void Session::add_operation_to_all(const Operation& operation) {
-    for (auto& record : _records) {
-        record.add_operation(operation);
+void Session::add_transformation_to_all_images(std::unique_ptr<const Operation> operation) {
+    for (auto& record : _pending_image_transformations) {
+        record.add_transformation(std::move(operation));
     }
 }
 
-Session::OperationsRecord::OperationsRecord(const std::string& image)
+Session::PendingImageTransformations::PendingImageTransformations(const std::string& image)
     : _image(create_image(image)) {}
 
-void Session::OperationsRecord::remove_last_operation() {
+void Session::PendingImageTransformations::cancel_last_transformation() {
     _operations.pop_back();
 }
 
-void Session::OperationsRecord::add_operation(const Operation& operation) {
-    _operations.emplace_back(new Operation(operation));
+void Session::PendingImageTransformations::add_transformation(
+    std::unique_ptr<const Operation> operation) {
+    _operations.emplace_back(std::move(operation));
 }
 
-void Session::OperationsRecord::execute_operations() {
+void Session::PendingImageTransformations::execute_transformations() {
     for (const auto& operation : _operations) {
         _image->apply(*operation);
     }
 }
 
-const Image& Session::OperationsRecord::get_image() const {
+const Image& Session::PendingImageTransformations::get_image() const {
     return *_image;
-}
-
-const std::vector<std::unique_ptr<Operation>>&
-Session::OperationsRecord::get_log() const {
-    return _operations;
-}
-
-Session::Info::Info(uint64_t id, const std::vector<std::string>& images,
-                    const std::vector<Session::Info::TransformationInfo>& op_info)
-    : _id(id), _images(images), _trans_info(op_info) {}
-
-uint64_t Session::Info::get_id() const {
-    return _id;
-}
-
-const std::vector<std::string>& Session::Info::get_images() const {
-    return _images;
-}
-
-const std::vector<Session::Info::TransformationInfo>&
-Session::Info::get_transformations_info() const {
-    return _trans_info;
-}
-
-Session::Info::TransformationInfo::TransformationInfo(TransformationID id, size_t count)
-    : _id(id), _count(count) {}
-
-size_t Session::Info::TransformationInfo::get_count() const {
-    return _count;
-}
-
-TransformationID Session::Info::TransformationInfo::get_id() const {
-    return _id;
 }

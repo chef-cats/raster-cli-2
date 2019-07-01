@@ -59,6 +59,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\sessions\Sessions.cpp">
       <Filter>Source Files\sessions</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\sessions\SessionInfo.cpp">
+      <Filter>Source Files\sessions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
@@ -105,6 +108,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\operations\OperationsMock.hpp">
       <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\operations\TransformationFactory.hpp">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\sessions\SessionInfo.hpp">
+      <Filter>Header Files\sessions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
