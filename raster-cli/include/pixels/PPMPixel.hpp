@@ -1,5 +1,6 @@
 #pragma once
 #include <images/PPM.hpp>
+#include <utils/FileOperations.hpp>
 
 #include <iostream>
 
@@ -55,6 +56,8 @@ static std::istream& operator>>(std::istream& out, PPM::Pixel& pixel) {
 
     int blue;
     out >> blue;
+
+    file::operations::file_healthcheck(out , "");
 
     pixel.set(red, green, blue);
 
