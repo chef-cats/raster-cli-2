@@ -6,7 +6,7 @@
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>
 
-const std::string path = "..\\..\\..\\tests\\TestInput\\BinaryPGM\\";
+const std::string path = "..\\..\\..\\tests\\TestInput\\PGM\\";
 
 const std::vector<std::string> FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
 
