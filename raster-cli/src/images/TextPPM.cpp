@@ -1,14 +1,11 @@
-#include "utils/Formatter.hpp"
-#include <images/TextPGM.hpp>
+#include <images/TextPPM.hpp>
 #include <utils/FileOperations.hpp>
-
-#include <fstream>
 
 namespace fop = file::operations;
 
-TextPGM::TextPGM(const std::string& file_name) : PGM(file_name) {}
+TextPPM::TextPPM(const std::string& file_name) : PPM(file_name) {}
 
-void TextPGM::load() {
+void TextPPM::load() {
     std::string file_path = get_file_path();
 
     std::ifstream file(file_path);
@@ -22,7 +19,7 @@ void TextPGM::load() {
     file.close();
 }
 
-void TextPGM::save() const {
+void TextPPM::save() const {
     load_check();
 
     std::string file_path = get_file_path();
@@ -38,12 +35,12 @@ void TextPGM::save() const {
     file.close();
 }
 
-void TextPGM::read_pixels(std::ifstream& file) {
+void TextPPM::read_pixels(std::ifstream& file) {
     size_t height = get_height();
     size_t width = get_width();
     std::string file_path = get_file_path();
 
-    std::vector<std::vector<PGM::Pixel>> pixels(height);
+    std::vector<std::vector<PPM::Pixel>> pixels(height);
     for (size_t i = 0; i < height; ++i) {
         pixels[i].resize(width);
         fop::read_from_text_file(file, width, pixels[i]);
@@ -53,7 +50,7 @@ void TextPGM::read_pixels(std::ifstream& file) {
     set_pixels(std::move(pixels));
 }
 
-void TextPGM::write_pixels(std::ofstream& file) const {
+void TextPPM::write_pixels(std::ofstream& file) const {
     size_t height = get_height();
     size_t width = get_width();
     std::string file_path = get_file_path();

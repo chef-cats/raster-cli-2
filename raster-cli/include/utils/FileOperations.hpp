@@ -74,7 +74,7 @@ uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
  * @param [out] container
  */
 template <typename Type>
-void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
                                std::vector<Type>& container);
 
 /**

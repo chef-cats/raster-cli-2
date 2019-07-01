@@ -23,12 +23,17 @@
     <ClCompile Include="..\..\..\tests\FormatterTests.cpp" />
     <ClCompile Include="..\..\..\tests\main.cpp" />
     <ClCompile Include="..\..\..\tests\PGMUnitTests.cpp" />
+    <ClCompile Include="..\..\..\tests\PPMUnitTests.cpp" />
     <ClCompile Include="..\..\..\tests\SessionTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\raster-cli\raster-cli.vcxproj">
       <Project>{7a41b22f-8fd2-4e83-a5ee-cd7ffc297faa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\tests\include\Constants.hpp" />
+    <ClInclude Include="..\..\..\tests\include\TestHelpers.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -109,7 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)raster-cli\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\Debug\Netpbm.obj;$(SolutionDir)raster-cli\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\Debug\PGM.obj;$(SolutionDir)raster-cli\Debug\PPM.obj;$(SolutionDir)raster-cli\Debug\TextPGM.obj;$(SolutionDir)raster-cli\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\Debug\PPMPixel.obj;$(SolutionDir)raster-cli\Debug\SessionInfo.obj;$(SolutionDir)raster-cli\Debug\Sessions.obj;$(SolutionDir)raster-cli\Debug\CLI.obj;$(SolutionDir)raster-cli\Debug\FileOperations.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)raster-cli\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\Debug\Netpbm.obj;$(SolutionDir)raster-cli\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\Debug\PGM.obj;$(SolutionDir)raster-cli\Debug\PPM.obj;$(SolutionDir)raster-cli\Debug\TextPGM.obj;$(SolutionDir)raster-cli\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\Debug\PPMPixel.obj;$(SolutionDir)raster-cli\Debug\TextPPM.obj;$(SolutionDir)raster-cli\Debug\SessionInfo.obj;$(SolutionDir)raster-cli\Debug\Sessions.obj;$(SolutionDir)raster-cli\Debug\CLI.obj;$(SolutionDir)raster-cli\Debug\FileOperations.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,12 +126,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../raster-cli/include;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../tests/include;$(SolutionDir)../../raster-cli/include;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;$(SolutionDir)raster-cli\x64\Debug\PPMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\PPM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPPM.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
