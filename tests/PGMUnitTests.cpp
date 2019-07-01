@@ -10,11 +10,19 @@
 const std::string path = "..\\..\\..\\tests\\TestInput\\PGM\\";
 
 const std::vector<std::string> BINARY_FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
-const std::vector<std::string> TEXT_FILE_NAMES = {"coins.ascii.pgm", "mona_lisa.ascii.pgm"};
+const std::vector<std::string> TEXT_FILE_NAMES
+    = {"coins.ascii.pgm", "mona_lisa.ascii.pgm"};
 
 const std::string TEMP_FOLDER = path + "temp\\";
 
 namespace fs = std::experimental::filesystem;
+
+std::ostream& operator<<(std::ostream& out, const std::vector<PGM::Pixel>& pixel_list) {
+    for (const auto& pixel : pixel_list) {
+        out << pixel;
+    }
+    return out;
+}
 
 BOOST_AUTO_TEST_SUITE(PGMUnitTests)
 
@@ -60,13 +68,12 @@ BOOST_DATA_TEST_CASE(SaveImage, BINARY_FILE_NAMES, file_name) {
     image.load();
     image.save();
 
-    std::ifstream ifs1(input_file);
-    std::ifstream ifs2(result_file);
+    BinaryPGM new_image(result_file);
+    new_image.load();
 
-    std::istream_iterator<char> b1(ifs1), e1;
-    std::istream_iterator<char> b2(ifs2), e2;
-
-    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
+    BOOST_CHECK_EQUAL_COLLECTIONS(image.get_pixels().cbegin(), image.get_pixels().cend(),
+                                  new_image.get_pixels().cbegin(),
+                                  new_image.get_pixels().cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
@@ -113,13 +120,14 @@ BOOST_DATA_TEST_CASE(SaveImage, TEXT_FILE_NAMES, file_name) {
     image.load();
     image.save();
 
-    std::ifstream ifs1(input_file);
-    std::ifstream ifs2(result_file);
+    TextPGM new_image(result_file);
+    new_image.load();
 
-    std::istream_iterator<char> b1(ifs1), e1;
-    std::istream_iterator<char> b2(ifs2), e2;
+    const auto& image_pixels = image.get_pixels();
+    const auto& original_pixels = new_image.get_pixels();
 
-    BOOST_CHECK_EQUAL_COLLECTIONS(b1, e1, b2, e2);
+    BOOST_CHECK_EQUAL_COLLECTIONS(image_pixels.cbegin(), image_pixels.cend(),
+                                  original_pixels.cbegin(), original_pixels.cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*TextPGMTests*/)

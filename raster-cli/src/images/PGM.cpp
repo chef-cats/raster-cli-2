@@ -67,7 +67,20 @@ void PGM::set_pixels(const std::vector<std::vector<PGM::Pixel>>& pixels) {
     metadata_check();
     size_t max_value = get_max_value();
 
+    if (pixels.size() != get_height()) {
+        throw std::invalid_argument(Formatter() << "Try to set invalid pixel data. "
+                                                << "Height of data is " << pixels.size()
+                                                << ". Expected height: " << get_height());
+    }
+
     for (auto& pixels_line : pixels) {
+        if (pixels_line.size() != get_width()) {
+            throw std::invalid_argument(Formatter()
+                                        << "Try to set invalid pixel data. "
+                                        << "Width of data is " << pixels_line.size()
+                                        << ". Expected width: " << get_height());
+        }
+
         for (auto& pixel : pixels_line) {
             if (pixel > max_value) {
                 throw std::range_error(
