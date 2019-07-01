@@ -10,6 +10,7 @@
 const std::string path = "..\\..\\..\\tests\\TestInput\\PGM\\";
 
 const std::vector<std::string> BINARY_FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
+const std::vector<std::string> TEXT_FILE_NAMES = {"coins.ascii.pgm", "mona_lisa.ascii.pgm"};
 
 const std::string TEMP_FOLDER = path + "temp\\";
 
@@ -78,7 +79,7 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     size_t height = 1;
     size_t width = 1;
     size_t max_value = 255;
-    char content = 'I';
+    int content = 24;
 
     TextPGM image(file_path);
 
@@ -89,6 +90,14 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     BOOST_CHECK_EQUAL(image.get_width(), width);
     BOOST_CHECK_EQUAL(image.get_max_value(), max_value);
     BOOST_CHECK_EQUAL(image.get_pixel(0, 0), content);
+}
+
+BOOST_DATA_TEST_CASE(LoadImage, TEXT_FILE_NAMES, file_name) {
+    std::string file_path = path + file_name;
+
+    TextPGM image(file_path);
+
+    image.load();
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*TextPGMTests*/)
