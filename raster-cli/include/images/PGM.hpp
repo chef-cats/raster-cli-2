@@ -1,5 +1,5 @@
 #pragma once
-#include "Netpbm.hpp"
+#include "NetpbmWithMaxValue.hpp"
 #include "utils/Types.hpp"
 #include <vector>
 
@@ -13,9 +13,10 @@
  * [1, 255].
  */
 
-class PGM : public Netpbm {
+class PGM : public NetpbmWithMaxValue {
   public:
     class Pixel;
+
   public:
     PGM(const std::string& file_name);
     PGM(const PGM& other) = default;
@@ -33,20 +34,12 @@ class PGM : public Netpbm {
     virtual void load_check() const override;
     Pixel get_pixel(size_t row, size_t column) const;
     void set_pixel(Pixel pixel, size_t row, size_t column);
-    size_t get_max_value() const;
 
   protected:
-    virtual void metadata_check() const override;
-    virtual void load_metadata(std::ifstream& file) override;
-    virtual void save_metadata(std::ofstream& file) const override;
-
-  protected:
-    void set_max_value(size_t max_value);
     const std::vector<std::vector<Pixel>>& get_pixels() const;
     void set_pixels(const std::vector<std::vector<Pixel>>& pixels);
 
   private:
-    DelayLoad<size_t> _max_value;
     DelayLoad<std::vector<std::vector<Pixel>>> _pixels;
 };
 

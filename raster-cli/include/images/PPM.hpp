@@ -1,8 +1,8 @@
 #pragma once
-#include <images/Netpbm.hpp>
+#include <images/NetpbmWithMaxValue.hpp>
 #include <vector>
 
-class PPM : public Netpbm {
+class PPM : public NetpbmWithMaxValue {
   public:
     class Pixel;
 
@@ -22,7 +22,7 @@ class PPM : public Netpbm {
   public:
     Pixel get_pixel(size_t row, size_t column) const;
     void set_pixel(Pixel pixel, size_t row, size_t column);
-   
+
   protected:
     const std::vector<std::vector<Pixel>>& get_pixels() const;
     void set_pixels(const std::vector<std::vector<Pixel>>& pixels);
@@ -30,3 +30,5 @@ class PPM : public Netpbm {
   private:
     DelayLoad<std::vector<std::vector<Pixel>>> _pixels;
 };
+
+#include <pixels/PPMPixel.hpp>
