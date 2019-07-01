@@ -17,10 +17,10 @@ class PGM::Pixel {
   public:
     void set_value(int value);
     int get_value() const;
-    operator size_t() const { return data; }
+    operator size_t() const;
 
   private:
-    unsigned char data;
+    unsigned char _data;
 };
 
 static std::ostream& operator<<(std::ostream& out, const PGM::Pixel& pixel) {

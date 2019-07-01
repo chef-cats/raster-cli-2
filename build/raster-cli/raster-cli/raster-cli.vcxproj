@@ -126,9 +126,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\raster-cli\include\pixels\PPMPixel.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\images\NetpbmWithMaxValue.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\images\PPM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\TextPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\pixels\PGMPixel.cpp" />
@@ -140,10 +143,13 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\ImageFactory.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\NetpbmWithMaxValue.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\PPM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PGMPixel.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\pixels\PPMPixel.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />

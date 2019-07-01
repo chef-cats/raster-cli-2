@@ -1,21 +1,17 @@
-#include <images/PGM.hpp>
+#include <images/PPM.hpp>
 #include <operations/Operation.hpp>
-#include <utils/Constants.hpp>
-#include <utils/FileOperations.hpp>
 #include <utils/Formatter.hpp>
 
-namespace fop = file::operations;
+PPM::PPM(const std::string& file_name) : NetpbmWithMaxValue(file_name) {}
 
-PGM::PGM(const std::string& file_name) : NetpbmWithMaxValue(file_name) {}
-
-void PGM::apply(const Operation& operation) {
+void PPM::apply(const Operation& operation) {
     operation.apply_to(*this);
 }
 
 /**
  * throws std::logic_error - if some of the data is not loaded.
  */
-void PGM::load_check() const {
+void PPM::load_check() const {
     metadata_check();
     if (!_pixels) {
         throw std::logic_error(Formatter() << "The pixel of image " << get_file_path()
@@ -30,7 +26,7 @@ void PGM::load_check() const {
  *                            or column values is bigger than image's width
  * @throw std::logic_error - if the image is not loaded.
  */
-PGM::Pixel PGM::get_pixel(size_t row, size_t column) const {
+PPM::Pixel PPM::get_pixel(size_t row, size_t column) const {
     load_check();
 
     return _pixels.get()[row][column];
@@ -46,37 +42,50 @@ PGM::Pixel PGM::get_pixel(size_t row, size_t column) const {
  *                           (numbers of grey between black and white).
  * @throw std::logic_error - if the image is not loaded.
  */
-void PGM::set_pixel(PGM::Pixel pixel, size_t row, size_t column) {
+void PPM::set_pixel(PPM::Pixel pixel, size_t row, size_t column) {
     load_check();
 
-    size_t value = pixel;
-    if (value > get_max_value()) {
-        throw std::range_error(Formatter()
-                               << "Try to set invalid value to " << get_file_path()
-                               << ". The max value is " << get_max_value()
-                               << "but you try to set " << pixel << "!");
-    }
+    validate_pixel(pixel);
+
     _pixels.get()[row][column] = pixel;
 }
 
-const std::vector<std::vector<PGM::Pixel>>& PGM::get_pixels() const {
+const std::vector<std::vector<PPM::Pixel>>& PPM::get_pixels() const {
     return _pixels.get();
 }
 
-void PGM::set_pixels(const std::vector<std::vector<PGM::Pixel>>& pixels) {
+void PPM::set_pixels(const std::vector<std::vector<PPM::Pixel>>& pixels) {
     metadata_check();
     size_t max_value = get_max_value();
 
+
     for (auto& pixels_line : pixels) {
         for (auto& pixel : pixels_line) {
-            if (pixel > max_value) {
-                throw std::range_error(
-                    Formatter() << "Try to set invalid value to " << get_file_path()
-                                << ". The max value is " << max_value
-                                << "but you try to set " << pixel << "!");
-            }
+            validate_pixel(pixel);
         }
     }
 
     _pixels = pixels;
+}
+
+void PPM::validate_pixel(Pixel pixel) {
+    std::string error_message = Formatter() << "Try to set invalid red value to "
+                                            << get_file_path() << ". The max value is "
+                                            << get_max_value() << "but you try to set ";
+    size_t max_value = get_max_value();
+
+    size_t red = pixel.get_red();
+    if (red > get_max_value()) {
+        throw std::range_error(Formatter() << error_message << red << "!");
+    }
+
+    size_t green = pixel.get_green();
+    if (green > get_max_value()) {
+        throw std::range_error(Formatter() << error_message << green << "!");
+    }
+
+    size_t blue = pixel.get_blue();
+    if (blue > get_max_value()) {
+        throw std::range_error(Formatter() << error_message << blue << "!");
+    }
 }

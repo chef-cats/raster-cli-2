@@ -124,7 +124,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
