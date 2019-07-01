@@ -27,7 +27,7 @@
     <ClCompile Include="..\..\..\tests\PGMUnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PPMUnitTests.cpp">
+    <ClCompile Include="..\..\..\tests\PPMUnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
