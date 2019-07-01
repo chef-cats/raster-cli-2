@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\..\tests\FormatterTests.cpp" />
     <ClCompile Include="..\..\..\tests\main.cpp" />
     <ClCompile Include="..\..\..\tests\PGMUnitTests.cpp" />
+    <ClCompile Include="..\..\..\tests\SessionTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\raster-cli\raster-cli.vcxproj">
