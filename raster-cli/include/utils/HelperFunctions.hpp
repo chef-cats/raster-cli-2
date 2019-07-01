@@ -46,30 +46,3 @@ static Direction parse_direction(const std::string& direction_token) {
     }
     return direction;
 }
-
-/**
- * Gets the ID of the Transformation.
- */
-static TransformationID get_trans_id(const Operation* operation) {
-    if (dynamic_cast<const ToGrayscale*>(operation)) {
-        return TransformationID::TO_GRAYSCALE;
-    }
-    if (dynamic_cast<const ToMonochrome*>(operation)) {
-        return TransformationID::TO_MONOCHROME;
-    }
-    if (dynamic_cast<const ToNegative*>(operation)) {
-        return TransformationID::TO_NEGATIVE;
-    }
-
-    const Rotate* rotate = dynamic_cast<const Rotate*>(operation);
-    if (rotate) {
-        if (rotate->get_direction() == Direction::LEFT) {
-            return TransformationID::ROTATE_LEFT;
-        }
-        if (rotate->get_direction() == Direction::RIGHT) {
-            return TransformationID::ROTATE_RIGHT;
-        }
-    }
-
-    throw std::invalid_argument("Unknown operation!");
-}
