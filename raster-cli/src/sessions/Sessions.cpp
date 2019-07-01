@@ -15,12 +15,14 @@ Session::Session(uint64_t id, const std::vector<std::string>& images) : _id(id),
 void Session::apply_transformation(TransformationID id) {
     std::unique_ptr<const Operation> transformation = create_transformation(id);
     add_transformation_to_all_images(std::move(transformation));
+    _session_info.add_transformation(id);
 }
 
 void Session::undo_last_operation() {
     for (auto& record : _pending_image_transformations) {
         record.cancel_last_transformation();
     }
+    _session_info.remove_last_transformation_info();
 }
 
 void Session::add_image(const std::string& image) {
@@ -31,10 +33,11 @@ void Session::save_all() {
     for (auto& record : _pending_image_transformations) {
         record.execute_transformations();
     }
+    _session_info.remove_transformations_info();
 }
 
 SessionInfo Session::get_info() const {
-    return SessionInfo(_id, {}, {});
+    return _session_info;
 }
 
 void Session::add_transformation_to_all_images(std::unique_ptr<const Operation> operation) {

@@ -19,7 +19,9 @@ class SessionInfo {
 
     void add_transformation(TransformationID id);
 
-    void remove_last_transformation();
+    void remove_last_transformation_info();
+
+	void remove_transformations_info();
 
   private:
     uint64_t _id;

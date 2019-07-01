@@ -20,6 +20,10 @@ void SessionInfo::add_transformation(TransformationID id) {
     _trans_info.emplace_back(id);
 }
 
-void SessionInfo::remove_last_transformation() {
+void SessionInfo::remove_last_transformation_info() {
     _trans_info.pop_back();
+}
+
+void SessionInfo::remove_transformations_info() {
+    _trans_info.clear();
 }
