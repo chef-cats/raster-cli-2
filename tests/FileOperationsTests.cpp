@@ -36,7 +36,6 @@ BOOST_AUTO_TEST_CASE(SkipSeqOfLines) {
     BOOST_CHECK_EQUAL(file.peek(), EOF);
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(SkipAndReadOneLine) {
     std::string file_name = path_to_files + "SkipAndReadOneLine.txt";
     std::ifstream file(file_name);
@@ -50,9 +49,7 @@ BOOST_AUTO_TEST_CASE(SkipAndReadOneLine) {
     fop::read_line(file, file_name);
     BOOST_CHECK_EQUAL(file.peek(), EOF);
 }
-#endif
 
-#if 0
 BOOST_AUTO_TEST_CASE(OneLineBetweenComments) {
     std::string file_name = path_to_files + "OneLineBetweenComments.txt";
     std::ifstream file(file_name);
@@ -68,7 +65,6 @@ BOOST_AUTO_TEST_CASE(OneLineBetweenComments) {
     fop::skip_lines(file, file_name, special_symbol);
     BOOST_CHECK_EQUAL(file.get(), EOF);
 }
-#endif
 
 BOOST_AUTO_TEST_SUITE_END(/*SkipTests*/)
 
