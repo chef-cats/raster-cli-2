@@ -1,10 +1,10 @@
+#include "Constants.hpp"
+#include "TestHelpers.hpp"
 #include <experimental/filesystem>
 #include <fstream>
 #include <images/BinaryPGM.hpp>
 #include <images/TextPGM.hpp>
 #include <iterator>
-#include "TestHelpers.hpp"
-#include "Constants.hpp"
 
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>

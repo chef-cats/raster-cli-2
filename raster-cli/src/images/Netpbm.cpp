@@ -18,7 +18,7 @@ void Netpbm::load_metadata(std::ifstream& file) {
     set_format_id(format);
 
     fop::skip_whitespace(file);
-	fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+    fop::skip_lines(file, file_name, COMMENT_SYMBOL);
     fop::skip_whitespace(file);
 
     size_t width;
@@ -29,7 +29,7 @@ void Netpbm::load_metadata(std::ifstream& file) {
     file >> height;
     set_height(height);
 
-	fop::skip_whitespace(file);
+    fop::skip_whitespace(file);
     fop::skip_lines(file, file_name, COMMENT_SYMBOL);
     fop::skip_whitespace(file);
     fop::file_healthcheck(file, file_name);

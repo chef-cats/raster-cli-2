@@ -34,7 +34,7 @@ class PGM : public NetpbmWithMaxValue {
     Pixel get_pixel(size_t row, size_t column) const;
     void set_pixel(Pixel pixel, size_t row, size_t column);
 
-	const std::vector<std::vector<Pixel>>& get_pixels() const;
+    const std::vector<std::vector<Pixel>>& get_pixels() const;
 
   protected:
     void set_pixels(const std::vector<std::vector<Pixel>>& pixels);

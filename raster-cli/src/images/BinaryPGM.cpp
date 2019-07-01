@@ -17,7 +17,7 @@ void BinaryPGM::load() {
     PGM::load_metadata(file);
 
     fop::reopen_as_binary(file, file_path);
-    
+
     read_pixels(file);
 
     file.clear();
@@ -53,7 +53,7 @@ void BinaryPGM::read_pixels(std::ifstream& file) {
         fop::read_from_binary_file(file, width * sizeof(PGM::Pixel), pixels[i]);
         if (file.eof()) {
             break;
-		}
+        }
         fop::file_healthcheck(file, file_path);
     }
 

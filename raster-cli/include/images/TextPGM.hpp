@@ -21,4 +21,3 @@ class TextPGM : public PGM {
     void read_pixels(std::ifstream& file);
     void write_pixels(std::ofstream& file) const;
 };
-

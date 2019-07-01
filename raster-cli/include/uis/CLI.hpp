@@ -30,13 +30,13 @@ class CLI {
      * Represents an event that can be handled by the CLI.
      *
      * The CLI has the ability to capture text. Because of that the events handled by it
-     * represent a command and its arguments. 
+     * represent a command and its arguments.
      */
     struct Event {
         Event(const std::string& cmd);
         Event(const std::string& cmd, const std::vector<std::string>& args);
 
-		const std::string& get_cmd() const;
+        const std::string& get_cmd() const;
         const std::vector<std::string>& get_args() const;
 
       private:

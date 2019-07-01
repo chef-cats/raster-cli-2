@@ -64,7 +64,7 @@ void Session::PendingImageTransformations::add_transformation(
 
 void Session::PendingImageTransformations::execute_transformations() {
     _image->load();
-	for (const auto& transformation : transformations) {
+    for (const auto& transformation : transformations) {
         _image->apply(*transformation);
     }
 }
