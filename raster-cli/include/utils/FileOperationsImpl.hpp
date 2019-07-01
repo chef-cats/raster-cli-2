@@ -6,7 +6,7 @@ namespace operations {
 
 template <typename Type>
 inline uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt,
-                               std::vector<Type>& data) {
+                                    std::vector<Type>& data) {
     data.resize(elem_cnt);
     uint64_t element_id = 0;
     for (element_id; file && element_id < elem_cnt; ++element_id) {
@@ -18,7 +18,7 @@ inline uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt,
 
 template <typename Type>
 inline uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
-                              const std::vector<Type>& data) {
+                                   const std::vector<Type>& data) {
     --elem_cnt;
     uint64_t element_id = 0;
     for (element_id; file && element_id < elem_cnt; ++element_id) {
@@ -29,12 +29,14 @@ inline uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
         file << data[element_id++];
     }
 
+	file << std::endl;
+
     return element_id;
 }
 
 template <typename Type>
 inline uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
-                                  std::vector<Type>& container) {
+                                      std::vector<Type>& container) {
     uint64_t read_bytes;
     uint64_t left_bytes = bytes_to_read;
     std::streampos start_pos = file.tellg();
@@ -49,17 +51,17 @@ inline uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_rea
         read_bytes = current_pos - start_pos;
         left_bytes -= read_bytes;
     }
-    
+
     return bytes_to_read - left_bytes;
 }
 
 template <typename Type>
 inline uint64_t write_to_binary_file(std::ofstream& file, uint64_t bytes_to_write,
-                                 const std::vector<Type>& container) {
+                                     const std::vector<Type>& container) {
     std::streampos start_pos = file.tellp();
-    
+
     file.write((const char*)container.data(), bytes_to_write);
-    
+
     return file.tellp() - start_pos;
 }
 

@@ -13,54 +13,39 @@ void Netpbm::load_metadata(std::ifstream& file) {
     std::string file_name = get_file_path();
     fop::file_healthcheck(file, file_name);
 
-    std::string buffer;
+    std::string format;
+    file >> format;
+    set_format_id(format);
 
-    fop::read_line(file, buffer);
-    set_format_id(buffer);
-
-    fop::skip_lines(file, file_name, COMMENT_SYMBOL);
-
-    size_t height;
-    file >> height;
-    set_height(height);
+    fop::skip_whitespace(file);
+	fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+    fop::skip_whitespace(file);
 
     size_t width;
     file >> width;
     set_width(width);
 
-    fop::skip_lines(file, file_name, COMMENT_SYMBOL);
-    fop::file_healthcheck(file, file_name);
-    fop::skip_whitespace(file);
-}
-
-/**
- * Outputs image's data to a stream.
- *
- * @see metadata_check
- */
-std::ostream& Netpbm::write(std::ostream& out) const {
-    metadata_check();
-
-    return out << get_format_id() << get_width() << get_height();
-}
-
-/**
- * Reads image's data from a stream.
- */
-std::istream& Netpbm::read(std::istream& in) {
-    std::string format_id;
-    in >> format_id;
-    set_format_id(format_id);
-
-    size_t width;
-    in >> width;
-    set_width(width);
-
     size_t height;
-    in >> height;
+    file >> height;
     set_height(height);
 
-    return in;
+	fop::skip_whitespace(file);
+    fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+    fop::skip_whitespace(file);
+    fop::file_healthcheck(file, file_name);
+}
+
+void Netpbm::save_metadata(std::ofstream& file) const {
+    std::string file_name = get_file_path();
+    fop::file_healthcheck(file, file_name);
+
+    file << get_format_id() << std::endl;
+    file << get_width();
+    file << " ";
+    file << get_height();
+    file << std::endl;
+
+    fop::file_healthcheck(file, file_name);
 }
 
 /**

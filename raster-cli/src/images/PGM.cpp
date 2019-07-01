@@ -6,7 +6,7 @@
 
 namespace fop = file::operations;
 
-PGM::PGM(const std::string& file_name) : Netpbm(file_name) {}
+PGM::PGM(const std::string& file_name) : NetpbmWithMaxValue(file_name) {}
 
 void PGM::apply(const Operation& operation) {
     operation.apply_to(*this);
@@ -30,7 +30,7 @@ void PGM::load_check() const {
  *                            or column values is bigger than image's width
  * @throw std::logic_error - if the image is not loaded.
  */
-PGMPixel PGM::get_pixel(size_t row, size_t column) const {
+PGM::Pixel PGM::get_pixel(size_t row, size_t column) const {
     load_check();
 
     return _pixels.get()[row][column];
@@ -46,63 +46,50 @@ PGMPixel PGM::get_pixel(size_t row, size_t column) const {
  *                           (numbers of grey between black and white).
  * @throw std::logic_error - if the image is not loaded.
  */
-void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
+void PGM::set_pixel(PGM::Pixel pixel, size_t row, size_t column) {
     load_check();
 
-    size_t value = static_cast<size_t>(pixel);
-    if (value > *_max_value) {
-        throw std::range_error(
-            Formatter() << "Try to set invalid value to " << get_file_path()
-                        << ". The max value is " << static_cast<int>(*_max_value)
-                        << "but you try to set " << static_cast<int>(pixel) << "!");
+    size_t value = pixel;
+    if (value > get_max_value()) {
+        throw std::range_error(Formatter()
+                               << "Try to set invalid value to " << get_file_path()
+                               << ". The max value is " << get_max_value()
+                               << "but you try to set " << pixel << "!");
     }
     _pixels.get()[row][column] = pixel;
 }
 
-size_t PGM::get_max_value() const {
-    metadata_check();
-    return *_max_value;
-}
-
-void PGM::metadata_check() const {
-    Netpbm::metadata_check();
-    if (!_max_value) {
-        throw std::logic_error(
-            Formatter() << "The max value is not load, but the other metadata is. File: "
-                        << get_file_path());
-    }
-}
-
-void PGM::load_metadata(std::ifstream& file) {
-    std::string file_path = get_file_path();
-    Netpbm::load_metadata(file);
-
-    size_t max_value;
-    file >> max_value;
-    set_max_value(max_value);
-
-    fop::skip_lines(file, file_path, COMMENT_SYMBOL);
-    fop::file_healthcheck(file, file_path);
-    fop::skip_whitespace(file);
-}
-
-/**
- * throw std::logic_error - when you try to change the max value for the second time
- */
-void PGM::set_max_value(size_t max_value) {
-    if (_max_value) {
-        throw std::logic_error(Formatter() << "The max value is already set. File: "
-                                           << get_file_path());
-    } else {
-        _max_value = max_value;
-    }
-}
-
-const std::vector<std::vector<PGMPixel>>& PGM::get_pixels() const {
+const std::vector<std::vector<PGM::Pixel>>& PGM::get_pixels() const {
     return _pixels.get();
 }
 
-void PGM::set_pixels(const std::vector<std::vector<PGMPixel>>& pixels) {
+void PGM::set_pixels(const std::vector<std::vector<PGM::Pixel>>& pixels) {
     metadata_check();
+    size_t max_value = get_max_value();
+
+    if (pixels.size() != get_height()) {
+        throw std::invalid_argument(Formatter() << "Try to set invalid pixel data. "
+                                                << "Height of data is " << pixels.size()
+                                                << ". Expected height: " << get_height());
+    }
+
+    for (auto& pixels_line : pixels) {
+        if (pixels_line.size() != get_width()) {
+            throw std::invalid_argument(Formatter()
+                                        << "Try to set invalid pixel data. "
+                                        << "Width of data is " << pixels_line.size()
+                                        << ". Expected width: " << get_height());
+        }
+
+        for (auto& pixel : pixels_line) {
+            if (pixel > max_value) {
+                throw std::range_error(
+                    Formatter() << "Try to set invalid value to " << get_file_path()
+                                << ". The max value is " << max_value
+                                << "but you try to set " << pixel << "!");
+            }
+        }
+    }
+
     _pixels = pixels;
 }

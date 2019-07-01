@@ -24,5 +24,22 @@
     <ClCompile Include="..\..\..\tests\FileOperationsTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\PGMUnitTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\PPMUnitTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\tests\include\TestHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\tests\include\Constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\tests\SessionTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
