@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\raster-cli\include\pixels\PPMPixel.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPGM.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPPM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\Netpbm.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\NetpbmWithMaxValue.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\PGM.cpp" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\images\BinaryPGM.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\BinaryPPM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\Image.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\ImageFactory.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\Netpbm.hpp" />
