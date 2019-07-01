@@ -3,6 +3,7 @@
 #include <images/BinaryPGM.hpp>
 #include <images/TextPGM.hpp>
 #include <iterator>
+#include "TestHelpers.hpp"
 
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>
@@ -16,13 +17,6 @@ const std::vector<std::string> TEXT_FILE_NAMES
 const std::string TEMP_FOLDER = path + "temp\\";
 
 namespace fs = std::experimental::filesystem;
-
-std::ostream& operator<<(std::ostream& out, const std::vector<PGM::Pixel>& pixel_list) {
-    for (const auto& pixel : pixel_list) {
-        out << pixel;
-    }
-    return out;
-}
 
 BOOST_AUTO_TEST_SUITE(PGMUnitTests)
 
