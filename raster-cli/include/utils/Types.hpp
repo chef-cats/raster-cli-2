@@ -2,8 +2,6 @@
 
 #include <boost/optional.hpp>
 
-using PGMPixel = unsigned char;
-
 /**
  * Wrapper of type that needs to be loaded later.
  *

@@ -47,10 +47,10 @@ void BinaryPGM::read_pixels(std::ifstream& file) {
     size_t width = get_width();
     std::string file_path = get_file_path();
 
-    std::vector<std::vector<PGMPixel>> pixels(height);
+    std::vector<std::vector<PGM::Pixel>> pixels(height);
     for (size_t i = 0; i < height; ++i) {
         pixels[i].resize(width);
-        fop::read_from_binary_file(file, width * sizeof(PGMPixel), pixels[i]);
+        fop::read_from_binary_file(file, width * sizeof(PGM::Pixel), pixels[i]);
         fop::file_healthcheck(file, file_path);
     }
 
@@ -64,7 +64,7 @@ void BinaryPGM::write_pixels(std::ofstream& file) const {
 
     const auto& pixels = get_pixels();
     for (size_t i = 0; i < height; ++i) {
-        fop::write_to_binary_file(file, width * sizeof(PGMPixel), pixels[i]);
+        fop::write_to_binary_file(file, width * sizeof(PGM::Pixel), pixels[i]);
         fop::file_healthcheck(file, file_path);
     }
 }

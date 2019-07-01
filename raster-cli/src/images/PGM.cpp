@@ -30,7 +30,7 @@ void PGM::load_check() const {
  *                            or column values is bigger than image's width
  * @throw std::logic_error - if the image is not loaded.
  */
-PGMPixel PGM::get_pixel(size_t row, size_t column) const {
+PGM::Pixel PGM::get_pixel(size_t row, size_t column) const {
     load_check();
 
     return _pixels.get()[row][column];
@@ -46,7 +46,7 @@ PGMPixel PGM::get_pixel(size_t row, size_t column) const {
  *                           (numbers of grey between black and white).
  * @throw std::logic_error - if the image is not loaded.
  */
-void PGM::set_pixel(PGMPixel pixel, size_t row, size_t column) {
+void PGM::set_pixel(PGM::Pixel pixel, size_t row, size_t column) {
     load_check();
 
     size_t value = static_cast<size_t>(pixel);
@@ -107,11 +107,11 @@ void PGM::set_max_value(size_t max_value) {
     }
 }
 
-const std::vector<std::vector<PGMPixel>>& PGM::get_pixels() const {
+const std::vector<std::vector<PGM::Pixel>>& PGM::get_pixels() const {
     return _pixels.get();
 }
 
-void PGM::set_pixels(const std::vector<std::vector<PGMPixel>>& pixels) {
+void PGM::set_pixels(const std::vector<std::vector<PGM::Pixel>>& pixels) {
     metadata_check();
     size_t max_value = get_max_value();
 

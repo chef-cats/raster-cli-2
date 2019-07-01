@@ -15,6 +15,8 @@
 
 class PGM : public Netpbm {
   public:
+     struct Pixel;
+  public:
     PGM(const std::string& file_name);
     PGM(const PGM& other) = default;
     PGM(PGM&& other) = default;
@@ -29,8 +31,8 @@ class PGM : public Netpbm {
 
   public:
     virtual void load_check() const override;
-    PGMPixel get_pixel(size_t row, size_t column) const;
-    void set_pixel(PGMPixel pixel, size_t row, size_t column);
+    Pixel get_pixel(size_t row, size_t column) const;
+    void set_pixel(Pixel pixel, size_t row, size_t column);
     size_t get_max_value() const;
 
   protected:
@@ -40,10 +42,12 @@ class PGM : public Netpbm {
 
   protected:
     void set_max_value(size_t max_value);
-    const std::vector<std::vector<PGMPixel>>& get_pixels() const;
-    void set_pixels(const std::vector<std::vector<PGMPixel>>& pixels);
+    const std::vector<std::vector<Pixel>>& get_pixels() const;
+    void set_pixels(const std::vector<std::vector<Pixel>>& pixels);
 
   private:
     DelayLoad<size_t> _max_value;
-    DelayLoad<std::vector<std::vector<PGMPixel>>> _pixels;
+    DelayLoad<std::vector<std::vector<Pixel>>> _pixels;
 };
+
+#include <pixels/PGMPixels.hpp>
