@@ -17,19 +17,22 @@ void Netpbm::load_metadata(std::ifstream& file) {
     file >> format;
     set_format_id(format);
 
-    fop::skip_lines(file, file_name, COMMENT_SYMBOL);
-
-    size_t height;
-    file >> height;
-    set_height(height);
+    fop::skip_whitespace(file);
+	fop::skip_lines(file, file_name, COMMENT_SYMBOL);
+    fop::skip_whitespace(file);
 
     size_t width;
     file >> width;
     set_width(width);
 
+    size_t height;
+    file >> height;
+    set_height(height);
+
+	fop::skip_whitespace(file);
     fop::skip_lines(file, file_name, COMMENT_SYMBOL);
-    fop::file_healthcheck(file, file_name);
     fop::skip_whitespace(file);
+    fop::file_healthcheck(file, file_name);
 }
 
 void Netpbm::save_metadata(std::ofstream& file) const {
@@ -37,9 +40,9 @@ void Netpbm::save_metadata(std::ofstream& file) const {
     fop::file_healthcheck(file, file_name);
 
     file << get_format_id() << std::endl;
-    file << get_height();
-    file << " ";
     file << get_width();
+    file << " ";
+    file << get_height();
     file << std::endl;
 
     fop::file_healthcheck(file, file_name);
