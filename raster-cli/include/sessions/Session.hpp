@@ -1,7 +1,11 @@
 #pragma once
 
+#include <images/ImageFactory.hpp>
+#include <operations/Operation.hpp>
+#include <sessions/SessionInfo.hpp>
 #include <utils/Types.hpp>
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -13,43 +17,42 @@
  */
 class Session {
   public:
-    Session(uint64_t id, const std::vector<std::string>& images) {}
+    Session(uint64_t id, const std::vector<std::string>& images);
 
-    void all_to_grayscale() {}
+    void apply_transformation(TransformationID id);
 
-    void all_to_monochrome() {}
+    void undo_last_operation();
 
-    void all_to_negative() {}
+    void add_image(const std::string& image);
 
-    void rotate_all(Direction direction) {}
+    void save_all();
 
-    void undo_last_operation() {}
+    SessionInfo get_info() const;
 
-    void add_image(const std::string& image) {}
+  private:
+    void add_transformation_to_all_images(std::unique_ptr<const Operation> operation);
 
-    void remove_image() {}
+    uint64_t _id;
 
-    void save_all() {}
+    class PendingImageTransformations;
+    std::vector<PendingImageTransformations> _pending_image_transformations;
 
-    class Info {
-      public:
-        uint64_t get_id() const { return 0; }
+    SessionInfo _session_info;
+};
 
-        const std::vector<std::string>& get_images() const {
-            return std::vector<std::string>();
-        }
+class Session::PendingImageTransformations {
+  public:
+    PendingImageTransformations(const std::string& image);
 
-        class OperationInfo {
-          public:
-            size_t get_count() const { return 0; }
+    void add_transformation(std::unique_ptr<const Operation> operation);
 
-            OperationID get_id() const { return OperationID(); }
-        };
+    void cancel_last_transformation();
 
-        const std::vector<OperationInfo>& get_operations_info() const {
-            return std::vector<OperationInfo>();
-        }
-    };
+    void execute_transformations();
 
-    Info get_info() const { return Info(); }
+    const Image& get_image() const;
+
+  private:
+    std::unique_ptr<Image> _image;
+    std::vector<std::unique_ptr<const Operation>> transformations;
 };

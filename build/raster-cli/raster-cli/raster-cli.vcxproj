@@ -135,6 +135,8 @@
     <ClCompile Include="..\..\..\raster-cli\src\images\TextPGM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\images\TextPPM.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\main.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\sessions\SessionInfo.cpp" />
+    <ClCompile Include="..\..\..\raster-cli\src\sessions\Sessions.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\pixels\PGMPixel.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\uis\CLI.cpp" />
     <ClCompile Include="..\..\..\raster-cli\src\utils\FileOperations.cpp" />
@@ -150,9 +152,12 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\operations\OperationsMock.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\operations\TransformationFactory.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PGMPixel.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PPMPixel.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\sessions\Session.hpp" />
+    <ClInclude Include="..\..\..\raster-cli\include\sessions\SessionInfo.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\uis\CLI.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\Constants.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\utils\FileOperations.hpp" />
