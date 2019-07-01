@@ -6,6 +6,11 @@
 class PGM;
 
 /**
+ * Forward declaration of PGM.
+ */
+class PPM;
+
+/**
  * Base of the operation hierarchy.
  *
  * Operation is implemented as visitor of Image.
@@ -15,4 +20,5 @@ class PGM;
 class Operation {
   public:
     virtual void apply_to(PGM& image) const {}
+    virtual void apply_to(PPM& image) const {}
 };
