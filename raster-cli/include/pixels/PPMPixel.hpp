@@ -29,9 +29,9 @@ class PPM::Pixel {
     void validate(int value) const;
   
 private:
-    char _red;
-    char _green;
-    char _blue;
+    unsigned char _red;
+    unsigned char _green;
+    unsigned char _blue;
 };
 
 static std::ostream& operator<<(std::ostream& out, const PPM::Pixel& pixel) {
