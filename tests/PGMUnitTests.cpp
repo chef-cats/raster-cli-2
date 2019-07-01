@@ -1,6 +1,7 @@
 #include <experimental/filesystem>
 #include <fstream>
 #include <images/BinaryPGM.hpp>
+#include <images/TextPGM.hpp>
 #include <iterator>
 
 #include <boost/test/data/test_case.hpp>
@@ -8,7 +9,7 @@
 
 const std::string path = "..\\..\\..\\tests\\TestInput\\PGM\\";
 
-const std::vector<std::string> FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
+const std::vector<std::string> BINARY_FILE_NAMES = {"coins.pgm", "mona_lisa.pgm"};
 
 const std::string TEMP_FOLDER = path + "temp\\";
 
@@ -37,7 +38,7 @@ BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
     BOOST_CHECK_EQUAL(image.get_pixel(0, 0), content);
 }
 
-BOOST_DATA_TEST_CASE(LoadImage, FILE_NAMES, file_name) {
+BOOST_DATA_TEST_CASE(LoadImage, BINARY_FILE_NAMES, file_name) {
     std::string file_path = path + file_name;
 
     BinaryPGM image(file_path);
@@ -45,7 +46,7 @@ BOOST_DATA_TEST_CASE(LoadImage, FILE_NAMES, file_name) {
     image.load();
 }
 
-BOOST_DATA_TEST_CASE(SaveImage, FILE_NAMES, file_name) {
+BOOST_DATA_TEST_CASE(SaveImage, BINARY_FILE_NAMES, file_name) {
     std::string input_file = path + file_name;
     std::string result_file = TEMP_FOLDER + file_name;
 
@@ -68,5 +69,28 @@ BOOST_DATA_TEST_CASE(SaveImage, FILE_NAMES, file_name) {
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
+
+BOOST_AUTO_TEST_SUITE(TextPGMTests)
+
+BOOST_AUTO_TEST_CASE(ReadOneSymbolImage) {
+    std::string file_path = path + "OneSymbolImage.ascii.pgm";
+    std::string file_format = "P2";
+    size_t height = 1;
+    size_t width = 1;
+    size_t max_value = 255;
+    char content = 'I';
+
+    TextPGM image(file_path);
+
+    image.load();
+
+    BOOST_CHECK_EQUAL(image.get_format_id(), file_format);
+    BOOST_CHECK_EQUAL(image.get_height(), height);
+    BOOST_CHECK_EQUAL(image.get_width(), width);
+    BOOST_CHECK_EQUAL(image.get_max_value(), max_value);
+    BOOST_CHECK_EQUAL(image.get_pixel(0, 0), content);
+}
+
+BOOST_AUTO_TEST_SUITE_END(/*TextPGMTests*/)
 
 BOOST_AUTO_TEST_SUITE_END(/*PGMUnitTests*/)
