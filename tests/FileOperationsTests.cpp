@@ -217,9 +217,7 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     }
 
     std::vector<int> result(size);
-    uint64_t read_bytes;
-    read_bytes = fop::read_from_binary_file(ifile, input_bytes, result);
-
+    fop::read_from_binary_file(ifile, input_bytes, result);
 
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
 

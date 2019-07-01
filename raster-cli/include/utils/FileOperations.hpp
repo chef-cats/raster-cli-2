@@ -72,11 +72,9 @@ uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
  * @param [in] bytes_to_read - the bytes which must be read. The function doesn't end
  * before the reading of the exact count of bytes.
  * @param [out] container
- *
- * @return the count of the read bytes
  */
 template <typename Type>
-uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
                                std::vector<Type>& container);
 
 /**

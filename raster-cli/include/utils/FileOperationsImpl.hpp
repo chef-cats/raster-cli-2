@@ -35,34 +35,9 @@ inline uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
 }
 
 template <typename Type>
-inline uint64_t read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
+inline void read_from_binary_file(std::ifstream& file, uint64_t bytes_to_read,
                                       std::vector<Type>& container) {
-    // Old code results in error, because tellg() returns -1 if read eof which lead to
-    // wrong arithmetics.
-
-    // uint64_t read_bytes;
-    // uint64_t left_bytes = bytes_to_read;
-    // std::streampos start_pos = file.tellg();
-    // std::streampos current_pos = start_pos;
-
-    // while (file && left_bytes != 0) {
-    //    start_pos = current_pos;
-
-    // file.read((char*)container.data(), left_bytes);
-    //    if (file) {
-    //        current_pos = file.tellg();
-    //        read_bytes = current_pos - start_pos;
-    //        left_bytes -= read_bytes;
-    //    } else {
-    //        break;
-    //    }
-    //}
-
-    // return bytes_to_read - left_bytes;
-
     file.read((char*)container.data(), bytes_to_read);
-
-    return 0;
 }
 
 template <typename Type>
