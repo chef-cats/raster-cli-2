@@ -45,7 +45,7 @@ PPM::Pixel PPM::get_pixel(size_t row, size_t column) const {
 void PPM::set_pixel(PPM::Pixel pixel, size_t row, size_t column) {
     load_check();
 
-    validatePixel(pixel);
+    validate_pixel(pixel);
 
     _pixels.get()[row][column] = pixel;
 }
@@ -61,14 +61,14 @@ void PPM::set_pixels(const std::vector<std::vector<PPM::Pixel>>& pixels) {
 
     for (auto& pixels_line : pixels) {
         for (auto& pixel : pixels_line) {
-            validatePixel(pixel);
+            validate_pixel(pixel);
         }
     }
 
     _pixels = pixels;
 }
 
-void PPM::validatePixel(Pixel pixel) {
+void PPM::validate_pixel(Pixel pixel) {
     std::string error_message = Formatter() << "Try to set invalid red value to "
                                             << get_file_path() << ". The max value is "
                                             << get_max_value() << "but you try to set ";

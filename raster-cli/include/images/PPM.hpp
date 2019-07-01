@@ -38,7 +38,7 @@ class PPM : public NetpbmWithMaxValue {
     void set_pixels(const std::vector<std::vector<Pixel>>& pixels);
 
 private: 
-   void validatePixel(Pixel pixel);
+   void validate_pixel(Pixel pixel);
 
   private:
     DelayLoad<std::vector<std::vector<Pixel>>> _pixels;
