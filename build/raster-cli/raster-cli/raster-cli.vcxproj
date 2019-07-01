@@ -148,7 +148,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\PGM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\PPM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPGM.hpp" />
-    <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.h" />
+    <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\operations\Operation.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PGMPixel.hpp" />
     <ClInclude Include="..\..\..\raster-cli\include\pixels\PPMPixel.hpp" />

@@ -142,7 +142,7 @@
     <ClInclude Include="..\..\..\raster-cli\include\images\NetpbmWithMaxValue.hpp">
       <Filter>Header Files\images</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.h">
+    <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.hpp">
       <Filter>Header Files\images</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include <images/TextPPM.h>
+#include <images/TextPPM.hpp>
 #include <utils/FileOperations.hpp>
 
 namespace fop = file::operations;
