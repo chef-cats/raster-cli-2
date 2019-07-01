@@ -49,12 +49,12 @@ PGM::Pixel PGM::get_pixel(size_t row, size_t column) const {
 void PGM::set_pixel(PGM::Pixel pixel, size_t row, size_t column) {
     load_check();
 
-    size_t value = static_cast<size_t>(pixel);
+    size_t value = pixel;
     if (value > *_max_value) {
         throw std::range_error(
             Formatter() << "Try to set invalid value to " << get_file_path()
-                        << ". The max value is " << static_cast<int>(*_max_value)
-                        << "but you try to set " << static_cast<int>(pixel) << "!");
+                        << ". The max value is " << *_max_value
+                        << "but you try to set " << pixel << "!");
     }
     _pixels.get()[row][column] = pixel;
 }
@@ -121,8 +121,8 @@ void PGM::set_pixels(const std::vector<std::vector<PGM::Pixel>>& pixels) {
                 throw std::range_error(
                     Formatter()
                     << "Try to set invalid value to " << get_file_path()
-                    << ". The max value is " << static_cast<int>(max_value)
-                    << "but you try to set " << static_cast<int>(pixel) << "!");
+                    << ". The max value is " << max_value
+                    << "but you try to set " << pixel << "!");
             }
         }
     }

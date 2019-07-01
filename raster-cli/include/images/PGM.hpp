@@ -15,7 +15,7 @@
 
 class PGM : public Netpbm {
   public:
-     struct Pixel;
+     class Pixel;
   public:
     PGM(const std::string& file_name);
     PGM(const PGM& other) = default;
@@ -50,4 +50,4 @@ class PGM : public Netpbm {
     DelayLoad<std::vector<std::vector<Pixel>>> _pixels;
 };
 
-#include <pixels/PGMPixels.hpp>
+#include <pixels/PGMPixel.hpp>
