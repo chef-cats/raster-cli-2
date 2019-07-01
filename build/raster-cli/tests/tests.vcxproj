@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\..\tests\FormatterTests.cpp" />
     <ClCompile Include="..\..\..\tests\main.cpp" />
     <ClCompile Include="..\..\..\tests\PGMUnitTests.cpp" />
+    <ClCompile Include="PPMUnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\raster-cli\raster-cli.vcxproj">
@@ -124,7 +125,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)raster-cli\x64\Debug\FileOperations.obj;$(SolutionDir)raster-cli\x64\Debug\PGMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\NetpbmWithMaxValue.obj;$(SolutionDir)raster-cli\x64\Debug\BinaryPGM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPGM.obj;$(SolutionDir)raster-cli\x64\Debug\PGM.obj;$(SolutionDir)raster-cli\x64\Debug\Netpbm.obj;$(SolutionDir)raster-cli\x64\Debug\PPMPixel.obj;$(SolutionDir)raster-cli\x64\Debug\PPM.obj;$(SolutionDir)raster-cli\x64\Debug\TextPPM.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
