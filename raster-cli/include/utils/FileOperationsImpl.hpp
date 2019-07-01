@@ -29,6 +29,8 @@ inline uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
         file << data[element_id++];
     }
 
+	file << std::endl;
+
     return element_id;
 }
 

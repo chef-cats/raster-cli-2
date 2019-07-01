@@ -190,6 +190,7 @@ BOOST_AUTO_TEST_CASE(WriteVectorTxt) {
         BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
         BOOST_CHECK_EQUAL(data[i], result[i]);
     }
+    fop::skip_whitespace(ifile);
     BOOST_CHECK_EQUAL(ifile.peek(), EOF);
 }
 

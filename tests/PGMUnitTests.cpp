@@ -68,12 +68,12 @@ BOOST_DATA_TEST_CASE(SaveImage, BINARY_FILE_NAMES, file_name) {
     image.load();
     image.save();
 
-    BinaryPGM original(input_file);
-    original.load();
+    BinaryPGM new_image(result_file);
+    new_image.load();
 
     BOOST_CHECK_EQUAL_COLLECTIONS(image.get_pixels().cbegin(), image.get_pixels().cend(),
-                                  original.get_pixels().cbegin(),
-                                  original.get_pixels().cend());
+                                  new_image.get_pixels().cbegin(),
+                                  new_image.get_pixels().cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END(/*BinaryPGMTests*/)
@@ -120,11 +120,11 @@ BOOST_DATA_TEST_CASE(SaveImage, TEXT_FILE_NAMES, file_name) {
     image.load();
     image.save();
 
-    TextPGM original(input_file);
-    original.load();
+    TextPGM new_image(result_file);
+    new_image.load();
 
     const auto& image_pixels = image.get_pixels();
-    const auto& original_pixels = original.get_pixels();
+    const auto& original_pixels = new_image.get_pixels();
 
     BOOST_CHECK_EQUAL_COLLECTIONS(image_pixels.cbegin(), image_pixels.cend(),
                                   original_pixels.cbegin(), original_pixels.cend());
