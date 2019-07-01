@@ -60,7 +60,7 @@ void TextPGM::write_pixels(std::ofstream& file) const {
 
     const auto& pixels = get_pixels();
     for (size_t i = 0; i < height; ++i) {
-        fop::write_to_binary_file(file, width, pixels[i]);
+        fop::write_to_text_file(file, width, pixels[i]);
         fop::file_healthcheck(file, file_path);
     }
 }
