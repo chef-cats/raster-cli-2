@@ -190,9 +190,9 @@ BOOST_AUTO_TEST_CASE(WriteVectorTxt) {
         BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
         BOOST_CHECK_EQUAL(data[i], result[i]);
     }
+    fop::skip_whitespace(ifile);
     BOOST_CHECK_EQUAL(ifile.peek(), EOF);
 }
-
 
 BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     using type = int;
@@ -217,12 +217,9 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     }
 
     std::vector<int> result(size);
-    uint64_t read_bytes;
-    read_bytes = fop::read_from_binary_file(ifile, input_bytes, result);
-
+    fop::read_from_binary_file(ifile, input_bytes, result);
 
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
-    BOOST_CHECK_EQUAL(read_bytes, input_bytes);
 
     for (int i = 0; i < size; ++i) {
         BOOST_CHECK_EQUAL(container[i], result[i]);

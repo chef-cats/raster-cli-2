@@ -51,6 +51,9 @@ void BinaryPGM::read_pixels(std::ifstream& file) {
     for (size_t i = 0; i < height; ++i) {
         pixels[i].resize(width);
         fop::read_from_binary_file(file, width * sizeof(PGM::Pixel), pixels[i]);
+        if (file.eof()) {
+            break;
+		}
         fop::file_healthcheck(file, file_path);
     }
 
