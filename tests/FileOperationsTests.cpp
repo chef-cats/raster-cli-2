@@ -193,7 +193,6 @@ BOOST_AUTO_TEST_CASE(WriteVectorTxt) {
     BOOST_CHECK_EQUAL(ifile.peek(), EOF);
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
     using type = int;
 
@@ -222,13 +221,11 @@ BOOST_AUTO_TEST_CASE(ReadVectorBinary) {
 
 
     BOOST_NOEXCEPT(fop::file_healthcheck(ifile, file_name));
-    BOOST_CHECK_EQUAL(read_bytes, input_bytes);
 
     for (int i = 0; i < size; ++i) {
         BOOST_CHECK_EQUAL(container[i], result[i]);
     }
 }
-#endif
 
 BOOST_AUTO_TEST_CASE(WriteVectorBinary) {
    using type = int;
