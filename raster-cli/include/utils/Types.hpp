@@ -23,9 +23,9 @@ enum class Direction : bool { LEFT, RIGHT };
  * @todo Implement.
  */
 enum class TransformationID : unsigned short {
-	TO_GRAYSCALE,
-	TO_MONOCHROME,
-	TO_NEGATIVE,
-	ROTATE_LEFT,
-	ROTATE_RIGHT
+    TO_GRAYSCALE,
+    TO_MONOCHROME,
+    TO_NEGATIVE,
+    ROTATE_LEFT,
+    ROTATE_RIGHT
 };

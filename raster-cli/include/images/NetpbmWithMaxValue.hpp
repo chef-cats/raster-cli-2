@@ -1,7 +1,6 @@
 #pragma once
 #include <images/Netpbm.hpp>
 
-
 /**
  * NetpbmWithMaxValue present Netpbm image with
  * additional paramenter max_value. This paramenter defined range of possible

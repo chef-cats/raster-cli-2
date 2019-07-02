@@ -2,8 +2,8 @@
 
 #include <utils/Types.hpp>
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class SessionInfo {
   public:
@@ -21,7 +21,7 @@ class SessionInfo {
 
     void remove_last_transformation_info();
 
-	void remove_transformations_info();
+    void remove_transformations_info();
 
   private:
     uint64_t _id;

@@ -40,7 +40,8 @@ void skip_lines(std::ifstream& file, const std::string& file_name, char special_
  * @return  the count of the read elements
  */
 template <typename Type>
-uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt, std::vector<Type>& data);
+uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt,
+                             std::vector<Type>& data);
 
 /**
  * This function writes a data which is save into the a vector, into a file.
@@ -57,7 +58,7 @@ uint64_t read_from_text_file(std::ifstream& file, uint64_t elem_cnt, std::vector
  */
 template <typename Type>
 uint64_t write_to_text_file(std::ofstream& file, uint64_t elem_cnt,
-                        const std::vector<Type>& data);
+                            const std::vector<Type>& data);
 
 /**
  * This function read bytes from a binary file and save it into a vector. The function

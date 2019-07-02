@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
-#include <vector>
 #include <pixels/PPMPixel.hpp>
+#include <vector>
 
-template<typename T>
+template <typename T>
 static std::ostream& operator<<(std::ostream& out, const std::vector<T>& pixel_list) {
     for (const auto& pixel : pixel_list) {
         out << pixel;

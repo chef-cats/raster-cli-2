@@ -27,8 +27,8 @@ class PPM::Pixel {
 
   private:
     void validate(int value) const;
-  
-private:
+
+  private:
     unsigned char _red;
     unsigned char _green;
     unsigned char _blue;
@@ -57,7 +57,7 @@ static std::istream& operator>>(std::istream& out, PPM::Pixel& pixel) {
     int blue;
     out >> blue;
 
-    file::operations::file_healthcheck(out , "");
+    file::operations::file_healthcheck(out, "");
 
     pixel.set(red, green, blue);
 

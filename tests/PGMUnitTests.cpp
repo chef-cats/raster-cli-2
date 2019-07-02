@@ -1,10 +1,10 @@
+#include "Constants.hpp"
+#include "TestHelpers.hpp"
 #include <experimental/filesystem>
 #include <fstream>
 #include <images/BinaryPGM.hpp>
 #include <images/TextPGM.hpp>
 #include <iterator>
-#include "TestHelpers.hpp"
-#include "Constants.hpp"
 
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/unit_test.hpp>
@@ -55,7 +55,7 @@ BOOST_DATA_TEST_CASE(SaveImage, PGM_BINARY_FILE_NAMES, file_name) {
     image.load();
     image.save();
 
-    BinaryPGM new_image(result_file);
+    BinaryPGM new_image(input_file);
     new_image.load();
 
     BOOST_CHECK_EQUAL_COLLECTIONS(image.get_pixels().cbegin(), image.get_pixels().cend(),

@@ -36,7 +36,7 @@ void read_line(std::ifstream& file, std::string& result) {
 
 void skip_lines(std::ifstream& file, const std::string& file_name, char special_symbol) {
     std::string buffer;
-     while (file.peek() == special_symbol) {
+    while (file.peek() == special_symbol) {
         read_line(file, buffer);
         file_healthcheck(file, file_name);
     }

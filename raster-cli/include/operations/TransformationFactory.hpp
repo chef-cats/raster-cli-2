@@ -2,8 +2,8 @@
 
 #include "Operation.hpp"
 #include "OperationsMock.hpp"
-#include <utils/Types.hpp>
 #include <utils/Formatter.hpp>
+#include <utils/Types.hpp>
 
 #include <memory>
 

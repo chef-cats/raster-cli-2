@@ -58,7 +58,6 @@ void PPM::set_pixels(const std::vector<std::vector<PPM::Pixel>>& pixels) {
     metadata_check();
     size_t max_value = get_max_value();
 
-
     for (auto& pixels_line : pixels) {
         for (auto& pixel : pixels_line) {
             validate_pixel(pixel);

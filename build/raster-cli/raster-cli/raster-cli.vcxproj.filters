@@ -89,6 +89,9 @@
     <ClCompile Include="..\..\..\raster-cli\src\images\TextPPM.cpp">
       <Filter>Source Files\images</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\raster-cli\src\images\BinaryPPM.cpp">
+      <Filter>Source Files\images</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\raster-cli\include\utils\Formatter.hpp">
@@ -161,6 +164,9 @@
       <Filter>Header Files\images</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\raster-cli\include\images\TextPPM.hpp">
+      <Filter>Header Files\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\raster-cli\include\images\BinaryPPM.hpp">
       <Filter>Header Files\images</Filter>
     </ClInclude>
   </ItemGroup>
